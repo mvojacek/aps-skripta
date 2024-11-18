@@ -1,15 +1,19 @@
 [book]
 authors = ["jaywor1", "Michal Vojáček"]
-language = "en"
+language = "cs"
 multilingual = false
 src = "src"
 title = "APS Skripta"
+
+[build]
+extra-watch-dirs = ["./img", "./css", "./logisim"]
 
 [output.html]
 mathjax-support = true
 default-theme = "rust"
 preferred-dark-theme = "ayu"
 git-repository-url = "https://github.com/mvojacek/aps-skripta"
+additional-css = ["./css/mdbook-admonish.css"]
 
 [preprocessor.katex]
 after = ["links"]
@@ -22,6 +26,10 @@ after = ["katex"]
 command = "mdbook-toc"
 renderer = ["html"]
 max-level = 6
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
 
 # [output.pdf]
 

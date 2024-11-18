@@ -1,8 +1,5 @@
-materialy/
 .obsidian/
 *~
 *-autosave.kra
-book
+/book
 *.old
-komparator.circ
-alu.circ
