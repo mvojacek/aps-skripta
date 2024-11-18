@@ -67,7 +67,7 @@ jobs:
         run: |
           curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
           rustup update
-          just install
+          just install-deps-ubuntu
 
       - name: Setup Pages
         id: pages
