@@ -1,20 +1,28 @@
 # Hradla - Teorie
 
-Obsah:
-- [Hradla s jedním vstupem](#hradla-s-jedním-vstupem)
-	- [Buffer](#buffer-repeater)
-	- [NOT](#not)
-- [Základní hradla se dvěma vstupy](#základní-hradla-se-dvěma-vstupy)
-	- [AND](#and)
-	- [OR](#or)
-	- [XOR](#xor)
-- [Opaky základních hradel se dvěma vstupy](#opaky-základních-hradel-se-dvěma-vstupy)
-	- [NAND](#nand)
-	- [NOR](#nor)
-	- [XNOR](#xnor)
-- [Cheat sheet](#cheat-sheet)
+<!-- toc -->
 
 ---
+
+<!-- ```kroki-tikz
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{math}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{0.125pt}
+\begin{document}
+    \begin{tikzpicture}
+        \ctikzset{logic ports=ieee, logic ports/scale=0.8};
+        \node [and port] (G) {};
+        \draw (G.in 1) -- ++(0,0) node[left](A){A};
+        \draw (G.in 2) -- ++(0,0) node[left](B){B};
+        \draw (G.out) -- ++(0,0) node[right](X){X};
+    \end{tikzpicture}
+\end{document}
+``` -->
 
 ### Pravdivostní tabulka
 

@@ -1,5 +1,8 @@
+/book
+/src/quiz
+/fragments
+
+*.old
 .obsidian/
 *~
 *-autosave.kra
-/book
-*.old

@@ -5,34 +5,89 @@ multilingual = false
 src = "src"
 title = "APS Skripta"
 
-[build]
-extra-watch-dirs = ["./img", "./css", "./logisim"]
-
 [output.html]
 mathjax-support = true
 default-theme = "rust"
 preferred-dark-theme = "ayu"
 git-repository-url = "https://github.com/mvojacek/aps-skripta"
-additional-css = ["./theme/mdbook-admonish.css", "./theme/tabs.css", "./theme/presentationHider.css"]
+git-branch = "main"
+additional-css = ["./theme/mdbook-admonish.css", "./theme/tabs.css", "./theme/presentationHider.css", "./theme/footer.css"]
 additional-js = ["./theme/tabs.js", "./theme/presentationHider.js"]
 
+open-on-text = "Found a bug? [Edit this page on GitHub.]"
+
+[preprocessor.tera]
+after = ["links"]
+
 [preprocessor.cmdrun]
+after = ["tera"]
 
 [preprocessor.katex]
-after = ["links"]
+after = ["cmdrun"]
 
 [preprocessor.image-size]
 command = "mdbook-image-size"
-after = ["katex"]
+after = ["cmdrun"]
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
+after = ["cmdrun"]
+
+[preprocessor.quiz]
+after = ["cmdrun"]
+renderer = ["html"]
+
+# [preprocessor.svgbob] # replaced by kroki
+# # svgbob configuration:
+# # doc: https://docs.rs/svgbob/latest/svgbob/struct.Settings.html
+# # default values: https://github.com/ivanceras/svgbob/blob/master/packages/svgbob/src/settings.rs#L29-L38
+# font_size = 14
+# font_family = "Iosevka Fixed, monospace"
+# fill_color = "black"
+# background = "transparent"               # default overridden, differs from svgbob's default
+# stroke_color = "var(--fg)"               # default overridden, differs from svgbob's default
+# stroke_width = 2.0
+# scale = 8.0
+# enhance_circuitries = true
+# include_backdrop = true
+# include_styles = true
+# include_defs = true
+# merge_line_with_shapes = false
+# # preprocessor configuration:
+# code_block = "bob"                       # render only code-blocks marked as "bob", e.g.: ```bob
+
+# [preprocessor.graphviz] # replaced by kroki
+# command = "mdbook-graphviz"
+# output-to-file = false # defaults to false, change to true to create SVG files instead of rendering them inline
+
+[preprocessor.open-on-gh]
+command = "mdbook-open-on-gh"
+renderer = ["html"]
+[preprocessor.last-changed]
+command = "mdbook-last-changed"
+renderer = ["html"]
 
 [preprocessor.toc]
 command = "mdbook-toc"
 renderer = ["html"]
 max-level = 6
+after = ["cmdrun"]
 
-[preprocessor.admonish]
-command = "mdbook-admonish"
-assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
+[preprocessor.kroki-preprocessor]
+after = ["cmdrun"]
+
+[preprocessor.emojicodes]
+
+[preprocessor.embedify]
+
+[preprocessor.footnote]
+
+# [preprocessor.external-links] # breaks tables
+# renderer = ["html"]
+
+[preprocessor.checklist]
+title = "TODO"
 
 # [output.pdf]
 
