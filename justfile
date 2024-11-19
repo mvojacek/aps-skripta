@@ -11,10 +11,19 @@ install-deps-ubuntu:
         mdbook-pdf@0.1.10 \
         mdbook-image-size@0.2.1 \
         mdbook-toc@0.14.2 \
-        mdbook-admonish@1.18.0
+        mdbook-admonish@1.18.0 \
+        mdbook-tabs@0.2.1 \
+        mdbook-cmdrun@0.7.1 \
+        mdbook-presentation-preprocessor@0.3.1
+
+install-plugins:
+    mdbook-admonish install --css-dir theme .
+    mdbook-tabs install
+    wget -O theme/presentationHider.css "https://raw.githubusercontent.com/FreeMasen/mdbook-presentation-preprocessor/refs/heads/main/src/presentationHider.css"
+    wget -O theme/presentationHider.js "https://raw.githubusercontent.com/FreeMasen/mdbook-presentation-preprocessor/refs/heads/main/src/presentationHider.js"
 
 build:
     mdbook build
 
 watch:
-    mdbook watch -o
+    mdbook serve -o

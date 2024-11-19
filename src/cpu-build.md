@@ -24,7 +24,7 @@ Jedná se o jednoduchý n-bitový counter s n-bitovým decoderem. Se vstupem `CL
 2 bitový stepper vypadá následovně:
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/stepper.png" height="300px">
+<img src="./img/stepper.png" height="300px">
 </p>
 
 ### Registry
@@ -32,7 +32,7 @@ Jedná se o jednoduchý n-bitový counter s n-bitovým decoderem. Se vstupem `CL
 Ovládání registru může vypadat následovně
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/register.png">
+<img src="./img/register.png">
 </p>
 
 Velmi doporučuji použití tunelů (`Wiring/Tunnel`) a vytvořit konvence jako například `<registr>_set` apod..
@@ -51,5 +51,5 @@ Program counter je komponenta CPU, která vám říká, na jakém řádku progra
 Na obrázku jsou piny na ovládání, to je jen pro testování.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/pc-register.png">
+<img src="./img/pc-register.png">
 </p>

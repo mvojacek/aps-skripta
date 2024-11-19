@@ -13,7 +13,10 @@ mathjax-support = true
 default-theme = "rust"
 preferred-dark-theme = "ayu"
 git-repository-url = "https://github.com/mvojacek/aps-skripta"
-additional-css = ["./css/mdbook-admonish.css"]
+additional-css = ["./theme/mdbook-admonish.css", "./theme/tabs.css", "./theme/presentationHider.css"]
+additional-js = ["./theme/tabs.js", "./theme/presentationHider.js"]
+
+[preprocessor.cmdrun]
 
 [preprocessor.katex]
 after = ["links"]

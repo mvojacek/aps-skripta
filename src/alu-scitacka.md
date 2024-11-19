@@ -15,7 +15,7 @@ Pravdivostní tabulka pro half-adder vypadá následovně.
 
 Pomocí karnaughovy mapy nebo i logiky (odkoukání) můžeme zjistit, že sčítání (`OUT`) je vlastně `XOR` a `COUT` je jenom `AND`. Takže half-adder vypadá následovně.
 
-![Half-adder](https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/alu-half-adder.png)
+![Half-adder](./img/alu-half-adder.png)
 
 ## Full-adder
 
@@ -38,7 +38,7 @@ Jediné, co tedy uděláme je, že přidáme half-adder 2 krát, jeden na `A+B` 
 
 `COUT` half-adderů by se měly sčítat, ale jelikož nemůže nastat případ, kdy jsou oba dva `COUT` `1`, tak nám stačí `OR`. Taky se nemusíme bát přetečení, jelikož při sčítání 3 bitů se hodnota vždy vejde do 2 bitů (maximální hodnota je 3).
 
-![Full-adder](https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/alu-full-adder.png)
+![Full-adder](./img/alu-full-adder.png)
 
 ## Odčítačka
 
@@ -59,7 +59,7 @@ $ (2^n - 1) $ je řetězec samých jedniček a odečtením od takové hodnoty ni
 
 Rozdělíme tak těleso na dvě poloviny na zápornou a nezápornou. Viz. obrázek
 
-![Two's complement](https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/alu-scitacka-doplnek.png =500x center)
+![Two's complement](./img/alu-scitacka-doplnek.png =500x center)
 
 Zkráceně dvojkový doplněk spočívá ve vyhrazení prvního bitu pro znaménko. `1` znamená `-` a `0` znamená `+` s tím, že jsou u negativních čísel znegované bity a poté přičtena `1`. Pochopíte z následného příkladu.
 

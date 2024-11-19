@@ -6,7 +6,7 @@ Kombinační obvody nemají žádné smyčky. Jedná se o obvody jako napříkla
 
 Příklad kombinačního obvodu
 
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/kombinacni-1.png">
+<img src="./img/kombinacni-1.png">
 
 ### Sekvenční obvody
 
@@ -14,7 +14,7 @@ Sekvenční obvody narozdíl od kombinačních mají cykly. Pomocí těchto cykl
 
 Příkladný sekvenční obvod s `OR`
 
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/sekvencni-1.png">
+<img src="./img/sekvencni-1.png">
 
 #### Znázornění v pravdivostní tabulce
 
@@ -42,7 +42,7 @@ Vidíme, že výstup se rovná vždy `1`, takže do tabulky dosadíme pro `B'` `
 
 #### Signály
 
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/signal-states.png">
+<img src="./img/signal-states.png">
 
 Na následujícím obrázku vidíme 4 definice.
 
@@ -54,23 +54,23 @@ Na následujícím obrázku vidíme 4 definice.
 
 Latch je *level-triggered*. To znamená, že latch bere vstup, když je zapnutý viz. obrázek
 
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/signal-latch.png">
+<img src="./img/signal-latch.png">
 
 #### Flip Flop
 
 Flip flop je *edge-triggered*. To znamená, že buď bere vstup na `rising edge` nebo `falling edge`. Na následujícím obrázku bere vstup na `rising edge`.
 
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/signal-flip-flop.png">
+<img src="./img/signal-flip-flop.png">
 
 ### SR Latch
 
 Sekvenční obvody můžete využít pro paměť pomocí hradla `OR`. Hradlo `OR` nám vstup zapne a nechá výstup neustále zapnutý, ale nemáme ho **zatím** jak vyresetovat.
 
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/sekvencni-1.png">
+<img src="./img/sekvencni-1.png">
 
 Abychom ho mohli vyresetovat, přidáme další vstup a to `R` jako reset.
 
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/rookie-sr-latch.png">
+<img src="./img/rookie-sr-latch.png">
 
 Zapíšeme do výrazu
 
@@ -87,7 +87,7 @@ Zapíšeme chování do pravdivostní tabulky
 
 Vytvořili jsme SR Latch, který se ale dá optimalizovat, tak abychom potřebovali 2 stejné gaty a to `NOR` viz. gif.
 
-<img src="https://raw.githubusercontent.com/jaywor1/aps/main/obrazky/sr-latch-gif.gif">
+<img src="./img/sr-latch-gif.gif">
 
 ### Oscillation apparent
 

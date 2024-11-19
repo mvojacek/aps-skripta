@@ -32,7 +32,7 @@ Hradla, které mají jeden vstup jsou následující
 
 #### Symbol
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/Buffer_ANSI_Labelled.svg.png?raw=true" width="192px">
+<img src="./img/Buffer_ANSI_Labelled.svg.png?raw=true" width="192px">
 
 #### Definice
 
@@ -62,7 +62,7 @@ Neboli 0 &rarr; 1 nebo 1 &rarr; 0
 
 #### Symbol
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-NOT_ANSI_Labelled.svg.png?raw=true" width="192px">
+<img src="./img/1920px-NOT_ANSI_Labelled.svg.png?raw=true" width="192px">
 
 #### Definice
 
@@ -100,7 +100,7 @@ Hradlo **AND** neboli logické **"a"** , se využívá když chcete naplnit dvě
 
 #### Symbol
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/AND_ANSI_Labelled.svg.png?raw=true" width="192px">
+<img src="./img/AND_ANSI_Labelled.svg.png?raw=true" width="192px">
 
 #### Definice
 
@@ -132,7 +132,7 @@ Hradlo **OR** neboli logické **"nebo"** , se využívá když chcete naplnit as
 
 #### Symbol
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/OR_ANSI_Labelled.svg.png?raw=true" width="192px">
+<img src="./img/OR_ANSI_Labelled.svg.png?raw=true" width="192px">
 
 #### Definice
 
@@ -164,7 +164,7 @@ Hradlo **XOR** neboli exkluzivní OR , se využívá když chcete naplnit pouze 
 
 #### Symbol
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-XOR_ANSI_Labelled.svg.png?raw=true" width="192px">
+<img src="./img/1920px-XOR_ANSI_Labelled.svg.png?raw=true" width="192px">
 
 #### Definice
 
@@ -207,7 +207,7 @@ Hradlo **NAND** má opačný výstup hradla **AND**
 
 #### Symbol
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-NAND_ANSI_Labelled.svg.png?raw=true" width="192px">
+<img src="./img/1920px-NAND_ANSI_Labelled.svg.png?raw=true" width="192px">
 
 #### Definice
 
@@ -239,7 +239,7 @@ Hradlo **NOR** má opačný vstup hradla **OR**
 
 #### Symbol
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-NOR_ANSI_Labelled.svg.png?raw=true" width="192px">
+<img src="./img/1920px-NOR_ANSI_Labelled.svg.png?raw=true" width="192px">
 
 #### Definice
 
@@ -272,7 +272,7 @@ Hradlo **XNOR** je opak hradla **XOR**, jednoduše řečeno se jedná o ekvivale
 
 #### Symbol
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-XNOR_ANSI_Labelled.svg.png?raw=true" width="192px">
+<img src="./img/1920px-XNOR_ANSI_Labelled.svg.png?raw=true" width="192px">
 
 #### Definice
 
@@ -312,4 +312,4 @@ bool Q = !(A ^ B);
 
 ### Zobrazení logických bran v logisimu
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/hradla.png?raw=true" width="512px">
+<img src="./img/hradla.png?raw=true" width="512px">

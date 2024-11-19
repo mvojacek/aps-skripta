@@ -44,17 +44,17 @@ Máme pravdivostní tabulku se vstupy $ A,B,C,D$ a výstupem $Q $:
 
 1. Vytvoříme tabulku pomocí indexů v pravdivostní tabulce (odvíjí se od Grayova kódu). Neboli doplníme do obrázku
 
-<p><img src="https://github.com/jaywor1/aps/blob/main/obrazky/K-map_minterms_A.svg.png?raw=true" width="648px"></p>
+<p><img src="./img/K-map_minterms_A.svg.png?raw=true" width="648px"></p>
 
 Vznikne nám následující tabulka
 
-<p><img src="https://github.com/jaywor1/aps/blob/main/obrazky/karnaughova-mapa-1-1.png?raw=true" width="512px"></p>
+<p><img src="./img/karnaughova-mapa-1-1.png?raw=true" width="512px"></p>
 
 2. Zakroužkujeme sousedy
 
 Musíme zakroužkovat všechny $ 1$, kroužkujeme buď samostatnou $1$ (v tomto případě je výsledek stejný jako při stavění pomocí mintermů přímo z pravdivostní tabulky, tady K-mapa nemá žádný přínos) nebo obdélníky s obsahem rovným některé mocnině $2$ $2,4,8... $, z čehož přímo výplývá (jako nutná podmínka), že obě dělky stran obdélníků musí být mocniny dvou.
 
-<p><img src="https://github.com/jaywor1/aps/blob/main/obrazky/karnaughova-mapa-1-2.png?raw=true" width="512px"></p>
+<p><img src="./img/karnaughova-mapa-1-2.png?raw=true" width="512px"></p>
 
 3. Vytvoříme výrazy
 
@@ -90,13 +90,13 @@ Máme pravdivostní tabulku se vstupy $ A,B,C$ a výstupem $ Q $:
 1. Vytvoříme si Karnaughovu mapu (tam kde jsou písmena, tak je hodnota nastavená na 1)
 
 <p align="center">
-  <img src="https://github.com/jaywor1/aps/blob/main/obrazky/karnachova-mapa.png?raw=true" width=512px/>
+  <img src="./img/karnachova-mapa.png?raw=true" width=512px/>
 </p>
 
 2.  Doplníme do tabulky
 
 <p align="center">
-  <img src="https://github.com/jaywor1/aps/blob/main/obrazky/karnaughova-mapa-2.png?raw=true" width=512px/>
+  <img src="./img/karnaughova-mapa-2.png?raw=true" width=512px/>
 </p>
 
 3. Zakroužkujeme největší obdelníky a vyjádříme je
@@ -105,7 +105,7 @@ POZOR: oranžový 1x1 obdélník není optimální (maximální), lepší by byl
 ukázali, že K-Mapa dál funguje, jenom není výsledek optimální - 1x1 čtverec je potřeba vyjádřit jako 4-term, místo 2-termu pokud bychom udělali 2x2.
 
 <p align="center">
-  <img src="https://github.com/jaywor1/aps/blob/main/obrazky/karnaughova-mapa-3.png?raw=true" width=512px/>
+  <img src="./img/karnaughova-mapa-3.png?raw=true" width=512px/>
 </p>
 
 Vidíme, že je blok nezávislý na tom, jestli je $ A$ $0$ nebo $1$ , takže zahrneme jen proměnou $B$ a $C $
@@ -126,7 +126,7 @@ Jelikož se jedná o torus (viz. gif), můžeme označit i hodnoty, které se na
 
 
 <p align="center">
-  <img src="https://github.com/jaywor1/aps/blob/main/obrazky/karnaughova-mapa-4.png?raw=true" width=512px/>
+  <img src="./img/karnaughova-mapa-4.png?raw=true" width=512px/>
 </p>
 
 Vidíme, že je výraz $ Q_2 $ nezávislý na proměnné $ B $ (může být $ 0 $ nebo $ 1 $)
@@ -145,7 +145,7 @@ $$ Q = Q_1  + Q_2 = (\overline{B} \cdot \overline{C}) + (\overline{A} \cdot \ove
 5. Výsledný výraz si můžeme postavit v logisimu viz. obrázek
 
 <p align="center">
-  <img src="https://github.com/jaywor1/aps/blob/main/obrazky/karnaughova-mapa-1-logisim.png?raw=true" width=648px/>
+  <img src="./img/karnaughova-mapa-1-logisim.png?raw=true" width=648px/>
 </p>
 
 6. Zkontrolujeme pravdivostní tabulku.
@@ -157,5 +157,5 @@ $$ Q = Q_1  + Q_2 = (\overline{B} \cdot \overline{C}) + (\overline{A} \cdot \ove
 
 
 <p align="center">
-  <img src="https://github.com/jaywor1/aps/blob/main/obrazky/karnaughova-mapa-1-table.png?raw=true" width=312px/>
+  <img src="./img/karnaughova-mapa-1-table.png?raw=true" width=312px/>
 </p>

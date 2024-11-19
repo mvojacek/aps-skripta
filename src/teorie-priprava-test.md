@@ -5,7 +5,7 @@
 a) NOT
 <details>
   <summary>Řešení - symbol</summary>
-  <img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-NOT_ANSI_Labelled.svg.png?raw=true" width=192px>
+  <img src="./img/1920px-NOT_ANSI_Labelled.svg.png?raw=true" width=192px>
 </details>
 <details>
   <summary>Řešení</summary>
@@ -23,7 +23,7 @@ b) OR
 <details>
   <summary>Řešení - symbol</summary>
   
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/OR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+<img src="./img/OR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 </details>
 <details>
   <summary>Řešení</summary>
@@ -42,7 +42,7 @@ $$ X = A + B $$
 c) XNOR
 <details>
   <summary>Řešení - symbol</summary>
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-XNOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+<img src="./img/1920px-XNOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 </details>
 <details>
   <summary>Řešení</summary>
@@ -61,7 +61,7 @@ $$ X = \overline{(A \bigoplus B)} $$
 d) AND
 <details>
   <summary>Řešení - symbol</summary>
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/AND_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+<img src="./img/AND_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 </details>
 <details>
   <summary>Řešení</summary>
@@ -79,7 +79,7 @@ $$ X = A \cdot B $$
 
 #### 2. Pojmenuj následující hradla, zapiš jejich **výraz** a **pravdivostní tabulku**
 
-a) <img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-NOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+a) <img src="./img/1920px-NOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 
 <details>
   <summary>Řešení</summary>
@@ -97,7 +97,7 @@ $$ X = \overline{(A + B)} $$
 
 </details>
 
-b) <img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-XOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+b) <img src="./img/1920px-XOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 
 <details>
   <summary>Řešení</summary>
@@ -115,7 +115,7 @@ $$ X = A \bigoplus B $$
 
 </details>
 
-c) <img src="https://github.com/jaywor1/aps/blob/main/obrazky/1920px-NAND_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+c) <img src="./img/1920px-NAND_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 
 <details>
   <summary>Řešení</summary>
@@ -135,7 +135,7 @@ $$ X = \overline{(A \cdot B)} $$
 
 #### 3. Zapiš výraz pro výstupy zapojení a pro označené vodiče:
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/teorie-cviko-1.png?raw=true" width="750px">
+<img src="./img/teorie-cviko-1.png?raw=true" width="750px">
 
 <details>
   <summary>Řešení</summary>
@@ -148,7 +148,7 @@ $$ X = (A \cdot B) \bigoplus \overline{C} $$
 
 </details>
 
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/teorie-cviko-2.png?raw=true" width="750px">
+<img src="./img/teorie-cviko-2.png?raw=true" width="750px">
 
 
 <details>
@@ -173,7 +173,7 @@ $$ X = (A \cdot B) + (\overline{A \bigoplus C}) + \overline{B} $$
 
 <details>
   <summary>Řešení - zapojení</summary>
-<img src="https://github.com/jaywor1/aps/blob/main/obrazky/teorie-cviko-3.png?raw=true">
+<img src="./img/teorie-cviko-3.png?raw=true">
 
 </details>
 <details>
