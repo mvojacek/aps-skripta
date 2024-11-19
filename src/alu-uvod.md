@@ -2,6 +2,10 @@
 
 Každé CPU vyžaduje ALU neboli *Arithmetic Logic Unit*. Jedná se o "krabičku", která dokáže různé operace jako například sčítání, odčítání, bitwise operace, atd... V této kapitole se dozvíte, co je vše potřeba v ALU obsáhnout.
 
+```admonish info
+ALU musíte postavit do samostatného modulu, který se musí jmenovat **přesně** `ALU`. Jinak nebude možné ALU ohodnotit!
+```
+
 ## Vstupy ALU
 
 - vstup `A` a `B` - n-bitový vstup, záleží kolika bitové děláte ALU
@@ -16,6 +20,10 @@ Každé CPU vyžaduje ALU neboli *Arithmetic Logic Unit*. Jedná se o "krabičku
 - `COUT` - Carry OUT z operací, 1 bitová hodnota
 - `SIGN` - Znaménko hodnoty výstupu (totožné s nejvyšším bitem hodnoty)
 - `GT`, `LT`, `EQ` - Nepovinně můžeme přidat operace z komparátoru, jde nahradit pomocí odčítání a `ZERO` a `SIGN` výstupy
+
+```admonish danger title="Důležité"
+Aby bylo možné vaše ALU ohodnotit, je potřeba pro tyto dráty dodržet **přesně** výše uvedené názvy!
+```
 
 ## UI (uživatelské rozhraní)
 
