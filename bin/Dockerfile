@@ -10,7 +10,8 @@ RUN strip /usr/local/cargo/bin/mdbook*
 
 FROM ubuntu:24.04
 
-RUN apt-get update && apt-get install -y pandoc texlive-xetex texlive-latex-recommended libssl3
+RUN apt-get update && apt-get install -y pandoc texlive-xetex texlive-latex-recommended
+RUN apt-get update && apt-get install -y libssl3 git
 
 COPY --from=builder --chmod=755 /usr/local/cargo/bin/mdbook* /usr/local/bin/
 

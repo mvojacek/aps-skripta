@@ -25,4 +25,4 @@ build-mdbook-docker TAG="latest":
     # push
     docker push {{DOCKER_IMAGE}}:{{TAG}}
     # update latest
-    [[ "{{TAG}}" == "latest" ]] || docker tag {{DOCKER_IMAGE}}:{{TAG}} {{DOCKER_IMAGE}}:latest && docker push {{DOCKER_IMAGE}}:latest
+    [ "{{TAG}}" = "latest" ] || docker tag {{DOCKER_IMAGE}}:{{TAG}} {{DOCKER_IMAGE}}:latest && docker push {{DOCKER_IMAGE}}:latest

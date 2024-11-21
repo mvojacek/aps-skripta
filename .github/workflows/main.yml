@@ -26,56 +26,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  check:
-    if: github.ref != 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Fetch main branch
-        run: git fetch origin main
-
-      - name: Check diff for CHANGELOG.md
-        run: |
-          git diff origin/main..HEAD -- CHANGELOG.md > diff.txt
-          if [ -s diff.txt ]
-          then
-            echo "CHANGELOG has a diff"
-          else
-            echo "CHANGELOG missing diff (you need to add something to CHANGELOG)"
-            exit 1
-          fi
   # Build job
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
+    env:
+      mdbook_docker_tag: v1
     steps:
-      - uses: taiki-e/install-action@just
+      - name: Cache Docker images.
+        uses: ScribeMD/docker-cache@0.5.0
+        with:
+          key: docker-${{ runner.os }}-${{ env.mdbook_docker_tag }}
 
-      # - name: Install
-      #   uses: pandoc/actions/setup@v1
-      #   with:
-      #     version: 3.1.11.1
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
-
-      # Cache cargo
-      # - name: Cargo cache
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: "~/.cargo"
-      #     key: "${{ runner.os }}-cargo"
-
-      # - name: Install mdBook
-      #   run: |
-      #     curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
-      #     rustup update
-      #     just install-deps-ubuntu
-
-      - uses: addnab/docker-run-action@v3
+      - name: Build with mdBook docker image
+        uses: addnab/docker-run-action@v3
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
-          image: ghcr.io/mvojacek/mdbook:latest
+          image: ghcr.io/mvojacek/mdbook:${{ env.mdbook_docker_tag }}
           options: -v ${{ github.workspace }}:/work -w /work
           run: |
             mdbook build
@@ -83,10 +54,6 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
-
-      # - name: Build with mdBook
-      #   run: mdbook build
-
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
