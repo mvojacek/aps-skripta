@@ -40,6 +40,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Start kroki using docker compose
+        run: docker-compose up -d kroki
+
       - name: Build with mdBook docker image
         uses: addnab/docker-run-action@v3
         with:
@@ -50,6 +53,9 @@ jobs:
           options: -v ${{ github.workspace }}:/work -w /work
           run: |
             mdbook build
+      
+      - name: Stop kroki using docker compose
+        run: docker-compose down
 
       - name: Setup Pages
         id: pages
