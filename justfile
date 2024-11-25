@@ -19,7 +19,7 @@ watch:
 
 DOCKER_IMAGE := "ghcr.io/mvojacek/mdbook"
 
-build-mdbook-docker TAG="latest":
+build-mdbook-docker TAG:
     # build
     docker build -t {{DOCKER_IMAGE}}:{{TAG}} bin
     # push

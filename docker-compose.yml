@@ -1,0 +1,20 @@
+services:
+  mdbook:
+    image: ghcr.io/mvojacek/mdbook:v2
+    volumes:
+      - .:/work
+    working_dir: /work
+    entrypoint: mdbook
+    command: serve
+    network_mode: host
+    user: 1000:1000
+  kroki:
+    image: yuzutech/kroki:latest
+    network_mode: host
+    environment:
+      - KROKI_LISTEN=127.0.0.1:8000
+      - KROKI_SAFE_MODE=unsafe
+      - KROKI_COMMAND_TIMEOUT=1m
+      - KROKI_CONVERT_TIMEOUT=1m
+      - KROKI_MAX_URI_LENGTH=16000
+

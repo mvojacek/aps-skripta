@@ -16,7 +16,7 @@ Vytvoření Rising/Falling edge detektoru viz. obrázek
 
 Rising edge detektor (pomocí `NOT` delaye)
 
-<img src="./img/sekvencni-rising-edge-detector.png">
+<img src="../img/sekvencni-rising-edge-detector.png">
 
 U falling edge detektoru jen prohodíme `NAND` gatu za `AND` gatu.
 
@@ -36,21 +36,21 @@ D flip-flop jde vytvořit mnoha způsoby. Ukážeme si dva, a to klasickou varia
 
 Můžeme vystavět pomocí 6 `NAND` gate.
 
-<img src="./img/Edge_triggered_D_flip_flop.svg.png">
+<img src="../img/Edge_triggered_D_flip_flop.svg.png">
 
 Můžeme přidat 2 vstupy a to na set a reset. Stačí nám jen `NAND` gaty předělat na 3 vstupové.
 
-<img src="./img/Edge_triggered_D_flip_flop_with_set_and_reset.svg.png">
+<img src="../img/Edge_triggered_D_flip_flop_with_set_and_reset.svg.png">
 
 **Master-slave-edge-triggered D-flip-flop**
 
 Vytvoříme ho pomocí 2 `gated D latch`. Pozor, aktivuje se na `Falling edge`.
 
-<img src="./img/Negative-edge_triggered_master_slave_D_flip-flop.svg.png">
+<img src="../img/Negative-edge_triggered_master_slave_D_flip-flop.svg.png">
 
 Implementace pro `Rising edge`
 
-<img src="./img/1024px-D-Type_Flip-flop_Diagram.svg.png
+<img src="../img/1024px-D-Type_Flip-flop_Diagram.svg.png
 ">
 
 #### Shift Register
@@ -59,7 +59,7 @@ Shift register je jeden z nejčastějších pamětí. Je tvořen z několika D f
 
 Při každém clocku se načte bit a uloží se do prvního flip-flopu, každý další bit se posune o jedno k výstupu, poslední bit se zahodí.
 
-<img src="./img/1024px-4_Bit_Shift_Register_001.svg.png
+<img src="../img/1024px-4_Bit_Shift_Register_001.svg.png
 ">
 
 ### Bonusové materiály

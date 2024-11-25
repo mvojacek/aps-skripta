@@ -8,7 +8,7 @@ Legenda k obrázku:
 - černá - data flow
 
 <p align="center">
-<img src="./img/ABasicComputer.svg.png" width="600px">
+<img src="../img/ABasicComputer.svg.png" width="600px">
 </p>
 
 CPU se typicky skládá z:

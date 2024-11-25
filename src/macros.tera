@@ -1,6 +1,6 @@
 
 {% macro gate2(gate, out="Q", in1="A", in2="B") %}
-```kroki-tikz
+<kroki type="tikz">
 \documentclass{article}
 \usepackage{tikz}
 \usepackage{circuitikz}
@@ -18,11 +18,11 @@
         \draw (G.out) -- ++(0,0) node[right](X){ {{-out-}} };
     \end{tikzpicture}
 \end{document}
-```
+</kroki>
 {% endmacro %}
 
 {% macro gate1(gate, out="Q", in1="A") %}
-```kroki-tikz
+<kroki type="tikz">
 \documentclass{article}
 \usepackage{tikz}
 \usepackage{circuitikz}
@@ -39,5 +39,5 @@
         \draw (G.out) -- ++(0,0) node[right](X){ {{-out-}} };
     \end{tikzpicture}
 \end{document}
-```
+</kroki>
 {% endmacro %}

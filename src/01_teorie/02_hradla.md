@@ -12,6 +12,7 @@ Hradla, které mají jeden vstup jsou následující
 
 - Buffer (repeater)
 - NOT
+
 ### Buffer (repeater)
 
 **Buffer** se převážně využívá na zopakování a posílení vstupu. Taky tím "ukazujete", jakým směrem teče proud.

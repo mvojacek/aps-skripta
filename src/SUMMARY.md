@@ -15,7 +15,8 @@
 
 - [ALU]()
   - [Úvod](./03_alu/01_alu-uvod.md)
-  - [Sčítačka/odčítačka](./03_alu/02_alu-scitacka.md)
+  - [Sčítačka](./03_alu/02_alu-scitacka.md)
+  - [Odčítání](./03_alu/03_odcitani.md)
 
 - [Paměti]()
   - [Sekvenční obvody](./04_pameti/01_sekvencni-obvody.md)

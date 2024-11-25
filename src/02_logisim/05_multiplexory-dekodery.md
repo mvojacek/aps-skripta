@@ -27,7 +27,7 @@ Kód 1 z N spočívá v za
 
 Dekodér má $2^n$ výstupů a $n$ bitový vstup. Funguje podobně jako demultiplexor, ale místo našeho vstupu, tam bude vysílat vždy $1$ viz. gif.
 
-<img src="./img/decd.gif">
+<img src="../img/decd.gif">
 
 
 ### Multiplexor
@@ -36,7 +36,7 @@ Multiplexor bere $2^n$ vstupů a $n$ bitový selektivní vstup (`SEL`). Výstup 
 
 Vysvětlíme si to na gifu. Na následujícím gifu jsou nějaké hodnoty A-D a pomocí 2 bitové hodnoty `sel`, vybíráme hodnotu, která bude na vstupu.
 
-<img src="./img/mux.gif">
+<img src="../img/mux.gif">
 
 Můžeme si chování multiplexoru shrnout do tabulky
 
@@ -51,7 +51,7 @@ Můžeme si chování multiplexoru shrnout do tabulky
 
 Demultiplexor se chová obráceně z hlediska vstupů. Má jeden vstup a $2^n$ výstupů.
 
-<img src="./img/dmx.gif">
+<img src="../img/dmx.gif">
 
 
 #### Cvičení
@@ -60,7 +60,7 @@ Vytvořte si vlastní multiplexor, který bude mít 2 bitový `SEL` vstup a 1 bi
 
 <details>
   <summary>Řešení</summary>
-<img src="./img/mux2b.png">
+<img src="../img/mux2b.png">
 </details>
 
 ---
@@ -69,7 +69,7 @@ Vytvořte si vlastní dekodér, který bude mít 2 bitový `SEL` vstup.
 
 <details>
   <summary>Řešení</summary>
-<img src="./img/decd2b.png">
+<img src="../img/decd2b.png">
 </details>
 
 ---

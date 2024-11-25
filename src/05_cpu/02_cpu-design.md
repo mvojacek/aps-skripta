@@ -7,13 +7,13 @@ Průvodce návrhem CPU.
 - Harvardská - oddělená paměť programu (ROM) a paměť dat (RAM)
 
 <p align="center">
-<img src="./img/Harvard_architecture.svg.png" height="300px">
+<img src="../img/Harvard_architecture.svg.png" height="300px">
 </p>
 
 - Von Neumannova - sjednocená paměť (RAM)
 
 <p align="center">
-<img src="./img/Von_Neumann_Architecture.svg.png" height="300px">
+<img src="../img/Von_Neumann_Architecture.svg.png" height="300px">
 </p>
 
 ### Náčrt
@@ -54,11 +54,11 @@ Zkráceně by mělo být, co nejvíce univerzální... Tohle je dobré mít v hl
 
 Instrukci si můžete rozčlenit jakkoliv chcete. U mého CPU jsem měl pouze OP code a ARGy, ale můžete do instrukce schovat různé flagy apod... (technicky vzato jsou to taky argumenty, ale pouze jednobitové :D)
 
-  <img src="./img/instruction.png">
+  <img src="../img/instruction.png">
 
 V excelu pak vypadají instrukce nějak takhle
 
-  <img src="./img/excel-instructions.png">
+  <img src="../img/excel-instructions.png">
 
 **Doporučené konvence**
 

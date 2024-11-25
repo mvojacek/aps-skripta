@@ -79,6 +79,7 @@ max-level = 6
 after = ["cmdrun"]
 
 [preprocessor.kroki-preprocessor]
+endpoint = "http://localhost:8000"
 after = ["cmdrun"]
 
 [preprocessor.emojicodes]

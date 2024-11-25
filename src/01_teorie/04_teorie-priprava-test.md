@@ -1,34 +1,32 @@
+{% import "macros.tera" as m %}
+
+<style> 
+table { margin: 1em;}
+</style>
+
 # Teorie - Příprava na test
 
 #### 1. **Nakresli logická hradla**, zapiš **operátor hradla jako výraz** (např. X=A+B), nakresli **pravdivostní tabulku**:
 
 a) NOT
-<details>
-  <summary>Řešení - symbol</summary>
-  <img src="./img/1920px-NOT_ANSI_Labelled.svg.png?raw=true" width=192px>
-</details>
-<details>
-  <summary>Řešení</summary>
 
-$$ X = \overline{A} $$
+```admonish check title="Řešení",collapsible=true
+{{ m::gate1(gate="not") }}
+
+$ X = \overline{A} $
 
 |A|X|
 |:-:|:-:|
 |0|1|
 |1|0|
-
-</details>
+```
 
 b) OR
-<details>
-  <summary>Řešení - symbol</summary>
-  
-<img src="./img/OR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
-</details>
-<details>
-  <summary>Řešení</summary>
 
-$$ X = A + B $$
+```admonish check title="Řešení",collapsible=true
+{{ m::gate2(gate="or") }}
+
+$ X = A + B $
 
 |A|B|X|
 |:-:|:-:|:-:|
@@ -36,18 +34,14 @@ $$ X = A + B $$
 |0|1|1|
 |1|0|1|
 |1|1|1|
-
-</details>
+```
 
 c) XNOR
-<details>
-  <summary>Řešení - symbol</summary>
-<img src="./img/1920px-XNOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
-</details>
-<details>
-  <summary>Řešení</summary>
 
-$$ X = \overline{(A \bigoplus B)} $$
+```admonish check title="Řešení",collapsible=true
+{{ m::gate2(gate="xnor") }}
+
+$ X = \overline{(A \bigoplus B)} $
 
 |A|B|X|
 |:-:|:-:|:-:|
@@ -55,18 +49,14 @@ $$ X = \overline{(A \bigoplus B)} $$
 |0|1|0|
 |1|0|0|
 |1|1|1|
-
-</details>
+```
 
 d) AND
-<details>
-  <summary>Řešení - symbol</summary>
-<img src="./img/AND_ANSI_Labelled.svg.png?raw=true" width="192px"/>
-</details>
-<details>
-  <summary>Řešení</summary>
+    
+```admonish check title="Řešení",collapsible=true
+{{ m::gate2(gate="and") }}
   
-$$ X = A \cdot B $$
+$ X = A \cdot B $
 
 |A|B|X|
 |:-:|:-:|:-:|
@@ -74,19 +64,18 @@ $$ X = A \cdot B $$
 |0|1|0|
 |1|0|0|
 |1|1|1|
-
-</details>
+```
 
 #### 2. Pojmenuj následující hradla, zapiš jejich **výraz** a **pravdivostní tabulku**
 
-a) <img src="./img/1920px-NOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+a) <img src="../img/1920px-NOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 
 <details>
   <summary>Řešení</summary>
 
 NOR
 
-$$ X = \overline{(A + B)} $$
+$ X = \overline{(A + B)} $
 
 |A|B|X|
 |:-:|:-:|:-:|
@@ -97,7 +86,7 @@ $$ X = \overline{(A + B)} $$
 
 </details>
 
-b) <img src="./img/1920px-XOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+b) <img src="../img/1920px-XOR_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 
 <details>
   <summary>Řešení</summary>
@@ -115,7 +104,7 @@ $$ X = A \bigoplus B $$
 
 </details>
 
-c) <img src="./img/1920px-NAND_ANSI_Labelled.svg.png?raw=true" width="192px"/>
+c) <img src="../img/1920px-NAND_ANSI_Labelled.svg.png?raw=true" width="192px"/>
 
 <details>
   <summary>Řešení</summary>
@@ -135,7 +124,7 @@ $$ X = \overline{(A \cdot B)} $$
 
 #### 3. Zapiš výraz pro výstupy zapojení a pro označené vodiče:
 
-<img src="./img/teorie-cviko-1.png?raw=true" width="750px">
+<img src="../img/teorie-cviko-1.png?raw=true" width="750px">
 
 <details>
   <summary>Řešení</summary>
@@ -148,7 +137,7 @@ $$ X = (A \cdot B) \bigoplus \overline{C} $$
 
 </details>
 
-<img src="./img/teorie-cviko-2.png?raw=true" width="750px">
+<img src="../img/teorie-cviko-2.png?raw=true" width="750px">
 
 
 <details>
@@ -173,7 +162,7 @@ $$ X = (A \cdot B) + (\overline{A \bigoplus C}) + \overline{B} $$
 
 <details>
   <summary>Řešení - zapojení</summary>
-<img src="./img/teorie-cviko-3.png?raw=true">
+<img src="../img/teorie-cviko-3.png?raw=true">
 
 </details>
 <details>

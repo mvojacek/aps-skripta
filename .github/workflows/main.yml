@@ -30,7 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     env:
-      mdbook_docker_tag: v1
+      mdbook_docker_tag: v2
     steps:
       - name: Cache Docker images.
         uses: ScribeMD/docker-cache@0.5.0

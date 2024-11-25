@@ -3,6 +3,6 @@
     "no-empty-links": false,
     "single-title": false,
     "line-length": false,
-    "no-inline-html": false,
+    "no-inline-html": true,
     "no-duplicate-heading": false
 }
