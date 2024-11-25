@@ -3,7 +3,7 @@
 set -euo pipefail
 
 PACKAGES_LOCKED=(
-    mdbook@0.4.42
+    mdbook@0.4.43
     mdbook-katex@0.9.1
     mdbook-pandoc@0.7.3
     mdbook-pdf@0.1.10
@@ -23,23 +23,94 @@ PACKAGES_LOCKED=(
     mdbook-embedify@0.2.11
     mdbook-footnote@0.1.1
     mdbook-external-links@0.1.1
+    https://github.com/mvojacek/mdbook-tera?tag=v1
 )
 
 PACKAGES_NOTLOCKED=(
-    mdbook-tera@0.5.1 # lock depends on mdbook 4.15, has rust error
-    mdbook-checklist@0.1.1 # dtto
+    mdbook-checklist@0.1.1 # needs deps update
 )
+
+function cargo_install() {
+    local package="$1" package_full="$1"
+    shift 1
+
+    # check if package is a git url
+    if [[ $package =~ ^https?://|^git@ ]]; then
+        # get tag or branch or commit from url
+        # git@github.com/username/repo?tag=version
+        # git@github.com/username/repo?branch=branch
+        # git@github.com/username/repo#commit
+        local commit= tag= branch= url=
+        if [[ $package =~ \# ]]; then
+            commit="${package##*#}"
+            package="${package%%#*}"
+        fi
+        if [[ $package =~ \?tag= ]]; then
+            tag="${package##*tag=}"
+            tag="${tag%%\&*}"
+        fi
+        if [[ $package =~ \?branch= ]]; then
+            branch="${package##*branch=}"
+            branch="${branch%%\&*}"
+        fi
+        local url="${package%%\?*}"
+
+        local cargo_install=()
+        local installed_pattern=
+
+        if [[ -n $commit ]]; then
+            cargo_install+=(--rev "$commit")
+            installed_pattern="\\(${url}.*#${commit}\\)"
+        elif [[ -n $tag ]]; then
+            cargo_install+=(--tag "$tag")
+            installed_pattern="\\(${url}\?.*tag=${tag}.*\\)"
+        elif [[ -n $branch ]]; then
+            cargo_install+=(--branch "$branch")
+            installed_pattern="\\(${url}\?.*branch=${branch}.*\\)"
+        fi
+
+        # check if installed
+        if cargo install --list | grep -qP "$installed_pattern"; then
+            echo "[#] Package $package_full already installed"
+            return
+        fi
+
+        # install
+        echo "[#] Installing $package"
+        cargo install "${cargo_install[@]}" "$@" --git "$url"
+        echo "[#] Installed $package"
+    else
+        # split version from package
+        local package_version="${package##*@}"
+        local package_name="${package%@*}"
+
+        local installed_pattern=
+        if [[ -n $package_version ]]; then
+            installed_pattern="^${package_name} v${package_version}"
+        else
+            installed_pattern="^${package_name} "
+        fi
+
+        # check if installed
+        if cargo install --list | grep -qP "$installed_pattern"; then
+            echo "[#] Package $package_full already installed"
+            return
+        fi
+
+        # install
+        echo "[#] Installing $package"
+        cargo install "$@" "$package"
+        echo "[#] Installed $package"
+    fi
+}
 
 
 for package in "${PACKAGES_LOCKED[@]}"; do
-    echo "[#] Installing $package"
-    cargo install --locked $package
-    echo "[#] Installed $package"
+    cargo_install "$package" --locked
 done
 
 for package in "${PACKAGES_NOTLOCKED[@]}"; do
-    echo "[#] Installing $package"
-    cargo install $package
-    echo "[#] Installed $package"
+    cargo_install "$package"
 done
 
+echo "[#] All packages installed"

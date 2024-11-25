@@ -14,7 +14,7 @@ ALU musíte postavit do samostatného modulu, který se musí jmenovat **přesn�
 
 ## Výstupy ALU
 
-- `OUT` - n-bitový výstup, záleží kolika bitové děláte ALU
+- `OUTP` - n-bitový výstup, záleží kolika bitové děláte ALU
 - `HOUT` - použito pro násobení, využito pro vyšší polovinu výsledku
 - `ZERO` - 1 bitová hodnota, rozhoduje jestli jsou na výstupu samé nuly
 - `COUT` - Carry OUT z operací, 1 bitová hodnota

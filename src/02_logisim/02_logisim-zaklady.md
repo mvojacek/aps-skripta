@@ -1,6 +1,6 @@
 # Logisim - Základy
 
-Po úspěšném nainstalovaní `logisim-evolution` (viz. [návod](logisim-instalace.md)) a spuštěním, uvidíte tohle:
+Po úspěšném nainstalovaní `logisim-evolution` (viz. [návod](01_logisim-instalace)) a spuštěním, uvidíte tohle:
 
 <img src="./img/logisim-zaklady-uvod.png"/>
 

@@ -5,6 +5,8 @@ multilingual = false
 src = "src"
 title = "APS Skripta"
 
+#[output.markdown]
+
 [output.html]
 mathjax-support = true
 default-theme = "rust"
@@ -63,9 +65,11 @@ renderer = ["html"]
 
 [preprocessor.open-on-gh]
 command = "mdbook-open-on-gh"
+after = ["cmdrun"]
 renderer = ["html"]
 [preprocessor.last-changed]
 command = "mdbook-last-changed"
+after = ["cmdrun"]
 renderer = ["html"]
 
 [preprocessor.toc]
@@ -78,15 +82,19 @@ after = ["cmdrun"]
 after = ["cmdrun"]
 
 [preprocessor.emojicodes]
+after = ["cmdrun"]
 
 [preprocessor.embedify]
+after = ["cmdrun"]
 
 [preprocessor.footnote]
+after = ["cmdrun"]
 
 # [preprocessor.external-links] # breaks tables
 # renderer = ["html"]
 
 [preprocessor.checklist]
+before = ["tera"] # must run before Tera to avoid conflicts with Tera's syntax
 title = "TODO"
 
 # [output.pdf]

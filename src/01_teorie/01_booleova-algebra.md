@@ -1,7 +1,3 @@
-# Obsah kapitoly
-
-<!-- toc -->
-
 # Booleova algebra
 
 Booleova algebra je algebraická struktura se dvěma binárními a jednou unární operací.
@@ -38,6 +34,7 @@ Budeme se soustředit na dvouprvkovou Booleovu algebru tj. budou 2 prvky:
 ### Dualita Booleovy algebry
 Prohozením $0 \leftrightharpoons 1$ a zároveň $+ \leftrightharpoons \cdot$ v celém obvodu/výrazu zůstane chování (logická funkce) zachovaná (samozřejmě při prohození 1 a 0 i na vstupech/výstupech).
 Toto chování vychází ze symetrie námi vybraných operátorů $+$ a $\cdot$ k modelování Booleovy algebry.
+
 | Výraz | Duální výraz |
 |:-----:|:------------:|
 | $x \cdot \overline{y + \overline{z}}$ | $\overline{\overline{x} + \overline{\overline{y} \cdot \overline{\overline{z}}}}$ |
@@ -58,7 +55,7 @@ Z toho vyplývá, že lze vytvořit verzi De Morganových zákonů i pro 3 a ví
 | asociativní | $x+(y+z)=(x+y)+z$ | $x{\cdot}(y{\cdot}z)=(x{\cdot}y){\cdot}z$ |
 | o idempotenci prvků (absorbce) |$x+x=x$|$x{\cdot}x=x$|
 | absorbce | $x+x{\cdot}y=x$ | $x{\cdot}(x+y)=x$ |
-| dvojí negace | $\overline{\overline{{x}}} = x$ | $\overline{\overline{{x}}} = x$ |
+| dvojí negace | $\overline{\overline{x}} = x$ | $\overline{\overline{x}} = x$ |
 
 ### Hradlo XOR
 

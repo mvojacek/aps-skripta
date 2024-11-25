@@ -1,28 +1,6 @@
+{% import "macros.tera" as m %}
+
 # Hradla - Teorie
-
-<!-- toc -->
-
----
-
-<!-- ```kroki-tikz
-\documentclass{article}
-\usepackage{tikz}
-\usepackage{circuitikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{math}
-\usepackage[active,tightpage]{preview}
-\PreviewEnvironment{tikzpicture}
-\setlength\PreviewBorder{0.125pt}
-\begin{document}
-    \begin{tikzpicture}
-        \ctikzset{logic ports=ieee, logic ports/scale=0.8};
-        \node [and port] (G) {};
-        \draw (G.in 1) -- ++(0,0) node[left](A){A};
-        \draw (G.in 2) -- ++(0,0) node[left](B){B};
-        \draw (G.out) -- ++(0,0) node[right](X){X};
-    \end{tikzpicture}
-\end{document}
-``` -->
 
 ### Pravdivostní tabulka
 
@@ -40,7 +18,7 @@ Hradla, které mají jeden vstup jsou následující
 
 #### Symbol
 
-<img src="./img/Buffer_ANSI_Labelled.svg.png?raw=true" width="192px">
+{{ m::gate1(gate="buffer") }}
 
 #### Definice
 
@@ -70,7 +48,7 @@ Neboli 0 &rarr; 1 nebo 1 &rarr; 0
 
 #### Symbol
 
-<img src="./img/1920px-NOT_ANSI_Labelled.svg.png?raw=true" width="192px">
+{{ m::gate1(gate="not") }}
 
 #### Definice
 
@@ -108,7 +86,7 @@ Hradlo **AND** neboli logické **"a"** , se využívá když chcete naplnit dvě
 
 #### Symbol
 
-<img src="./img/AND_ANSI_Labelled.svg.png?raw=true" width="192px">
+{{ m::gate2(gate="and") }}
 
 #### Definice
 
@@ -140,7 +118,7 @@ Hradlo **OR** neboli logické **"nebo"** , se využívá když chcete naplnit as
 
 #### Symbol
 
-<img src="./img/OR_ANSI_Labelled.svg.png?raw=true" width="192px">
+{{ m::gate2(gate="or") }}
 
 #### Definice
 
@@ -172,13 +150,13 @@ Hradlo **XOR** neboli exkluzivní OR , se využívá když chcete naplnit pouze 
 
 #### Symbol
 
-<img src="./img/1920px-XOR_ANSI_Labelled.svg.png?raw=true" width="192px">
+{{ m::gate2(gate="xor") }}
 
 #### Definice
 
-V Booleově algebře se pro hradlo **XOR** používá symbol $ \bigoplus $
+V Booleově algebře se pro hradlo **XOR** používá symbol $ \oplus $
 
-$$ Q = A \bigoplus B $$
+$$ Q = A \oplus B $$
 
 Zápis v C
 
@@ -215,7 +193,7 @@ Hradlo **NAND** má opačný výstup hradla **AND**
 
 #### Symbol
 
-<img src="./img/1920px-NAND_ANSI_Labelled.svg.png?raw=true" width="192px">
+{{ m::gate2(gate="nand") }}
 
 #### Definice
 
@@ -247,7 +225,7 @@ Hradlo **NOR** má opačný vstup hradla **OR**
 
 #### Symbol
 
-<img src="./img/1920px-NOR_ANSI_Labelled.svg.png?raw=true" width="192px">
+{{ m::gate2(gate="nor") }}
 
 #### Definice
 
@@ -280,13 +258,13 @@ Hradlo **XNOR** je opak hradla **XOR**, jednoduše řečeno se jedná o ekvivale
 
 #### Symbol
 
-<img src="./img/1920px-XNOR_ANSI_Labelled.svg.png?raw=true" width="192px">
+{{ m::gate2(gate="xnor") }}
 
 #### Definice
 
-V Booleově algebře se hradlo **XNOR** rovná negaci operaci \((\bigoplus\))
+V Booleově algebře se hradlo **XNOR** rovná negaci operaci \((\oplus\))
 
-$$ Q = \overline{(A \bigoplus B)} $$
+$$ Q = \overline{(A \oplus B)} $$
 
 Zápis v C:
 
@@ -307,7 +285,7 @@ bool Q = !(A ^ B);
 
 ## Cheat sheet
 
-### Cheat sheet pro logické brány
+### Cheat sheet pro logické hradla
 
 *Vstup A a Vstup B dává výstup \<operace\>*
 
@@ -318,6 +296,6 @@ bool Q = !(A ^ B);
 |1|0|0|1|1|1|1|0|
 |1|1|1|1|0|0|0|1|
 
-### Zobrazení logických bran v logisimu
+### Zobrazení logických hradel v logisimu
 
-<img src="./img/hradla.png?raw=true" width="512px">
+![](../img/hradla.png =500x)

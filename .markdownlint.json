@@ -1,5 +1,8 @@
 {
     "default": true,
     "no-empty-links": false,
-    "single-title": false
+    "single-title": false,
+    "line-length": false,
+    "no-inline-html": false,
+    "no-duplicate-heading": false
 }
