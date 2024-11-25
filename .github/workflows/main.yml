@@ -50,7 +50,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           image: ghcr.io/mvojacek/mdbook:${{ env.mdbook_docker_tag }}
-          options: -v ${{ github.workspace }}:/work -w /work
+          options: -v ${{ github.workspace }}:/work -w /work --network host
           run: |
             mdbook build
       
