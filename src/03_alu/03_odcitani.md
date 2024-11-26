@@ -63,7 +63,9 @@ Chceme označit některá čísla z této grupy jako záporná tak, aby platily 
 
 Hledané $b^-$ je tedy *aditivní inverzí* $b^+$ v $Z_{2^n}^+$. Tu umíme aritmeticky najít:
 
+```admonish done
 $$ b^- = 2^n - b^+ $$
+```
 
 Pokud toto pravidlo budeme aplikovat na nezáporná čísla počínaje nulou (která je korektně sama svojí vlastní inverzí), začneme záporným číslům přiřazovat reprezentace. Přestaneme, jakmile nám dojdou volná čísla (číslo, které jsme označili jako záporné už nemůžeme zároveň považovat za kladné). Pro n=3 skončíme s následujícím přiřazením:
 
@@ -137,7 +139,9 @@ ale $4$ lze reprezentovat pouze ve 4- a více-bitových číslech.
 
 Je to opravdová situace, která může nastat ve strojových číslech se znaménkem:
 
-{{#playground ../code/negative_max_abs.rs}}
+{{#playground ../code/negative_max_abs_yes.rs}}
+
+{{#playground ../code/negative_max_abs_no.rs}}
 
 ```
 
@@ -149,7 +153,30 @@ U záporných čísel se to trochu komplikuje - jak jsme si ukázali na příkla
 
 Potřebujeme vymslet jiný indikátor toho, jestli operace ve dvojkovém doplňku byla validní. Pokud tomu tak nebude, budeme tomu říkat **přeplňení (overflow)**.
 
-{{#check TODO | overflow }}
+Přeplnění nastane, pokud hodnota "vyjede" z reprezentovatelného rozsahu. U čísel se znaménkem to může být směrem nahoru (mělo vyjít číslo vyšší, než to nejvyšší reprezentovatelné) nebo směrem dolů (menší než nejmenší reprezentovatelné).
+
+![](https://dncsite.wordpress.com/wp-content/uploads/2013/11/twoscompwheel.png =500x center)
+<!-- https://dncsite.wordpress.com/2013/11/03/arithmetic-for-computers-chapter-iii/ -->
+
+Danou operací sčítaní nebo odčítání se můžeme na kruhu posunou pouze o půlkruh. Tedy, pokud se budeme pohybovat směrem k nule, musíme garantovaně skončit v druhé půlce kruhu, a naše odpověď bude validní. Např. pokud jsme v záporných číslech a přičítáme, skončíme nejdál o půlkruh dál v kladných číslech, na správném výsledku.  
+**Pokud tedy sčítáme kladné a záporné číslo, nemůže přeplnění nastat.**
+
+Problém nastává, pokud máme záporné číslo a chceme dále odečítat, nebo máme kladné číslo a chceme dále přičítat. Tedy, přeloženo pouze na součty, máme záporné číslo a chceme přičíst záporné číslo, nebo máme kladné číslo, a chceme přičíst kladné číslo. Tam by se mohlo stát, že se přehoupneme přes hranici MIN-MAX, a číslo náhle změní polaritu.  
+**Tedy, pokud sčítáme kladné a kladné číslo, musí být výsledek kladný, aby byl validní.**  
+**Podobně, pokud sčítáme záporné a záporné číslo, musí být výsledek záporný.**
+
+Jak víme, znaménko je u čísel se znaménkem vždy Most Significant Bit hodnoty, můžeme tedy sestavit pravdivostní tabulku pro vyhodnocení overflow:
+
+| A | B | A+B | Overflow? |
+|---|---|-----|-----------|
+| + | - |  X  |   0 |
+| - | + | X | 0 |
+| + | + | + | 0 |
+| + | + | - | 1 |
+| - | - | - | 0 |
+| - | - | + | 1 |
+
+Tento signál si pojmenujeme `overflow` a vyvedeme taky z ALU, podobně jako `cout`, bude užitečný procesoru v rozhodování o validitě operací se znaménkem.
 
 ### Efektivní hledání opačného čísla ve dvojkovém doplňku
 
