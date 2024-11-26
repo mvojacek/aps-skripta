@@ -7,7 +7,7 @@ services:
     entrypoint: mdbook
     command: serve
     network_mode: host
-    user: 1000:1000
+    user: ${UID:-1000}:${GID:-1000}
     depends_on:
       - kroki-cache
       - kroki

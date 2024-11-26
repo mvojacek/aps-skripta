@@ -12,16 +12,16 @@ update-css:
     wget -O theme/presentationHider.js "https://raw.githubusercontent.com/FreeMasen/mdbook-presentation-preprocessor/refs/heads/main/src/presentationHider.js"
 
 build:
-    mdbook build
+    UID=$(id -u) GID=$(id -g) docker compose run mdbook build
 
-watch:
-    mdbook serve -o
+serve:
+    UID=$(id -u) GID=$(id -g) docker compose up
 
 DOCKER_IMAGE := "ghcr.io/mvojacek/mdbook"
 
 build-mdbook-docker TAG:
     # build
-    docker build -t {{DOCKER_IMAGE}}:{{TAG}} bin
+    docker build -t {{DOCKER_IMAGE}}:{{TAG}} docker
     # push
     docker push {{DOCKER_IMAGE}}:{{TAG}}
     # update latest

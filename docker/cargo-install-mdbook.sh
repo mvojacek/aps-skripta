@@ -40,7 +40,7 @@ function cargo_install() {
         # git@github.com/username/repo?tag=version
         # git@github.com/username/repo?branch=branch
         # git@github.com/username/repo#commit
-        local commit= tag= branch= url=
+        local commit='' tag='' branch='' url=''
         if [[ $package =~ \# ]]; then
             commit="${package##*#}"
             package="${package%%#*}"
