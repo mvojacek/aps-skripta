@@ -105,6 +105,29 @@ Nejmohutnější (most significant) bit binárního řetězce ve dvojkovém dopl
 Tomuto kódu, jak jsem jej teď sestavili, se říká **dvojkový doplněk** nebo **doplňkový kód**, a používá jej drtivá většina architektur a jazyků pro reprezentaci záporných čísel.
 ```
 
+Rozdělili jsme tak grupu na dvě stejně velké poloviny: zápornou a nezápornou:
+
+![Two's complement](../img/alu-scitacka-doplnek.png =500x center)
+
+#### Konkrétní příklad
+
+Co se vlastně na pozadí děje, když odečteme pomocí této techniky nějaké číslo?
+
+![Complement subtraction](https://ars.els-cdn.com/content/image/3-s2.0-B9780750645829500020-f01-07-9780750645829.gif =400x center)
+<!-- https://www.sciencedirect.com/book/9780750645829/digital-logic-design -->
+
+Pracujeme s 4-bitovými čísly, tedy (bez znaménka) v $Z_{2^4}^+$. Se znaménkem pracujeme v doplňkovém kódu ona obrázku.
+
+Chceme spočítat $5-3$. Nalezneme opačnou hodnotu pro číslo $3$:
+
+$$ -3 = 2^4 - 3 = 16 - 3 = 13_{10} = 1101_2 $$
+
+Výsledek můžeme oveřit na obrázku. Takže z našeho příkladu se stane:
+
+$$ 5 - 3 = 5 + (-3) = 5 + 13 = 18 = 2 \pmod{2^4} $$
+
+Získali jsme správný výsledek. Pozorujeme, že odčítání vlastně funguje pomocí přičtení "velkého" čísla, což způsobí přetečení o "tak akorát" velké číslo, abychom dostali správný výsledek. Znamená to, že carry-out už nám bohužel nemůže nic říct o tom, zda je výsledek validní.
+
 ```admonish question title="Lze spočítat absolutní hodnotu z libovolného čísla ve dvojkovém doplňku?",collapsible=true
 Ne bez zvětšení počtu bitů. Pro 3-bitové číslo $-4$:
 
@@ -118,9 +141,15 @@ Je to opravdová situace, která může nastat ve strojových číslech se znam�
 
 ```
 
-Rozdělili jsme tak grupu na dvě stejně velké poloviny: zápornou a nezápornou:
+### Validita výsledku, přetečení (carry) a přeplňení (overflow)
 
-![Two's complement](../img/alu-scitacka-doplnek.png =500x center)
+U sčítání jsme měli výstup `carry`, který nám indikoval, že výsledek se nevejde do šířky výstupu sčítačky. Tomu jevu se říkalo přetečení.
+
+U záporných čísel se to trochu komplikuje - jak jsme si ukázali na příkladu, zde nám carry může a nemusí nastat ikdyž je výsledek validní. Tedy "přetečení" neboli carry nám nepomůže.
+
+Potřebujeme vymslet jiný indikátor toho, jestli operace ve dvojkovém doplňku byla validní. Pokud tomu tak nebude, budeme tomu říkat **přeplňení (overflow)**.
+
+{{#check TODO | overflow }}
 
 ### Efektivní hledání opačného čísla ve dvojkovém doplňku
 
