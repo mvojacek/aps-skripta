@@ -47,10 +47,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build mdbook using docker compose run
+      - name: Pull required docker images
         run: |
           docker compose pull
-          docker compose run mdbook build
+
+      - name: Build mdbook using docker compose run
+        run: |
+          docker compose run --user $UID mdbook build
+
+      - name: Stop the containers
+        run: |
           docker compose down
 
       - name: Setup Pages
