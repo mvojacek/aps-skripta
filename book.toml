@@ -13,8 +13,8 @@ default-theme = "rust"
 preferred-dark-theme = "ayu"
 git-repository-url = "https://github.com/mvojacek/aps-skripta"
 git-branch = "main"
-additional-css = ["./theme/mdbook-admonish.css", "./theme/tabs.css", "./theme/presentationHider.css", "./theme/footer.css"]
-additional-js = ["./theme/tabs.js", "./theme/presentationHider.js"]
+additional-css = ["./theme/mdbook-admonish.css", "./theme/tabs.css", "./theme/presentationHider.css", "./theme/footer.css", "./theme/pagetoc.css"]
+additional-js = ["./theme/tabs.js", "./theme/presentationHider.js", "./theme/pagetoc.js"]
 
 open-on-text = "Found a bug? [Edit this page on GitHub.]"
 
@@ -98,6 +98,8 @@ after = ["cmdrun"]
 [preprocessor.checklist]
 before = ["tera"] # must run before Tera to avoid conflicts with Tera's syntax
 title = "TODO"
+
+[preprocessor.pagetoc]
 
 # [output.pdf]
 

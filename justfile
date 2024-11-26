@@ -28,6 +28,9 @@ down:
 
 DOCKER_IMAGE := "ghcr.io/mvojacek/mdbook"
 
+list-tags:
+    skopeo list-tags docker://{{DOCKER_IMAGE}}  | jq -r '.Tags[]'
+
 build-mdbook-docker TAG:
     # build
     docker build -t {{DOCKER_IMAGE}}:{{TAG}} docker
