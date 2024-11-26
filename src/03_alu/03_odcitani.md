@@ -80,7 +80,7 @@ Pokud toto pravidlo budeme aplikovat na nezáporná čísla počínaje nulou (kt
 | `110` | `6` | `-2` |
 | `111` | `7` | `-1` |
 
-Tento kód ja zajímavý tím, že není nemá symetrický rozsah, tedy stejný počet kladných a záporných čísel. To vyplývá automaticky z požadavku mít pouze jednu nulu, přičemž čísel je pořád sudý počet. "Lichý" binární řetězec můžeme přiřadit buď číslu $4$ nebo $-4$, výsledný kód bude fungovat stejně, protože nad {Z_8^+} platí, že $x+4 = x-4$. Vlastně tedy (stejně jako pro nulu), platí, že $4 = -4$.
+Tento kód ja zajímavý tím, že není nemá symetrický rozsah, tedy stejný počet kladných a záporných čísel. To vyplývá automaticky z požadavku mít pouze jednu nulu, přičemž čísel je pořád sudý počet. "Lichý" binární řetězec můžeme přiřadit buď číslu $4$ nebo $-4$, výsledný kód bude fungovat stejně, protože nad $Z_8^+$ platí, že $x+4 = x-4$. Vlastně tedy (stejně jako pro nulu), platí, že $4 = -4$.
 
 ```admonish question title="Tvoří prvky dvojkového doplňku a sčítání stále grupu?",collapsible=true
 Ano, pouze jsme prvkům dali jiné názvy. Operátor $+$ nad nimi se chová pořád stejně jako v původním $Z_{2^n}^+$. Mezi sčítáním čísel *bez znaménka* a ve *dvojkovém doplňku* není na binární úrovní *žádný* rozdíl. **To znamená, že pro sčítání čísel ve dvojkovém doplňku můžeme používat stejnou sčítačku, jako pro nezáporná čísla!** 

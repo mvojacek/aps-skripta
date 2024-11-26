@@ -23,4 +23,4 @@ Template si můžete nastavit v `File > Preferences... > Template > User templat
 
 Všechny gaty jsou nastaveny na `narrow`, všechny plexery mají disabled output zero.
 
-[Download - template](./logisim/template.circ)
+[Download - template](../logisim/template.circ)
