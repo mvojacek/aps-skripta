@@ -52,16 +52,16 @@ Pojďme zkusit vymyslet takový kód, který bude mít vhodnou reprezentaci záp
 
 $$ a - b = a + (-b) $$
 
-Když pracujeme s n-bitovými čísly, tak vlastně pracujeme s tělesem $ Z_{2^n}^+ $, protože hodnoty $2^n$ a větší neumíme reprezentovat a horní bity zahazujeme (carry).
+Když pracujeme s n-bitovými čísly, tak vlastně pracujeme s groupu $ \mathbb{Z}_{2^n}^+ $, protože hodnoty $2^n$ a větší neumíme reprezentovat a horní bity zahazujeme (carry).
 
-Např. sčítáme 8-bit čísla, pohybujeme se v $Z_{256}^+$: $255 + 1 = 0 \pmod{256}$
+Např. sčítáme 8-bit čísla, pohybujeme se v $\mathbb{Z}_{256}^+$: $255 + 1 = 0 \pmod{256}$
 
 Chceme označit některá čísla z této grupy jako záporná tak, aby platily následující pravidla:
 
 - Pro každé kladné $ b^+ $ (které reprezentujeme jako číslo bez znaménka) musí existovat takové $ b^- $, aby platitlo $ a-b^+ = a + (-b^+) = a + b^- $.
 - To je ekvivalentní tvrzení $ b^+ + b^- = 0 $
 
-Hledané $b^-$ je tedy *aditivní inverzí* $b^+$ v $Z_{2^n}^+$. Tu umíme aritmeticky najít:
+Hledané $b^-$ je tedy *aditivní inverzí* $b^+$ v $\mathbb{Z}_{2^n}^+$. Tu umíme aritmeticky najít:
 
 ```admonish done
 $$ b^- = 2^n - b^+ $$
@@ -80,10 +80,10 @@ Pokud toto pravidlo budeme aplikovat na nezáporná čísla počínaje nulou (kt
 | `110` | `6` | `-2` |
 | `111` | `7` | `-1` |
 
-Tento kód ja zajímavý tím, že není nemá symetrický rozsah, tedy stejný počet kladných a záporných čísel. To vyplývá automaticky z požadavku mít pouze jednu nulu, přičemž čísel je pořád sudý počet. "Lichý" binární řetězec můžeme přiřadit buď číslu $4$ nebo $-4$, výsledný kód bude fungovat stejně, protože nad $Z_8^+$ platí, že $x+4 = x-4$. Vlastně tedy (stejně jako pro nulu), platí, že $4 = -4$.
+Tento kód ja zajímavý tím, že není nemá symetrický rozsah, tedy stejný počet kladných a záporných čísel. To vyplývá automaticky z požadavku mít pouze jednu nulu, přičemž čísel je pořád sudý počet. "Lichý" binární řetězec můžeme přiřadit buď číslu $4$ nebo $-4$, výsledný kód bude fungovat stejně, protože nad $\mathbb{Z}_8^+$ platí, že $x+4 = x-4$. Vlastně tedy (stejně jako pro nulu), platí, že $4 = -4$.
 
 ```admonish question title="Tvoří prvky dvojkového doplňku a sčítání stále grupu?",collapsible=true
-Ano, pouze jsme prvkům dali jiné názvy. Operátor $+$ nad nimi se chová pořád stejně jako v původním $Z_{2^n}^+$. Mezi sčítáním čísel *bez znaménka* a ve *dvojkovém doplňku* není na binární úrovní *žádný* rozdíl. **To znamená, že pro sčítání čísel ve dvojkovém doplňku můžeme používat stejnou sčítačku, jako pro nezáporná čísla!** 
+Ano, pouze jsme prvkům dali jiné názvy. Operátor $+$ nad nimi se chová pořád stejně jako v původním $\mathbb{Z}_{2^n}^+$. Mezi sčítáním čísel *bez znaménka* a ve *dvojkovém doplňku* není na binární úrovní *žádný* rozdíl. **To znamená, že pro sčítání čísel ve dvojkovém doplňku můžeme používat stejnou sčítačku, jako pro nezáporná čísla!** 
 ```
 
 Musíme se tedy při tvorbě kódu rozhodnout, jestli chceme více záporných a více kladných čísel, aby šly čísla jednoznačně interpretovat. Pokud se rozhodneme "lichému" řetezci přiřadit *zápornou* hodnotu, získáme pro nás kód navíc jednu velmi hezkou vlastnost:
@@ -118,7 +118,7 @@ Co se vlastně na pozadí děje, když odečteme pomocí této techniky nějaké
 ![Complement subtraction](https://ars.els-cdn.com/content/image/3-s2.0-B9780750645829500020-f01-07-9780750645829.gif =400x center)
 <!-- https://www.sciencedirect.com/book/9780750645829/digital-logic-design -->
 
-Pracujeme s 4-bitovými čísly, tedy (bez znaménka) v $Z_{2^4}^+$. Se znaménkem pracujeme v doplňkovém kódu ona obrázku.
+Pracujeme s 4-bitovými čísly, tedy (bez znaménka) v $\mathbb{Z}_{2^4}^+$. Se znaménkem pracujeme v doplňkovém kódu ona obrázku.
 
 Chceme spočítat $5-3$. Nalezneme opačnou hodnotu pro číslo $3$:
 
