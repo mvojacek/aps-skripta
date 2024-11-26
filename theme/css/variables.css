@@ -9,7 +9,10 @@
     --content-max-width: 750px;
     --menu-bar-height: 50px;
     --mono-font: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
-    --code-font-size: 0.875em /* please adjust the ace font size accordingly in editor.js */
+    --code-font-size: 0.875em; /* please adjust the ace font size accordingly in editor.js */
+    --dark-mode-invert-dark: 100%;
+    --dark-mode-invert-light: 0%;
+    --dark-mode-invert: var(--dark-mode-invert-light)
 }
 
 /* Themes */
@@ -56,6 +59,7 @@
     --search-mark-bg: #e3b171;
 
     --color-scheme: dark;
+    --dark-mode-invert: var(--dark-mode-invert-dark);
 
     /* Same as `--icons` */
     --copy-button-filter: invert(45%) sepia(6%) saturate(621%) hue-rotate(198deg) brightness(99%) contrast(85%);
@@ -105,6 +109,7 @@
     --search-mark-bg: #355c7d;
 
     --color-scheme: dark;
+    --dark-mode-invert: var(--dark-mode-invert-dark);
 
     /* Same as `--icons` */
     --copy-button-filter: invert(26%) sepia(8%) saturate(575%) hue-rotate(169deg) brightness(87%) contrast(82%);
@@ -154,6 +159,7 @@
     --search-mark-bg: #a2cff5;
 
     --color-scheme: light;
+    --dark-mode-invert: var(--dark-mode-invert-light);
 
     /* Same as `--icons` */
     --copy-button-filter: invert(45.49%);
@@ -203,6 +209,7 @@
     --search-mark-bg: #a2cff5;
 
     --color-scheme: dark;
+    --dark-mode-invert: var(--dark-mode-invert-dark);
 
     /* Same as `--icons` */
     --copy-button-filter: invert(51%) sepia(10%) saturate(393%) hue-rotate(198deg) brightness(86%) contrast(87%);
@@ -300,6 +307,7 @@
         --search-mark-bg: #355c7d;
 
         --color-scheme: dark;
+        --dark-mode-invert: var(--dark-mode-invert-dark);
 
         /* Same as `--icons` */
         --copy-button-filter: invert(26%) sepia(8%) saturate(575%) hue-rotate(169deg) brightness(87%) contrast(82%);
