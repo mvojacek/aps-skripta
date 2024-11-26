@@ -23,6 +23,7 @@ PACKAGES_LOCKED=(
     mdbook-embedify@0.2.11
     mdbook-footnote@0.1.1
     mdbook-external-links@0.1.1
+    mdbook-pagetoc@0.2.0
     https://github.com/mvojacek/mdbook-tera?tag=v1
 )
 
