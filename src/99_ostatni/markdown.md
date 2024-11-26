@@ -118,25 +118,30 @@ Takhle vypadá rozbalovací sekce.
 
 ## quiz
 
-TODO
+{{#check TODO | quiz }}
 
 ## toc
 
-TODO
+{{#check TODO | toc }}
 
 ## kroki
 
-TODO
+{{#check TODO | kroki }}
 
 ## emojicodes
 
-TODO
+{{#check TODO | emojicodes }}
 
 ## embedify
 
-TODO
+{{#check TODO | embedify }}
 
 ## footnote
 
-TODO
+{{#check TODO | footnote }}
 
+# TODO
+
+## Sidebar ToC
+
+{{#check TODO | Sidebar ToC }}

@@ -10,13 +10,14 @@
   - [Instalace](./02_logisim/01_logisim-instalace.md)
   - [Základy](./02_logisim/02_logisim-zaklady.md)
   - [Třetí stav a zkraty](./02_logisim/03_stavy.md)
-  - [Komparátor](./02_logisim/04_komparator.md)
-  - [Multiplexory a dekodéry](./02_logisim/05_multiplexory-dekodery.md)
+  - [Multiplexory a dekodéry](./02_logisim/04_multiplexory-dekodery.md)
+  - [Komparátor](./02_logisim/05_komparator.md)
 
 - [ALU]()
   - [Úvod](./03_alu/01_alu-uvod.md)
   - [Sčítačka](./03_alu/02_alu-scitacka.md)
   - [Odčítání](./03_alu/03_odcitani.md)
+  - [Zadání ALU](./03_alu/90_zadani.md)
 
 - [Paměti]()
   - [Sekvenční obvody](./04_pameti/01_sekvencni-obvody.md)
