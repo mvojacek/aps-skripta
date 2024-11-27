@@ -73,7 +73,7 @@
 
     --sidebar-bg: #292c2f;
     --sidebar-fg: #a1adb8;
-    --sidebar-non-existant: #505254;
+    --sidebar-non-existant: #717477;
     --sidebar-active: #3473ad;
     --sidebar-spacer: #393939;
 
@@ -121,9 +121,10 @@
     --bg: hsl(0, 0%, 100%);
     --fg: hsl(0, 0%, 0%);
 
-    --sidebar-bg: #fafafa;
+    /* --sidebar-bg: #fafafa; */
+    --sidebar-bg: hsl(0, 0%, 95%);
     --sidebar-fg: hsl(0, 0%, 0%);
-    --sidebar-non-existant: #aaaaaa;
+    --sidebar-non-existant: hsl(0, 0%, 30%);
     --sidebar-active: #1f1fff;
     --sidebar-spacer: #f4f4f4;
 
@@ -173,7 +174,7 @@
 
     --sidebar-bg: #282d3f;
     --sidebar-fg: #c8c9db;
-    --sidebar-non-existant: #505274;
+    --sidebar-non-existant: #8183a1;
     --sidebar-active: #2b79a2;
     --sidebar-spacer: #2d334f;
 
@@ -223,7 +224,7 @@
 
     --sidebar-bg: #3b2e2a;
     --sidebar-fg: #c8c9db;
-    --sidebar-non-existant: #505254;
+    --sidebar-non-existant: #818385;
     --sidebar-active: #e69f67;
     --sidebar-spacer: #45373a;
 
