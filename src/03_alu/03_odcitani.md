@@ -63,7 +63,7 @@ Chceme označit některá čísla z této grupy jako záporná tak, aby platily 
 
 Hledané $b^-$ je tedy *aditivní inverzí* $b^+$ v $\mathbb{Z}_{2^n}^+$. Tu umíme aritmeticky najít:
 
-```admonish done
+```admonish done,collapsible=true
 $$ b^- = 2^n - b^+ $$
 ```
 
