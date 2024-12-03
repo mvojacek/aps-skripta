@@ -192,7 +192,7 @@ S trochou algebry získáme:
 
 $$ b^- = 2^n - b^+ = (2^n - 1 + 1) - b^+ = (2^n - 1) - b^+ + 1 $$
 
-$(2^n - 1)$ v tomto výrazu je konstant, která má podobu binárního řetězce samých jedniček o délce $n$. Odečtením libovolného čísla od takové hodnoty nikdy nenastane žádný přenos a odečítaná hodnota se touto operací jednoduše zneguje (vyzkoušejte odečtením pod sebou na papíře), tedy $(2^n - 1) - b^+ = \overline{b^+}$. Dosazením do původního vzorce dostáváme
+$(2^n - 1)$ v tomto výrazu je konstanta, která má podobu binárního řetězce samých jedniček o délce $n$. Odečtením libovolného čísla od takové hodnoty nikdy nenastane žádný přenos a odečítaná hodnota se touto operací jednoduše zneguje (vyzkoušejte odečtením pod sebou na papíře), tedy $(2^n - 1) - b^+ = \overline{b^+}$. Dosazením do původního vzorce dostáváme
 
 $$ b^- = \overline{b^+} + 1 $$
 
@@ -202,7 +202,7 @@ Tedy, pokud chceme odečíst dvě čísla A, B, stačí provést:
 
 $$ A - B = A + (-B) = A + \overline{B} + 1 $$
 
-Pokud chceme odčítat, privedeme tedy na vstup B naší odčítačky invertovanou hodnotu. Na první pohled se zdá, že budeme muset provést dva součty, nicméně $+ 1$ lze na naší sčítačce zajistit pomocí vstupu `cin`, který při odčítání zafixujeme na kostantní `1`.
+Pokud chceme odčítat, přivedeme tedy na vstup B naší odčítačky invertovanou hodnotu. Na první pohled se zdá, že budeme muset provést dva součty, nicméně $+ 1$ lze na naší sčítačce zajistit pomocí vstupu `cin`, který při odčítání zafixujeme na kostantní `1`.
 
 ```admonish question title="Ale jak bez cin zřetězím dvě odčítání?",collapsible=true
 U odčítání se řetězení provádí pomocí tzv. *výpůjčky (borrow)*. Pokud je `borrow-in` $1$, odečteme ještě o jedničku více (podobné ale opačné chování jako carry). Na výstupu odčítačky je naopak `borrow-out`, který signalizuje přetečení do záporných hodnot, tedy v dalším řádu se má odečíst jednička navíc (borrow-in).
@@ -222,18 +222,20 @@ Kvůli neuvedeným skutečnostem (doplňkový pseudokód) platí to samé pro bo
 $$ b_{out} = \overline{c_{out}} $$
 
 Tedy abychom dostali borrow_out pro odčítání, stačí znegovat carry_out z výše uvedeného součtu.
+
+V ALU bude typicky pouze jeden `carry-in` a jeden `carry-out` výstup. Tyto IO mají pak dvojí smysl, během sčítání zastávají funkci carry, a během odčítání borrow.
 ```
 
 # Sčítačka-Odčítačka
 
-ALU musí samozřejmě umět nějěnom odčítat, ale i sčítat. Nestačí tedy zkonvertovat sčítačku na odčítačku. **Taky není dobré řešení mít dvě sčítačky, jednu na sčítání a odčítání, když ALU děla v jeden čas vždy pouze jednu z obou operací**.
+ALU musí samozřejmě umět nějěnom odčítat, ale i sčítat. Nestačí tedy zkonvertovat sčítačku na odčítačku. **Taky není dobré řešení mít dvě sčítačky, jednu na sčítání a odčítání, když ALU děla v jeden čas vždy pouze jednu z obou operací**, to je v ALU penalizováno.
 
 Je tedy potřeba postavit modul sčítačka-odčítačka, který umí obojí, a má speciální vstup (může se jmenovat např. `sub` jako subtract), kterým lze zapnout režim odčítání.
 
 - V režimu sčítání bude počítat $ A + B + CIN = OUT, COUT $.
-- V režimu odčítání bude počítat $ A - B = OUT, COUT $.
+- V režimu odčítání bude počítat $ A - B = OUT, COUT $ (varianta `half_sub`)
   - Tedy $CIN$ se nebere v potaz, $COUT$ výstup je zapojen stejně jako u součtu.
-- *Alternativně* v režimu odčítání bude počítat $ A - B - BIN = OUT, BOUT $
+- *Alternativně* v režimu odčítání bude počítat $ A - B - BIN = OUT, BOUT $ (varianta `full_sub`)
   - $BIN, BOUT$ mají korektní borrow chování ve dvojkovém doplňku, viz "Jak zřetězím dve odčítání"
   - $CIN / BIN$ je jeden vstup pojmenovaný `CIN` nebo `CIN_BIN`, který přepíná své chování podle toho, zda se zrovna odčítá.
   - $COUT / BOUT$ stejně.
