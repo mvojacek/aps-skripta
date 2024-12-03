@@ -130,7 +130,13 @@ Takhle vypadá rozbalovací sekce.
 
 ## emojicodes
 
-{{#check TODO | emojicodes }}
+Umožňuje vkládat do textu emoji pomocí Github shortcode ohraničeného ::
+
+[Kompletní seznam shortcodes](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+
+### Příklad
+
+:couple_with_heart_man_man: :couple_with_heart_woman_woman: :white_check_mark: :rainbow_flag: :transgender_flag:
 
 ## embedify
 

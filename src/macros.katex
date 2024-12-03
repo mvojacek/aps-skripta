@@ -1,0 +1,5 @@
+\var:{\textnormal{#1}}
+\xor:{\oplus}
+\or:{+}
+\and:{\cdot}
+\not:{\overline{#1}}

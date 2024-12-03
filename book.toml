@@ -26,6 +26,7 @@ after = ["tera"]
 
 [preprocessor.katex]
 after = ["cmdrun"]
+macros = "src/macros.katex"
 
 [preprocessor.image-size]
 command = "mdbook-image-size"
