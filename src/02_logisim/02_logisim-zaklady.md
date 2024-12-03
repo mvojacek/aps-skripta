@@ -1,5 +1,13 @@
 # Logisim - Základy
 
+```admonish important title="Máte správný Logisim?"
+Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už léta zastaralý, je nestabilní, nepodporuje moderní komponenty, a **projektové soubory s Logisimem Evolution nejsou kompatibilní!**
+```
+
+```admonish info title="Verze Logisimu Evolution"
+Minimální požadovaná verze Logisimu Evolution v tomto předmětu je 3.9.0.
+```
+
 Po úspěšném nainstalovaní `logisim-evolution` (viz. [návod](01_logisim-instalace)) a spuštěním, uvidíte tohle:
 
 <img src="../img/logisim-zaklady-uvod.png"/>
