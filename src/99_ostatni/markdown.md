@@ -6,7 +6,7 @@ Tyto skripta se kompilují pomocí [mdbook](https://rust-lang.github.io/mdBook/)
 
 Navíc jsou do mdbook nainstalované preprocessory, které umožňují používat další druhy syntaxe. Preprocesory jsou uvedeny cca v pořadí, ve kterém se spoštějí:
 
-## [checklist](https://github.com/ANSSI-FR/mdbook-checklist)
+## checklist [:blue_book:](https://github.com/ANSSI-FR/mdbook-checklist)
 
 Umožňuje vložit do markdownu inline TODO, ze kterých se udělá globální seznam ve speciální kapitole, s odkazy.
 
@@ -16,7 +16,7 @@ Umožňuje vložit do markdownu inline TODO, ze kterých se udělá globální s
 {{ ch_markdown.checklist_usage }}
 ```
 
-## [tera](https://github.com/mvojacek/mdbook-tera)
+## tera [:blue_book:](https://github.com/mvojacek/mdbook-tera)
 
 Nahrazuje template výrazy [tera](https://github.com/Keats/tera) v markdownu podle contextu v [src/context.toml](../context.toml). Tohle je nejjednodušší způsob, jak zadefinovat a recyklovat řetězce napříč celými skripty.
 
@@ -33,7 +33,7 @@ Autoři těchto skript jsou {{ ctx.config.book.authors | join(sep=", ") }}.
 {% endfor -%}
 | end | end |
 
-## [cmdrun](https://github.com/FauconFan/mdbook-cmdrun)
+## cmdrun [:blue_book:](https://github.com/FauconFan/mdbook-cmdrun)
 
 Umožňuje do skript přidat výstup libovolného unix příkazu, což je užitečné např. pro generování výstupů z logisimu, nebo buildování latexu.
 
@@ -52,7 +52,7 @@ Jako příklad seznam všech použití toho preprocesoru ve skriptech (příkaz 
 <!-- cmdrun cd ../.. && grep --color=no -roP '\<\!\-\- cmdrun\K.+(?=\-\-\>)' --exclude-dir book . -->
 ```
 
-## [katex](https://github.com/lzanini/mdbook-katex)
+## katex [:blue_book:](https://github.com/lzanini/mdbook-katex)
 
 Umožňuje použití `$` a `$$` pro psaní matematických výrazů.
 
@@ -60,7 +60,7 @@ Umožňuje použití `$` a `$$` pro psaní matematických výrazů.
 
 $$ \nabla f(x) \in \mathbb{R}^n $$
 
-## [image-size](https://github.com/lhybdv/mdbook-image-size)
+## image-size [:blue_book:](https://github.com/lhybdv/mdbook-image-size)
 
 Markdown neumožňuje specifikaci velikosti a centrování obrázků, tento preprocesor tuto funkcionalitu přidává.
 
@@ -71,7 +71,7 @@ TODO: {{#check image-size-fork | Forknout mdbook-image-size a rozvolnit syntaxi}
 
 ![](../img/ABasicComputer.svg.png =500x100 center)
 
-## [admonish](https://github.com/tommilligan/mdbook-admonish)
+## admonish [:blue_book:](https://github.com/tommilligan/mdbook-admonish)
 
 Umožňuje vytvářet HTML "bannery", které volitelně můžou být rozbalovací.
 
@@ -128,7 +128,7 @@ Takhle vypadá rozbalovací sekce.
 
 {{#check TODO | kroki }}
 
-## emojicodes
+## emojicodes [:blue_book:](https://github.com/blyxyas/mdbook-emojicodes)
 
 Umožňuje vkládat do textu emoji pomocí Github shortcode ohraničeného ::
 
@@ -148,6 +148,6 @@ Umožňuje vkládat do textu emoji pomocí Github shortcode ohraničeného ::
 
 # TODO
 
-## Sidebar ToC
+## pagetoc [:blue_book:](https://github.com/slowsage/mdbook-pagetoc)
 
-{{#check TODO | Sidebar ToC }}
+Přidává na generovanou stránku vpravo sidebar s navigací v aktuální kapitole, pokud na nej je horizontální místo ve viewportu.
