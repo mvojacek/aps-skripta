@@ -8,7 +8,7 @@ Nicméně o odčítání se dá uvažovat jako o přičítání záporných čí
 
 $$ a - b = a + (-b) $$
 
-Pokud bychom tedy byli schopní vytvořit nějaký jednoduchý obvod, který z $b$ umí vytvořit nějakou hodnotu $-b$, kterou můžeme přičíst k $a$, abychom dostali $a-b$, můžeme pro odčítání použít naši existující obvod.
+Pokud bychom tedy byli schopní vytvořit nějaký jednoduchý obvod, který z $b$ umí vytvořit nějakou hodnotu $-b$, kterou můžeme přičíst k $a$, abychom dostali $a-b$, můžeme pro odčítání použít naši existující sčítačku.
 
 ## Záporná čísla
 
@@ -204,7 +204,10 @@ $$ A - B = A + (-B) = A + \overline{B} + 1 $$
 
 Pokud chceme odčítat, přivedeme tedy na vstup B naší odčítačky invertovanou hodnotu. Na první pohled se zdá, že budeme muset provést dva součty, nicméně $+ 1$ lze na naší sčítačce zajistit pomocí vstupu `cin`, který při odčítání zafixujeme na kostantní `1`.
 
-```admonish question title="Ale jak bez cin zřetězím dvě odčítání?",collapsible=true
+### Z poloviční odčítačky na úplnou
+
+Tím, že jsme takhle použili `cin`, jsme znemožnili řetězení více menších rozdílů pro provedení většího, jako to šlo u sčítání. Hovoříme tedy o poloviční odčítačce (half-subber). Jak tedy tuto funkcionalitu obnovit, a získat plnou odčítačku (full-subber)?
+
 U odčítání se řetězení provádí pomocí tzv. *výpůjčky (borrow)*. Pokud je `borrow-in` $1$, odečteme ještě o jedničku více (podobné ale opačné chování jako carry). Na výstupu odčítačky je naopak `borrow-out`, který signalizuje přetečení do záporných hodnot, tedy v dalším řádu se má odečíst jednička navíc (borrow-in).
 
 Pokud do našich výpočtů zahrneme borrow-in ($b_{in}$):
@@ -223,8 +226,11 @@ $$ b_{out} = \overline{c_{out}} $$
 
 Tedy abychom dostali borrow_out pro odčítání, stačí znegovat carry_out z výše uvedeného součtu.
 
-V ALU bude typicky pouze jeden `carry-in` a jeden `carry-out` výstup. Tyto IO mají pak dvojí smysl, během sčítání zastávají funkci carry, a během odčítání borrow.
+```admonish summary
+Obecně tedy platí, že `carry` u sčítání a `borrow` u odčítání jsou přesné opaky. Tedy pokud převádíme odčítání na sčítání, je potřeba převést `borrow-in` na `carry-in`, provést součet, a poté převést výsledný `carry-out` na `borrow-out`.
 ```
+
+V ALU bude typicky pouze jeden `carry-in` a jeden `carry-out` výstup. Tyto IO mají pak dvojí smysl, během sčítání zastávají funkci carry, a během odčítání borrow.
 
 # Sčítačka-Odčítačka
 
