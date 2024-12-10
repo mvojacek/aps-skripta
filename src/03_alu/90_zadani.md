@@ -151,7 +151,7 @@ $\slice{\var{A}}{7:0}$ značí *slice* neboli bitový výběr. V tomto případ�
 | :bangbang: | `xor` | A XOR B | $\forall i: \var{OUTP}_i \leftarrow \var{A}_i \xor \var{B}_i$ | XOR A a B po bitech |
 | :bangbang: | `or`  | A OR B | $\forall i: \var{OUTP}_i \leftarrow \var{A}_i \or \var{B}_i$ | OR A a B po bitech |
 | :bangbang: | `and` | A AND B | $\forall i: \var{OUTP}_i \leftarrow \var{A}_i \and \var{B}_i$ | AND A a B po bitech |
-| :bangbang: | `not` | NOT A | $\forall i: \var{OUTP}_i \leftarrow \not{\var{A}_i} $ | NOT A po bitech |
+| :bangbang: | `not` | NOT A | $\forall i: \var{OUTP}_i \leftarrow \bnot{\var{A}_i} $ | NOT A po bitech |
 
 Více informací na wikipedii: [Bitwise operators](https://en.wikipedia.org/wiki/Bitwise_operation#Bitwise_operators)
 

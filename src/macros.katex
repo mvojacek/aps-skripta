@@ -2,5 +2,5 @@
 \xor:{\oplus}
 \or:{+}
 \and:{\cdot}
-\not:{\overline{#1}}
+\bnot:{\overline{#1}}
 \slice:{#1_{[\textnormal{#2}]}}

@@ -1,6 +1,6 @@
 # Paměti - Synchronní obvody
 
-### Synchronní obvody
+## Synchronní obvody
 
 Jsou ovládané extra clockem (`CLK`), který určuje kdy obvod pracuje. Příkladné obvody jsou:
 
@@ -10,7 +10,7 @@ Jsou ovládané extra clockem (`CLK`), který určuje kdy obvod pracuje. Příkl
 
 V následující kapitole se podíváme na D-flip-flop, jelikož je nejzajímavější.
 
-#### Jak synchronizovat obvod? (Rising/Falling edge detektor)
+### Jak synchronizovat obvod? (Rising/Falling edge detektor)
 
 Vytvoření Rising/Falling edge detektoru viz. obrázek
 
@@ -20,7 +20,7 @@ Rising edge detektor (pomocí `NOT` delaye)
 
 U falling edge detektoru jen prohodíme `NAND` gatu za `AND` gatu.
 
-#### D (Data) Flip Flop
+## D (Data) Flip Flop
 
 Pravdivostní tabulka
 
@@ -32,35 +32,38 @@ Pravdivostní tabulka
 
 D flip-flop jde vytvořit mnoha způsoby. Ukážeme si dva, a to klasickou variantu a master-slave variantu.
 
-**Klasická varianta**
+
+### Master-slave D-flipflop
+
+Vytvoříme ho pomocí 2 *Gated D-latch*. Pozor, aktivuje se na **Falling edge**.
+
+![Negative edge triggered master slave D flip-flop](../img/Negative-edge_triggered_master_slave_D_flip-flop.svg.png)
+
+Varianta pro **Rising edge**.
+
+![D-Type Flip-flop Diagram](../img/1024px-D-Type_Flip-flop_Diagram.svg.png)
+
+### Optimalizovaná varianta
 
 Můžeme vystavět pomocí 6 `NAND` gate.
 
-<img src="../img/Edge_triggered_D_flip_flop.svg.png">
+![Edge triggered D flip flop](../img/Edge_triggered_D_flip_flop.svg.png)
 
-Můžeme přidat 2 vstupy a to na set a reset. Stačí nám jen `NAND` gaty předělat na 3 vstupové.
+Můžeme přidat 2 vstupy pro **asynchronní** set a reset. Stačí jenom `NAND` gaty vyměnit za 3-vstupové.
 
-<img src="../img/Edge_triggered_D_flip_flop_with_set_and_reset.svg.png">
+![Edge triggered D flip flop with set and reset](../img/Edge_triggered_D_flip_flop_with_set_and_reset.svg.png)
 
-**Master-slave-edge-triggered D-flip-flop**
+#### Registr
 
-Vytvoříme ho pomocí 2 `gated D latch`. Pozor, aktivuje se na `Falling edge`.
+Pokud chceme ukládat vícebitové hodnoty, stačí položit několik D-flip-flopů vedle sebe:
 
-<img src="../img/Negative-edge_triggered_master_slave_D_flip-flop.svg.png">
-
-Implementace pro `Rising edge`
-
-<img src="../img/1024px-D-Type_Flip-flop_Diagram.svg.png
-">
+![alt text](../img/register_dflipflops.png)
 
 #### Shift Register
 
-Shift register je jeden z nejčastějších pamětí. Je tvořen z několika D flip-flopů a můžeme do něj uložit několika bitové vstupy. Zde je příklad 4 bitového shift registru.
+Shift register je užitečná varianta registru. Je tvořen z několika D flip-flopů zapojených v zřetězení do sebe. Při každém clocku se hodnoty v shift registru posunou o jednu pozici po směru toku dat. To umožňuje shift registr naplnit v čase za sebou přicházejícími 1bit hodnotami a následně pracovat s celou hodnotou.
 
-Při každém clocku se načte bit a uloží se do prvního flip-flopu, každý další bit se posune o jedno k výstupu, poslední bit se zahodí.
-
-<img src="../img/1024px-4_Bit_Shift_Register_001.svg.png
-">
+![4 Bit Shift Register](../img/1024px-4_Bit_Shift_Register_001.svg.png)
 
 ### Bonusové materiály
 

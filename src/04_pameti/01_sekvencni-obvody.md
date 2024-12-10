@@ -58,7 +58,32 @@ Obvod můžeme popsat i výrazem:
 
 $$ X' = X + A $$
 
-TODO
+kde $X'$ značí příští hodnotu a $X$ tu stávající. Pokud nám ale vyjde jiné $X'$, než jsem měli $X$, obvod na něj okamžitě zareaguje (je to vstup) a spustí výpočet znovu po dosazení $X'$ za $X$, tedy potenciálně je nutné popsat obvod takto:
+
+$$ X' = (X + A) + A = X + A $$
+
+Zde vidíme, že výraz se po opakovaném (klidně i nekonečném) dosazování $X'$ za $X$ nemění. Z toho lze odvodit, že je garantovaně stabilní. Nemusí tomu tak být vždy
+
+### Nestabilní obvody
+
+Nejjednodušší nestabilní obvod je následující obvod o nula vstupech:
+
+![](../img/unstable_not_gate.png =200x center)
+
+Tento obvod můžeme zase modelovat pomocí výrazu:
+
+$$ X' = \bnot{X} $$
+
+Pokud ale budeme opakovaně dosazovat, nedostaneme ten samý výraz. Označme $X_0$ (neznámý) počáteční stav $X$, a $X_i$ stav po $i$ dosazeních (neboli po $i$ provedeních obvodu). Každý stav se vypočítává z toho předchozího.
+
+$$ X_1 = \bnot{X_0} $$
+$$ X_2 = \bnot{X_1} = \bnot{\bnot{X_0}} = X_0 $$
+$$ X_3 = \bnot{X_2} = \bnot{X_0} $$
+$$ X_4 = \bnot{X_3} = X_0 $$
+
+Můžeme tedy říct, že protože $X_4 \neq X_3$ a obecně $X_{i+1} \neq X_i$, stav obvodu se po každém provedení hradla změní, a tedy není stabilní, nikdy se neustálí na jednu stálou hodnotu, neboli **osciluje**. Skutečně, potvrdí nám to i simulace Logisimem:
+
+![](../img/unstable_not_osc.png =200x center)
 
 ### SR Latch
 
