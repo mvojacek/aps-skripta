@@ -1,5 +1,7 @@
 # Paměti - Synchronní obvody
 
+Původní verze lekce viz asynchronní obvody
+
 ## Synchronní obvody
 
 Jsou ovládané extra clockem (`CLK`), který určuje kdy obvod pracuje. Příkladné obvody jsou:

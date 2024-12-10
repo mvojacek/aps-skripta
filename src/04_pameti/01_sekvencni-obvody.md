@@ -1,5 +1,7 @@
 # Paměti - Sekvenční obvody
 
+[Původní verze lekce](https://docs.google.com/document/d/1hbCvrRHl9PXsvyi_1CMGn6c9GZXuJLbwN8DUxsdF6Zg/edit)
+
 ### Kombinační obvody
 
 Kombinační obvody lze ekvivalentně zadefinovat několika způsoby:
