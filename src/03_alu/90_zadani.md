@@ -51,6 +51,54 @@ Pro implementování bonusových operací jsou tyto restrikce rozvolněné. Nap�
 ![](../img/alu_showcase.png =600x center)
 ```
 
+### Dokumentace.xlsx
+
+Každý číslicový modul (v praxi se používá zkratka IP znamenající *Intellectual Property*) musí mít detailní dokumentaci, často jsou to dokumenty o desítkách až stovkách stran.
+
+*Interní dokumentace* slouží pro zorientování v implementaci modulu a navázání na vývoj po delší době nebo po kolegovi. Tu u ALU vynecháme.
+
+*Externí dokumentace* dokumentuje interface (vstupy a výstupy) modulu, jeho operační režimy, chování, zakázané kombinace vstupů, případně elektrické vlastnosti. U nás jako 90% externí dokumentace slouží toto zadání - vstupy, výstupy a chování jsou tu přesně popsané. Je ale potřeba zdokumentovat hodnoty vstupu `SEL`, které jsou plně ve vaší režii.
+
+Pro tento účel jako součást odevzdání ALU vypracujete soubor Dokumentace.xlsx (nebo .odt), ve kterém tohle chování popíšete. Formát a obsah dokumentace není striktně definovaný, ale měl by pro každou implementovanou operaci obsahovat v přehledné podobě alespoň následující informace:
+
+1. Hodnotu SEL v *desítkové soustavě* (jako v OPCODES.txt)
+2. Binární rozvoj SEL s *obravenými buňkami*. Bity uspořádejte tak, že MSB bude vlevo.
+3. ID operace
+4. Mnemoniku krátce vystihující chování operace (příklady máte uvedené ve sloupci `Mnemo` v tabulkách a v obrázku níže. Není tu správná a špatná odpověď, stačí si vymyslet krátký "assemblerový" způsob, kterým by mohl programátor tuto operaci chtít použít v programu. Důležité je pouze, aby vámi zvolený styl byl konzistentní napříč celou ALU dokumentací)
+5. Stručný slovní popis operace (e.g. *Sečte A, B a CIN. Výsledek je OUTP, COUT. Spočítá OVER, ZERO, SIGN.*)
+
+```admonish tip title="Podmíněné formátování"
+Pro automatické podbarvení buněk s binárním rozvojem můžete použít podmíněné formátování. Na použítých stylech nezáleží, stačí, aby byly odlišné.
+```
+
+Tyto údaje má smysl formátovat do tabulky (proto xlsx), a takové tabulce **nesmí chybět hlavička**. Obzvlášť u binárního rozvoje je vhodné označít číslo každého bitu, případně MSB a LSB (Most- a Least-Significant-Bit).
+
+Příklad dokumentace:
+
+![](../img/alu_dokumentace.png =1000x center)
+
+### OPCODES.txt
+
+Soubor `OPCODES.txt` je strojově čítelnou verzí dokumentace, která slouží pro automatizovaný opravovač, aby věděl, jaké operace jste implementovali a jak je nechat ALU spočítat. Je to CSV bez hlavičky s řádky ve formátu `{opcode},{ID}`, např.
+
+```csv
+0,and
+1,or
+2,not
+3,cla
+15,mul8
+```
+
+`opcode` je zde číslo, které se přívádí na vstup `SEL`, zapsané v **desítkové soustavě**. "opcode" je zkratka pro *operation code*, neboli *číslo identifikující operaci*.
+
+`ID` je ID operace, jak je uvedené ve sloupci ID v tomto zadání, nebo `custom` jako označení oprace, která není v zadání (pro vyjímečné případy, kdy chcete naimplementovat nějakou jinou operaci navíc za bonusové body).
+
+```admonish info
+V případě použití `custom` budu danou operaci hodnotit ručně, je tedy potřeba, aby byla detailně popsaná v dokumentaci ALU.
+```
+
+Na pořadí nezáleží, a v souboru nesmí být žádné jiné údaje. Sada popsaných operací musí být konzistentní s dokumentací!
+
 ### Plagiáty
 
 Všechny projekty v předmětu APS jsou samostatné práce, musí tedy produktem vaší vlastní práce. Je povoleno projekty probírat, konzultovat, nechat si pomoct s řešením problému. Je nepřípustné odevzdávat cizí práci, a to včetně případů, kdy jste obvod podle předlohy zapojili sami.
@@ -63,7 +111,7 @@ Do výsledného hodnocení se bude vždy započítávat pouze vaše vlastní pr�
 
 Za ALU, které **správně** implementuje všechny zadané operace, je možné získat až 20 bodů.
 
-V případě, ALU je hodnocené 20 body, je možné získat až 4 bonusové body za bonusové operace.
+V případě, že povinné ALU je hodnocené 20 body, je možné získat až 6 bonusových bodů za bonusové operace.
 
 ## Vstupy a výstupy (I/O) ALU
 
@@ -220,6 +268,10 @@ Operace `dec` nemusí správně vygenerovat `COUT` (netestuje se).
 Operace `add`, `sub_half`, `sub_full`, `inc`, `dec` musí generovat `OVER`, pro případ, že jim programátor dal čísla se znaménkem.
 ```
 
+```admonish danger title="Jedna sčítačka"
+Pro implementaci všech 4 "sčítacích" operací je potřeba použít pouze jedinou sčítačku. Protože ALU vždy vykonává pouze jednu vybranou operaci, jedna instance sčítačky stačí, a jednolivé operace se na ní musí "vystřídat".
+```
+
 Více informací v kapitolách o [sčítání](./02_alu-scitacka.md) a [odčítání](./03_odcitani.md).
 
 ### Bonusové
@@ -350,10 +402,3 @@ V jádrové operaci algoritmu "porovnání a podmíněné přičtení" se porovn
 
 Pouze řešení s efektivním komparátorem a zvětšovačkou bude hodnoceno plným počtem bodů.
 ```
-
-TODO: {{#check ALU-Zadani | Zadání ALU}}
-
-TODO strojová tabulka
-
-TODO dokumentace
-
