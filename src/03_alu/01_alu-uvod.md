@@ -1,5 +1,9 @@
 # ALU - Úvod
 
+```admonish warning title="Poznámka"
+Obsah této stránky slouží jako úvod k principu ALU, má pouze informační povahu a **není součástí zadání ALU!**
+```
+
 Každé CPU vyžaduje ALU neboli *Arithmetic Logic Unit*. Jedná se o "krabičku", která dokáže různé operace jako například sčítání, odčítání, bitwise operace, atd... V této kapitole se dozvíte, co je vše potřeba v ALU obsáhnout.
 
 ```admonish info

@@ -138,9 +138,9 @@ Ne všechny I/O musí být nutně přítomné, pouze ty, které jsou potřeba pr
 Vstupy a výstupy musí být pojmenované *přesně* podle tabulky, jinak jejich hodnota nebude při opravování brána v potaz! Modul ALU se musí jmenovat `ALU`!
 ```
 
-### Definovanost výstupů a relevance výstupů
+### Definovanost výstupů a relevance vstupů
 
-Následující tabulka definuje, které výstupy musí být pro danou operaci smysluplně definované (mít hodnotu podle definice operace).
+Následující tabulka definuje, které výstupy musí být pro danou operaci smysluplně definované (mít hodnotu podle definice operace) a na kterých vstupech hodnota závisí.
 
 ```admonish hint
 Jako rule of thumb platí: každý výstup z ALU by měl být vypočten pomocí aktuálně vybrané operace v ALU, nebo být $0$ pokud to nedává smysl.
@@ -398,7 +398,10 @@ Algoritmus, kterým se tento převod dá efektivně (bez dělení a modula!) pro
 ```admonish tip title="Efektivní zapojení"
 "Double" v algoritmu je pouze logický posun doleva, ten lze realizovat jednoduše úpravou zapojení vodičů do další fáze (je zdarma).
 
-V jádrové operaci algoritmu "porovnání a podmíněné přičtení" se porovnává s konstantou (>4), a přičítá konstanta (+3). Obvody pro provedení těchto operací jdou oproti obecnému porovnání a sčítání dramaticky zjednodušit, jako jsme delali při úpravě výrazů v Booleově algebře (konstantní jedničky a nuly ve výrazu **vždy** lze nějak zjednodušit). Doporučuji si rozkreslit 4b komparátor a 4b sčítačku s těmito konstantami na jednom vstupu a zjednodušovat pomocí booleovy algebry (zapisovat hodnoty konstantních vodičů a škrtat nepotřebná hradla). Samotné rozhodnutí lze vyřešit malým multiplexorem.
+V jádrové operaci algoritmu "porovnání a podmíněné přičtení" se porovnává s konstantou (>4), a přičítá konstanta (+3). Obvody pro provedení těchto operací jdou oproti obecnému porovnání a sčítání dramaticky zjednodušit:
+
+- Buď, jako jsme delali při úpravě výrazů v Booleově algebře (konstantní jedničky a nuly ve výrazu **vždy** lze nějak zjednodušit) - rozkreslit si 4b komparátor a 4b sčítačku s těmito konstantami na vstupu a zjednodušovat pomocí booleovy algebry (zapisovat hodnoty konstantních vodičů a škrtat nepotřebná hradla). Samotné rozhodnutí lze vyřešit malým multiplexorem.
+- Přistupovat k modulu jako funkci o 4 vstupech a 4 výstupech, jejíž pravdivostní tabulku známe, testy sestavit vzorce pro každý z výstupů lze jednoduše pomocí Karnaughovy mapy.
 
 Pouze řešení s efektivním komparátorem a zvětšovačkou bude hodnoceno plným počtem bodů.
 ```
