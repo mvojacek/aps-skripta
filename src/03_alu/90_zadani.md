@@ -27,7 +27,7 @@ Je potřeba dodržet přesné názvy souborů, včetně kapitalizace! ALU budu v
 ### Projekt v Logisimu
 
 - Použijte Logisim **Evolution** 3.9.0
-- Modul ALU v Logisimu se **musí** jmenovat `APS`. Pokud ho máte jiný, vytvořte správně pojmenovaný modul a překopírujte obsah.
+- Modul ALU v Logisimu se **musí** jmenovat `ALU`. Pokud ho máte jiný, vytvořte správně pojmenovaný modul a překopírujte obsah (Ctrl-A, Ctrl-C, Ctrl-V).
 - Všechna dvou-vstupová hradla musí mít **velikost Narrow**, pokud není vyloženě vhodné mít jinou. Doporučuji použít [template](../logisim/template.circ).
 - *Všechny* moduly mají **pojmenované *všechny* vstupy a výstupy** vhodným jménem.
 - Používání **třetího stavu** (a jej generující komponenty) je obecně **zakázáno**. U *každého* použití je nutné odůvodnit (text toolem v logisimu v místě použití), proč je to vhodné místo klasických hradel a že nenastává žádný z problémů obecně spojeným s třetím stavem.
@@ -124,7 +124,7 @@ Naše ALU je 16-bitové, to znamená že umí zpracovat data (čísla) o šířc
 | `SEL`    | IN  | 4  | Vybírá aktuálně prováděnou operaci v ALU |
 | `OUTP`   | OUT | 16 | 16-bitový výstup z ALU |
 | `HOUT`   | OUT | 16 | Horní polovina výsledku, pokud je výsledek operace širší než 16 bitů (např. násobení 16bit x 16bit) |
-| `COUT`   | IN  | 1  | Výstup carry-out (borrow-out) pro některé ALU operace (+, -, posuny, ...) |
+| `COUT`   | OUT | 1  | Výstup carry-out (borrow-out) pro některé ALU operace (+, -, posuny, ...) |
 | `ZERO`   | OUT | 1  | Indikuje, že `OUTP` je roven `0` |
 | `SIGN`   | OUT | 1  | Indikuje, že `OUTP`, pokud ho interpretujeme ve dvojkovém doplňku, je záporné číslo |
 | `OVER`   | OUT | 1  | V případě, že došlo k součtu, indikuje, že pokud by se operace brala jako ve dvojkovém doplňku, je výsledek nevalidní (nevešel se do reprezentovatelného rozsahu) |
