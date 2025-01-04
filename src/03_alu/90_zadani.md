@@ -10,7 +10,11 @@ V případě nedodržení některého z těchto požadavků bude ALU hodnoceno 0
 
 ### Odevzdání
 
-- Odevzdáváte vždy zip archiv `alu_{jmeno}_{prijmeni}_{cislo odevzdani}.zip` obsahující:
+Odevzdávání probíhá na platformě Submitty hostované mnou na adrese: [https://submit.vojacek.org](https://submit.vojacek.org). Pro přihlášení potřebujete přihlašovací údaje, které jste dostali automatizovaným emailem (zkuste se podívat i do spamu, a email ze spamu přesuňte do doručených, aby se vám nesmazal!). Více informací naleznete právě v tomto emailu. V případě problémů mě kontaktujte emailem.
+
+V případě, že by systém nefungoval, je záložní metoda odevzdání emailem. V takovém případě odevzdáváte vždy **přímo v příloze** zip archiv pojmenovaný `alu_{jmeno}_{prijmeni}_{cislo odevzdani}.zip`. Odkazy na OneDrive atp. nejsou přípustné, protože jejich obsah lze upravit po odevzdání. Projekt ALU se bez problému vejde přimo do emailu.
+
+#### Soubory odevzdání
 
 | Název souboru         | Popis                                                          |
 |-----------------------|----------------------------------------------------------------|
