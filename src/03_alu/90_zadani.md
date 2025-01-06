@@ -12,7 +12,7 @@ V případě nedodržení některého z těchto požadavků bude ALU hodnoceno 0
 
 Odevzdávání probíhá na platformě Submitty hostované mnou na adrese: [https://submit.vojacek.org](https://submit.vojacek.org). Pro přihlášení potřebujete přihlašovací údaje, které jste dostali automatizovaným emailem (zkuste se podívat i do spamu, a email ze spamu přesuňte do doručených, aby se vám nesmazal!). Více informací naleznete právě v tomto emailu. V případě problémů mě kontaktujte emailem.
 
-V případě, že by systém nefungoval, je záložní metoda odevzdání emailem. V takovém případě odevzdáváte vždy **přímo v příloze** zip archiv pojmenovaný `alu_{jmeno}_{prijmeni}_{cislo odevzdani}.zip`. Odkazy na OneDrive atp. nejsou přípustné, protože jejich obsah lze upravit po odevzdání. Projekt ALU se bez problému vejde přimo do emailu.
+V případě, že by systém nefungoval, je záložní metoda odevzdání emailem. V takovém případě odevzdáváte vždy **přímo v příloze** zip archiv pojmenovaný `alu_{jmeno}_{prijmeni}_{cislo odevzdani}.zip`. Odkazy na OneDrive atp. nejsou přípustné, protože jejich obsah lze upravit po odevzdání. Projekt ALU se bez problému vejde přímo do emailu.
 
 #### Soubory odevzdání
 
@@ -21,7 +21,7 @@ V případě, že by systém nefungoval, je záložní metoda odevzdání emaile
 | ALU.circ              | Projektový soubor Logisimu obsahující ALU                      |
 | *.circ                | Libovolné další .circ soubory nutné pro funkčnost ALU          |
 | OPCODES.txt           | Strojově čitelný popis operačních kódů implementovaných v ALU  |
-| Dokumentace.xlsx/.odt | Uživatelsky přívětivá dokumentace ALU                          |
+| Dokumentace.xlsx/.ods | Uživatelsky přívětivá dokumentace ALU                          |
 | README.md             | Jakékoliv další připomínky k odevzdání                         |
 
 ```admonish warning
@@ -63,7 +63,7 @@ Každý číslicový modul (v praxi se používá zkratka IP znamenající *Inte
 
 *Externí dokumentace* dokumentuje interface (vstupy a výstupy) modulu, jeho operační režimy, chování, zakázané kombinace vstupů, případně elektrické vlastnosti. U nás jako 90% externí dokumentace slouží toto zadání - vstupy, výstupy a chování jsou tu přesně popsané. Je ale potřeba zdokumentovat hodnoty vstupu `SEL`, které jsou plně ve vaší režii.
 
-Pro tento účel jako součást odevzdání ALU vypracujete soubor Dokumentace.xlsx (nebo .odt), ve kterém tohle chování popíšete. Formát a obsah dokumentace není striktně definovaný, ale měl by pro každou implementovanou operaci obsahovat v přehledné podobě alespoň následující informace:
+Pro tento účel jako součást odevzdání ALU vypracujete soubor Dokumentace.xlsx (nebo .ods), ve kterém tohle chování popíšete. Formát a obsah dokumentace není striktně definovaný, ale měl by pro každou implementovanou operaci obsahovat v přehledné podobě alespoň následující informace:
 
 1. Hodnotu SEL v *desítkové soustavě* (jako v OPCODES.txt)
 2. Binární rozvoj SEL s *obravenými buňkami*. Bity uspořádejte tak, že MSB bude vlevo.
