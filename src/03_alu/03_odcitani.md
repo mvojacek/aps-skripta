@@ -34,7 +34,7 @@ Tato reprezentace má několik nevýhod, zejména:
 Další přirozený způsob spočívá v posunutí nuly "doprostřed" reprezentovatelného rozsahu - směrem nahoru budou kladná, směrem dolů záporná. Tedy v případě 8-bit čísel, kde máme 256 různých čísel,
 můžeme dát nulu na číslo $128$, takže $129$ bude $1$ a $127$ bude $-1$.
 
-Jedná se v podstatě o přímý kód, ale s opačným významem bitu znaménka, má stejné nevýhody. Navíc se ale 
+Jedná se v podstatě o přímý kód, ale s opačným významem bitu znaménka, má stejné nevýhody.
 
 ### Jedničkový doplňěk (one's complement)
 

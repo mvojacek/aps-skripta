@@ -150,12 +150,14 @@ Následující tabulka definuje, které výstupy musí být pro danou operaci sm
 Jako rule of thumb platí: každý výstup z ALU by měl být vypočten pomocí aktuálně vybrané operace v ALU, nebo být $0$ pokud to nedává smysl.
 ```
 
+<!-- TODO: add COUT back to rotl/r refinition in 2025/26 -->
+
 | ID | Inputy | Outputy |
 |:--:|:-------|:--------|
 | `xor`, `or`, `and` | $\var{A}, \var{B}$ | $\var{OUTP}$ |
 | `not` | $\var{A}$ | $\var{OUTP}$ |
 | `shr`, `shl` | $\var{A}, \var{CIN}$ | $\var{OUTP}, \var{COUT}$ |
-| `rotr`, `rotl` | $\var{A}$ | $\var{OUTP}, \var{COUT}$ |
+| `rotr`, `rotl` | $\var{A}$ | $\var{OUTP}$ |
 | `add` | $\var{A}, \var{B}, \var{CIN}$ | $\var{OUTP}, \var{COUT}, \var{OVER}$ |
 | `sub_half` | $\var{A}, \var{B}$ | $\var{OUTP}, \var{OVER}$ |
 | `sub_full` | $\var{A}, \var{B}, \var{CIN}$ | $\var{OUTP}, \var{COUT}, \var{OVER}$ |
@@ -213,8 +215,8 @@ Více informací na wikipedii: [Bitwise operators](https://en.wikipedia.org/wiki
 |:---:|:--:|-----------|-----------|-------|
 | :bangbang: | `shr` | SHR A | $\forall i: \var{OUTP}_i \leftarrow \var{A}_{i+1}$ <br> $\var{OUTP}_{15} \leftarrow \var{CIN}$ <br> $\var{COUT} \leftarrow \var{A}_{0}$ | Logický posun doprava |
 | :bangbang: | `shl` | SHL A | $\forall i: \var{OUTP}_i \leftarrow \var{A}_{i-1}$ <br> $\var{OUTP}_{0} \leftarrow \var{CIN}$ <br> $\var{COUT} \leftarrow \var{A}_{15}$ | Logický posun doleva |
-| :bangbang: | `rotr` | ROTR A | $\forall i: \var{OUTP}_i \leftarrow \var{A}_{i+1}$ <br> $\var{OUTP}_{15} \leftarrow \var{OUTP}_{0}$ | Rotace doprava |
-| :bangbang: | `rotl` | ROTL A | $\forall i: \var{OUTP}_i \leftarrow \var{A}_{i-1}$ <br> $\var{OUTP}_{0} \leftarrow \var{OUTP}_{15}$ | Rotace doleva |
+| :bangbang: | `rotr` | ROTR A | $\forall i: \var{OUTP}_i \leftarrow \var{A}_{i+1}$ <br> $\var{OUTP}_{15} \leftarrow \var{A}_{0}$ | Rotace doprava |
+| :bangbang: | `rotl` | ROTL A | $\forall i: \var{OUTP}_i \leftarrow \var{A}_{i-1}$ <br> $\var{OUTP}_{0} \leftarrow \var{A}_{15}$ | Rotace doleva |
 
 ```admonish tip
 Pomocí logických posunů (a správného použití carry) lze rychle provést dělení a násobení dvěma, a to jak u čísel bez znaménka, tak u čísel v doplňkovém kódu.
@@ -230,7 +232,7 @@ Takto naspecifikovaný logický posun se někdy nazývá *rotace skrz carry*.
 ![](https://upload.wikimedia.org/wikipedia/commons/7/71/Rotate_left_through_carry.svg =500x center)
 ```
 
-```admonish example title="Shift left (rotate right through carry)",collapsible=true
+```admonish example title="Shift right (rotate right through carry)",collapsible=true
 ![](https://upload.wikimedia.org/wikipedia/commons/2/27/Rotate_right_through_carry.svg =500x center)
 ```
 
