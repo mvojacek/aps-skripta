@@ -1,6 +1,6 @@
 # Práce na hodině: Umocňování pomocí metody Square and Multiply
 
-Je možné odevzdat práci začatou na hodinách v uterý/středu 14./15.1. za až 2 bonusové body. Odevzdání probíhá na Submitty (je na to založena nová gradeable) a je možné do konce čtvrtka 16.1. (tedy 23:59). Je možné jedno odevzdání a bude hodnoceno ručně.
+Je možné odevzdat práci začatou na hodinách v uterý/středu 14./15.1. za až 2 bonusové body. Odevzdání probíhá na Submitty (je na to založena nová gradeable) a je možné do konce čtvrtka 16.1. (tedy 23:59). Je možné jedno odevzdání a bude hodnoceno ručně. Odevzdáváte jeden soubor .circ započatý na hodině a dokončený doma.
 
 ## Specifikace modulu
 
