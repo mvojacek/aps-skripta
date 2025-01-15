@@ -31,6 +31,7 @@
   - [Programování](./05_cpu/04_cpu-programming.md)
 
 - [Ostatní]()
+  - [Úloha: Umocňování](./99_ostatni/extra_exp.md)
   - [Markdown](./99_ostatni/markdown.md)
   - [Poděkování](./99_ostatni/contributors.md)
   - [Zdroje](./99_ostatni/zdroje.md)
