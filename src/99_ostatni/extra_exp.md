@@ -27,6 +27,10 @@ Pokud je na vstupu `start=1`, načte modul vstupy a připraví se na výpočet (
 
 Jakmile `start=0`, provede modul s každým clockem jeden krok výpočtu. Během tohoto musí být výstup `done=0`. Modul může počítat s tím, že po celou dobu jednoho výpočtu zůstanou vstupy A a B konstatní. Jakmile modul dokončil výpočet a na výstupu `OUTP` prezentuje správný výsledek, musí přestat počítat (výsledek musí zůstat konstantní, dokud nepřijde další `start=1` signál). Zároveň toto musí indikovat pomocí `done=1`.
 
+```admonish warning
+Pamatujte, že synchronní obvod reaguje na hodnoty na vstupu **až při _příští_ náběžné hraně**, ne té, která změnu hodnoty způsobila!
+```
+
 Příklad průběhu výpočtu modulu:
 
 ```kroki-wavedrom
