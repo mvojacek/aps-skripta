@@ -48,6 +48,6 @@ Popis událostí (ticků) v diagramu:
 - 1: Uživatel zadefinoval A a B a zadal `start=1`. Modul o tom ale zatím neví, na tuto změnu bude moct zareagovat **až v přístím cyklu**.
 - 2: Modul zpracoval `start=1`: inicializoval interní registr (a tímpádem i OUTP) na 1, změnil `done=1`.
 - 3-4: Dva cykly výpočtu $9^5$.
-- 5-6: Modul reaguje (dvakrát za sebou) na inicializační požadavek `start=1` od uživatele. První požadavek inicializuje OUTP=1. Druhý požadavek nemá na hodnoty žádný další vliv, protože už mají správnou hodnotu.
+- 5-6: Modul reaguje (dvakrát za sebou) na inicializační požadavek `start=1` od uživatele. Aktuálně probíhající výpočet se ruší bez výsledku a inicializuje se nový výpočet s novými vstupy. Druhý požadavek nemá na hodnoty (vnitřní i výstupy) už žádný další vliv, protože už mají správnou hodnotu.
 - 7-9: Tři výpočetní cykly $2^3$. OUTP průběžně reflektuje částečný výsledek (ale toto chování není zdokumentované a uživatel by tuto hodnotu měl ignorovat!).
 - 9: Posledním výpočetním cyklem se nastaví `done=1` a na výstupu je správný výsledek. Ten tam vydrží, až do té doby, než se **zpracuje** přístí `start=1` (což je tady až ve 12. ticku).
