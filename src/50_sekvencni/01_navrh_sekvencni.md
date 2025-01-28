@@ -69,3 +69,5 @@ Popis algoritmu viz [zadání ALU](../30_alu/90_zadani.md#konverze-z-bin%C3%A1rk
 - [sekv_double_dabble.circ :paperclip:](../logisim/sekv_double_dabble.circ)
   - Algoritmus Double-Dabble na převod do BCD (bonusová operace ALU)
   - 17 cyklů, ale pouze 4 instance jádrové operace algoritmu
+- [sekv_compute_expr.circ :paperclip:](../logisim/sekv_compute_expr.circ)
+  - Výpočet výrazu $(A-B)+(C-D)$ pomocí jediné sčítačky
