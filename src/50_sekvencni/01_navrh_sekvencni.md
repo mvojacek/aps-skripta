@@ -31,11 +31,13 @@ Synchronní obvod může být synchronizovaný buď na sestupnou na náběžnou 
 Ve všech naších návrzích budeme používat výhradně **náběžnou** hranu hodin.
 ```
 
-## Obvody probírané na hodinách
+## Sekvenční algoritmy probírané na hodinách
 
 ### Naivní násobení pomocí iterovaného sčítání
 
-*probíráno pouze na tabuli*
+Princip: Pro výpočet $A \times B$ provedeme $B$-krát $ACC \leftarrow ACC + A$. Pokud $ACC$ začínalo na $0$, tak po těchto iteracích bude $ACC = A \times B$.
+
+Tento algoritmus je neskutečně neefektivní, protože počet provedených operací stoupá lineárně s *hodnotou B* (složitost $\mathcal{O}(B)$). Typicky se snažíme, aby počet operací byl úměrný *počtu bitů* B, tedy aby složitost algoritmu byla $\mathcal{O}(\log_2{B})$. Takovou složitost má právě metoda double-and-add popsaná dále.
 
 ### Násobení pomocí metody Double-And-Add
 
