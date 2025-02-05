@@ -1,5 +1,7 @@
 # Logisim - Základy
 
+{{#check TODO | Přepsat stránku }}
+
 ```admonish important title="Máte správný Logisim?"
 Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už léta zastaralý, je nestabilní, nepodporuje moderní komponenty, a **projektové soubory s Logisimem Evolution nejsou kompatibilní!**
 ```

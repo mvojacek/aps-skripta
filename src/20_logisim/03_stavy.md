@@ -1,5 +1,7 @@
 # Třetí stav a zkraty
 
+{{#check TODO | Přepsat stránku }}
+
 Váš obvod může mít 4 stavy
 
 - `0` - Vypnutý stav

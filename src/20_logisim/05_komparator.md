@@ -1,5 +1,7 @@
 # Komparátor
 
+{{#check TODO | Přepsat stránku }}
+
 ### Cvičení
 
 #### 1 bitový komparátor

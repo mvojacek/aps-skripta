@@ -1,10 +1,14 @@
-# Práce na hodině: Umocňování pomocí metody Square and Multiply
+# Příklad plného zadání: Umocňování pomocí metody Square and Multiply
+
+<!--
+## Práce na hodině: Umocňování pomocí metody Square and Multiply
 
 Je možné odevzdat práci začatou na hodinách v uterý/středu 14./15.1. za až 2 bonusové body. Odevzdání probíhá na Submitty (je na to založena nová gradeable) a je možné do konce čtvrtka 16.1. (tedy 23:59). Je možné jedno odevzdání a bude hodnoceno ručně. Odevzdáváte jeden soubor .circ započatý na hodině a dokončený doma.
+-->
 
 ## Specifikace modulu
 
-Je nutné postavit sekvenční modul, který realizuje umocnění 4-bitového základu (vstup A) na 3-bitový exponent (vstup B), tedy spočítat operaci $OUTP = A^B$, během jednoho načítacího a 3 výpočetních cyklů (tedy dohromady během 4 cyklů). Výstup musí být alespoň 28-bitový, aby se do něj vešel maxímální možný výsledek ($15^7$). Pro jednoduchost řekněme, že výsledek bude 32-bitový. Modul se bude jmenovat `EXP` a můžete (máte) v něm používat logisimové matematické operace, e.g. násobení. Pro implementaci stačí dvě násobičky, víc pro sekvenční implementací umocňování není potřeba.
+Postavte **plně sekvenční** modul synchronizovaný na **nábežnou hranu**, který realizuje umocnění 4-bitového základu (vstup A) na 3-bitový exponent (vstup B), tedy spočítat operaci $OUTP = A^B$, během jednoho načítacího a 3 výpočetních cyklů (tedy dohromady během 4 cyklů). Výstup musí být alespoň 28-bitový, aby se do něj vešel maxímální možný výsledek ($15^7$). Pro jednoduchost řekněme, že výsledek bude 32-bitový. Modul se bude jmenovat `EXP` a můžete (máte) v něm používat logisimové matematické operace, e.g. násobení. Pro implementaci stačí dvě násobičky, víc pro sekvenční implementací umocňování není potřeba.
 
 ```kroki-symbolator
 module EXP #(
@@ -23,7 +27,7 @@ endmodule
 
 Modul je plně synchronní, reaguje na vstup a mění svůj výstup tedy pouze s náběžnou hrannou vstupu `clk`.
 
-Pokud je na vstupu `start=1`, načte modul vstupy a připraví se na výpočet (toto může nastat i během výpočtu, v takovém případě se výpočet ruší a připraví se nový podle vstupů.
+Pokud je na vstupu `start=1`, načte modul vstupy a připraví se na výpočet (toto může nastat i během již probíhajícího předchozího výpočtu, v takovém případě se tento výpočet ruší a připraví se nový podle vstupů). "Příprava na výpočet" může znamenat různé věci: pouhé uložení vstupních hodnot do registrů, nebo přímo provedení prvního kroku výpočtu podle vstupů a uložení částečného výsledku do registrů. V každém případě by se ale měla inicializovat řídící část obvodu - pokud obvod provádí výpočet v nějakých "krocích", nebo má v registrech jiné poznámky o výpočtu, je potřeba tyto inicializovat na hodnoty, které umožní začít výpočet od začátku.
 
 Jakmile `start=0`, provede modul s každým clockem jeden krok výpočtu. Během tohoto musí být výstup `done=0`. Modul může počítat s tím, že po celou dobu jednoho výpočtu zůstanou vstupy A a B konstatní. Jakmile modul dokončil výpočet a na výstupu `OUTP` prezentuje správný výsledek, musí přestat počítat (výsledek musí zůstat konstantní, dokud nepřijde další `start=1` signál). Zároveň toto musí indikovat pomocí `done=1`.
 
@@ -55,3 +59,7 @@ Popis událostí (ticků) v diagramu:
 - 5-6: Modul reaguje (dvakrát za sebou) na inicializační požadavek `start=1` od uživatele. Aktuálně probíhající výpočet se ruší bez výsledku a inicializuje se nový výpočet s novými vstupy. Druhý požadavek nemá na hodnoty (vnitřní i výstupy) už žádný další vliv, protože už mají správnou hodnotu.
 - 7-9: Tři výpočetní cykly $2^3$. OUTP průběžně reflektuje částečný výsledek (ale toto chování není zdokumentované a uživatel by tuto hodnotu měl ignorovat!).
 - 9: Posledním výpočetním cyklem se nastaví `done=1` a na výstupu je správný výsledek. Ten tam vydrží, až do té doby, než se **zpracuje** přístí `start=1` (což je tady až ve 12. ticku).
+
+## Příklad řešení
+
+Ke stažení [zde](./20_soubory-z-hodin.md).

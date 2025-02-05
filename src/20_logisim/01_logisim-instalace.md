@@ -33,7 +33,6 @@ Je důležité mít `.\` před `java.exe`, jinak se použije systémová, potenc
 
 ## Logisim Evolution
 
-
 Obecně stáhneme z oficiálního git repa v releases [https://github.com/logisim-evolution/logisim-evolution/releases](https://github.com/logisim-evolution/logisim-evolution/releases) nejnovější verzi.
 
 Tedy

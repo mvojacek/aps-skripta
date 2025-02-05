@@ -1,1 +1,0 @@
-# Třetí stav a zkraty

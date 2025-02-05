@@ -1,1 +1,0 @@
-# Asynchronní obvody

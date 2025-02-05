@@ -33,6 +33,8 @@ Ve všech naších návrzích budeme používat výhradně **náběžnou** hranu
 
 ## Sekvenční algoritmy probírané na hodinách
 
+Všechny Logisim soubory z hodin jsou ke stažení [zde](./20_soubory-z-hodin.md).
+
 ### Naivní násobení pomocí iterovaného sčítání
 
 Princip: Pro výpočet $A \times B$ provedeme $B$-krát $ACC \leftarrow ACC + A$. Pokud $ACC$ začínalo na $0$, tak po těchto iteracích bude $ACC = A \times B$.
@@ -43,7 +45,7 @@ Tento algoritmus je neskutečně neefektivní, protože počet provedených oper
 
 Pro urychlení násobení lze využít tzv. [Hornerovo schéma pro násobení polynomů](https://cs.wikipedia.org/wiki/Hornerovo_sch%C3%A9ma):
 
-$$ A \times B \stackrel{např.}{=} A \times 13_{10} = A \times \red{1101}_2 = \Biggl( \Bigl( (0 \times 2 + \red{1}A) \times 2 + \red{1}A \Bigr) \times 2 + \red{0}A \Biggr) \times 2 + \red{1}A $$
+$$ A \times B \stackrel{např.}{=} A \times 13_{10} = A \times \red{1}\green{1}\blue{0}\purple{1}_2 = \Biggl( \Bigl( (0 \times 2 + \red{1}A) \times 2 + \green{1}A \Bigr) \times 2 + \blue{0}A \Biggr) \times 2 + \purple{1}A $$
 
 Neboli začínáme s hodnotou 0 (neutrální prvek vůči sčítání), a v každém cyklu zpracujeme jeden bit hodnoty B od MSB: pokaždé hodnotu výnásobíme 2, a pak přičteme buď $A$ nebo $0$, právě podle hodnoty bitu z $B$. Proto se algoritmus jmenuje Double-And-Add.
 
@@ -53,23 +55,10 @@ Při zapojení lze provést optimalizaci, kde přeskočíme první iteraci Doubl
 
 Stejný princip lze použít i pro *umocňování*, pouze s vyššími operátory: Začínáme s hodnotou *1* (neutrální prvek vůči *násobení*), a v každém cyklu *umocníme na druhou*, a pak podmíněně *vynásobíme* hodnotu $A$ podle bitu z $B$:
 
-$$ A ^ B \stackrel{např.}{=} A ^ {13_{10}} = A ^ {\red{1101}_2} = \Biggl( \Bigl( (1^2 \times \red{1}A)^2 \times \red{1}A \Bigr)^2 \times \red{0}A \Biggr)^2 \times \red{1}A $$
+$$ A ^ B \stackrel{např.}{=} A ^ {13_{10}} = A ^ {\red{1}\green{1}\blue{0}\purple{1}_2} = \Biggl( \Bigl( (1^2 \times \red{1}A)^2 \times \green{1}A \Bigr)^2 \times \blue{0}A \Biggr)^2 \times \purple{1}A $$
 
 Více informací o tomto algoritmu je k dispozici v [KBB přednášce](https://radojcic.cz/kbb3/prezentace/3_teorie_cisel.pdf), kde se používá pro modulární umocňování, a taky v KBB skriptech.
 
 ### Double-Dabble algoritmus
 
 Popis algoritmu viz [zadání ALU](../30_alu/90_zadani.md#konverze-z-bin%C3%A1rky-na-bcd-2b). Principem sekvenčního provedení je skutečnost, že pokud explicitně provedeme posun, provádí se jádrová operace algoritmu vždy na ty samé bity. Zároveň lze provést vždy až 4 operace paralelně, jednu na každém řádu (jednotky, desítky, etc.). Modelujeme tedy softwarovou variantu algoritmu, ale opravování číslic provádíme vždy 4-paralelně.
-
-## Logisim soubory z hodin
-
-- [sekv_exp_sq_mul.circ :paperclip:](../logisim/sekv_exp_sq_mul.circ)
-  - Umocňování Sq-Mul pomocí kombinačního square a kombinačního multiply (dvě násobičky, 4 cykly)
-  - Umocňování Sq-Mul pomocí jediné kombinační násobičky (6 cyklů, ale poloviční kritická cesta = dvojnásobná maximální frekvence!)
-  - 32bit Násobení Double-Add (jedna 32bit sčítačka, 33 cyklů)
-  - Umocňování Sq-Mul pomocí sekvenční násobičky Double-Add (až 171 cyklů, ale pomocí jediné 32bit sčítačky - obrovská maximální frekvence)
-- [sekv_double_dabble.circ :paperclip:](../logisim/sekv_double_dabble.circ)
-  - Algoritmus Double-Dabble na převod do BCD (bonusová operace ALU)
-  - 17 cyklů, ale pouze 4 instance jádrové operace algoritmu
-- [sekv_compute_expr.circ :paperclip:](../logisim/sekv_compute_expr.circ)
-  - Výpočet výrazu $(A-B)+(C-D)$ pomocí jediné sčítačky

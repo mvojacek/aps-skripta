@@ -6,3 +6,6 @@
 \slice:{#1_{[\textnormal{#2}]}}
 \c:{\begingroup\color{#1}#2\endgroup}
 \red:{\c{red}{#1}}
+\green:{\c{green}{#1}}
+\blue:{\c{blue}{#1}}
+\purple:{\c{purple}{#1}}

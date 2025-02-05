@@ -1,1 +1,0 @@
-# Karnaughova mapa

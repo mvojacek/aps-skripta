@@ -84,6 +84,8 @@ Pokud má 1-bitový demultiplexor nastavený "Disabled output" na "Zero", chová
 
 #### Cvičení
 
+{{#check TODO | Přepsat cvičení }}
+
 ```admonish error title="Důležité"
 V kombinačních obvodech je až na vyjímky zakázáno používat třetí stav! Každý obvod, pro který by šla vytvořit pravdivostní tabulka, jde postavit ze základních hradel, bez třetího stavu!
 ```

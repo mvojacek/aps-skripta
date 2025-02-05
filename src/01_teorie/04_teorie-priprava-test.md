@@ -1,1 +1,0 @@
-# Příprava na test

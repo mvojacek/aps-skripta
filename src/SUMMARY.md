@@ -25,7 +25,10 @@
   - [Synchronní obvody](./40_pameti/03_synchronni-obvody.md)
 
 - [Návrh sekvenčních obvodů]()
-  - [Návrh sekvenčních obvodů](./50_sekvencni/01_navrh_sekvencni.md)
+  - [Návrh sekvenčních obvodů](./50_sekvencni/01_navrh-sekvencnich.md)
+  - [Zadání: Umocňování](./50_sekvencni/10_zadani-exp.md)
+  - [Další zadání a test](./50_sekvencni/19_dalsi-zadani-test.md)
+  - [Soubory z hodin](./50_sekvencni/20_soubory-z-hodin.md)
 
 - [CPU]()
   - [Úvod](./60_cpu/01_cpu-uvod.md)
@@ -34,7 +37,6 @@
   - [Programování](./60_cpu/04_cpu-programming.md)
 
 - [Ostatní]()
-  - [Úloha: Umocňování](./90_ostatni/extra_exp.md)
   - [Markdown](./90_ostatni/markdown.md)
   - [Poděkování](./90_ostatni/contributors.md)
   - [Zdroje](./90_ostatni/zdroje.md)

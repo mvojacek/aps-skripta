@@ -2,6 +2,8 @@
 
 Původní verze lekce viz asynchronní obvody
 
+{{#check TODO | Přepsat stránku }}
+
 ## Synchronní obvody
 
 Jsou ovládané extra clockem (`CLK`), který určuje kdy obvod pracuje. Příkladné obvody jsou:

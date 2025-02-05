@@ -6,6 +6,8 @@ table { margin: 1em;}
 
 # Teorie - Příprava na test
 
+{{#check TODO | Přepsat stránku }}
+
 #### 1. **Nakresli logická hradla**, zapiš **operátor hradla jako výraz** (např. X=A+B), nakresli **pravdivostní tabulku**:
 
 a) NOT
