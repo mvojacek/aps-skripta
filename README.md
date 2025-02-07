@@ -1,59 +1,9 @@
-# APS - Skripta
+# SSPŠ APS - Skripta
 
-V připadě chybějícího materiálu či nějakého požadavku pro skripta založte issue skrz tenhle [link](https://github.com/jaywor1/aps/issues/new?assignees=jaywor1&labels=feature&projects=&template=feature.md&title=%5BFEAT%5D+)
+První verze skript vznikla ve školním roce 2023/24 jako [maturitní práce](https://github.com/jaywor1/aps) Michala Javora pod mým vedením.
 
-### Link na webovou stránku skript: [jaywor1.github.io/aps](http://jaywor1.github.io/aps)
+Od ukončení maturitní práce udržuji skripta převážně já.
 
----
+V připadě chybějícího materiálu či nějakého požadavku na skripta založte issue nebo pull request.
 
-V případě pravopisné chyby nebo nějaké nesrovnalosti založte issue v tomhle repu viz. [link](https://github.com/jaywor1/aps/issues/new?assignees=jaywor1&labels=bug&projects=&template=chyba.md&title=%5BBUG%5D+)
-
-### Commity
-
-Pokud by někdo chtěl udělat nějakou kontribuci, tak silně doporučuji použití gitmoji pro zachování commit messages.
-
-Instalace
-
-```
-npm install -g gitmoji
-```
-
-Commit pomocí
-
-```
-gitmoji -c
-```
-
-## Kapitoly
-
-- ### Teorie
-	- [Booleova algebra](/kapitoly/booleova-algebra.md)
-	- [Hradla](/kapitoly/hradla.md)
-	- [Karnaughova mapa](/kapitoly/karnaughova-mapa.md)
-    - [Příprava na test](/kapitoly/teorie-priprava-test.md)
-
-- ### Logisim
-	- [Instalace](/kapitoly/logisim-instalace.md)
-    - [Základy](/kapitoly/logisim-zaklady.md)
-	- [Třetí stav a zkraty](/kapitoly/stavy.md)
-	- [Multiplexory a dekodéry](/kapitoly/multiplexory-dekodery.md)
-	- [Komparátor](/kapitoly/komparator.md)
-
-- ### ALU
-	- [Úvod](/kapitoly/alu-uvod.md)
-	- [Sčítačka/odčítačka](/kapitoly/alu-scitacka.md)
-
-- ### Paměti
-	- [Sekvenční obvody](/kapitoly/sekvencni-obvody.md)
-	- [Asynchronní obvody](/kapitoly/asynchronni-obvody.md)
-    - [Synchronní obvody](/kapitoly/synchronni-obvody.md)
-
-- ### CPU
-	- [Úvod](/kapitoly/cpu-uvod.md)
-	- [Návrh](/kapitoly/cpu-design.md)
-	- [Stavba](/kapitoly/cpu-build.md)
-	- [Programování](/kapitoly/cpu-programming.md)
-
-- ### Ostatní
-    - [Poděkování](/kapitoly/contributors.md)
-    - [Zdroje](/kapitoly/zdroje.md)
+Sestavená skripta jsou hostovaná na adrese [https://skripta.vojacek.org](https://skripta.vojacek.org)
