@@ -13,8 +13,19 @@ default-theme = "rust"
 preferred-dark-theme = "ayu"
 git-repository-url = "https://github.com/mvojacek/aps-skripta"
 git-branch = "main"
-additional-css = ["./theme/mdbook-admonish.css", "./theme/tabs.css", "./theme/presentationHider.css", "./theme/footer.css", "./theme/pagetoc.css"]
-additional-js = ["./theme/tabs.js", "./theme/presentationHider.js", "./theme/pagetoc.js"]
+additional-css = [
+    "./theme/mdbook-admonish.css",
+    "./theme/tabs.css",
+    "./theme/presentationHider.css",
+    "./theme/footer.css",
+    "./theme/pagetoc.css",
+    "./theme/spoiler.css"
+]
+additional-js = [
+    "./theme/tabs.js",
+    "./theme/presentationHider.js",
+    "./theme/pagetoc.js"
+]
 
 open-on-text = "Found a bug? [Edit this page on GitHub.]"
 

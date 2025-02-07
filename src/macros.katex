@@ -1,4 +1,6 @@
-\var:{\textnormal{#1}}
+\t:{\textnormal{#1}}
+\var:{\t{#1}}
+
 \xor:{\oplus}
 \or:{+}
 \and:{\cdot}

@@ -1,3 +1,5 @@
+{% import "macros.tera" as m %}
+
 # Další zadání a informace k testu
 
 ## Test
@@ -27,6 +29,9 @@ Pro úspěch v testu, tj. prokázání schopnosti postavit funkční sekvenční
   - Návrh algoritmu na úrovní RTL (Register Transfer Level), tj. co-kudy-kam poteče v každém kroku.
   - Převod popisu RTL na popis pomocí kontrolních signálů, tj. jaké kontrolní dráty musí mít jakou hodnotu, aby se stalo to, co popisuje RTL, v každém jednotlivém kroku.
   - Zapojení kontrolní jednotky, tj. (pravděpodobně) stepperu a následného výpočtu kontrolních signálů z aktuálního kroku a případně z aktuálního stavu dat v registrech
+- Návrh kombinačních obvodů, buď intuitivně nebo podle pravdivostní tabulky
+  - Je potřeba pro výpočet kontrolních signálů v kontrolní jednotce, případně pro návrh nějakého výpočtu v datové cestě
+  - Je zde možné využít pomocné nástroje a kalkulačky vestavěné v Logisimu.
 
 Tyto kompetence odpovídají látce probírané na hodinách před testem.
 
@@ -91,7 +96,7 @@ Tento sekvenční modul je tzv. *proudový*, tzn. zpracovává *proud (stream)* 
 
 Hodnotu na vstupu bereme v potaz (zahrneme jí do výpočtu) pouze, pokud WE=1. Tedy pokud WE=0, výsledek se nesmí změnit!. Hodnota výsledku je nedefinovaná (nebude testována), dokud modul nezpracoval alespoň N hodnot.
 
-Nápověda: Evidentně bude potřeba nějak mít uložených vždy posledních N hodnot. Na to se hodí shift registr, buď manuálně postavený, nebo ten logisimový.
+Nápověda: {{ m::spoiler() }} Evidentně bude potřeba nějak mít uložených vždy posledních N hodnot. Na to se hodí shift registr, buď manuálně postavený, nebo ten logisimový. {{ m::spoilerend() }}
 
 ### Proudový detektor vlastností posloupnosti
 
@@ -125,18 +130,26 @@ endmodule
 
 Obvod zpracovává hodnoty ze vstupního proudu bitů nebo hodnot (pokud WE=1, jinak vstupy ignoruje). V posledních N (konstanta) hodnotách se snaží najít nějaký vzor, posloupnost s určitými vlastnostmi, etc. Pokud takový vzor našel, indikuje MATCH=1. Pokud to dává smysl podle zadání, zároveň indikuje číslem na výstupu nalezenou vlastnost nebo její parametr, viz konkrétní zadání níže.
 
+Takových detektorů bude typicky založen na shift registru/registrech, který používáme na uložení posledních N hodnot, nebo nějaké vlastnosti vypočítané z hodnoty nebo z posledních několika hodnot.
+
 Příklady možných detektorů pro jednobitovou variantu:
 
 - Detekuj pattern '10011' (bit úplně vlevo přišel jako poslední)
 - Detekuj situaci, kde v posledních N bitech (sudé N) je *stejný počet 0 a 1*.
+  - Nápověda: {{ m::spoiler() }} Pro nízke N je možné sestavit pravdivostní tabulku detektoru této vlastnosti, a implementovat ho pomocí Karnaughovy mapy, nebo pomocí nástrojů vestavěných v Logisimu. {{ m::spoilerend() }}
 - Detekuj situaci, kde sekvence N bitů tvoří [palindrom](https://cs.wikipedia.org/wiki/Palindrom)
 - ...
 
 Příklady možných detektorů pro vícebitovou variantu
 
 - Detekuj situaci, že všech N posledních čísel bylo sudých
-- Detekuj v posledních N bitech [aritmetickou posloupnost](https://cs.wikipedia.org/wiki/Aritmetick%C3%A1_posloupnost), tj. že každé číslo je o libovolné K větší/menší než to předchozí. Koeficient K posloupnosti posíláme na výstup VALUE. Použij jednu odčítačku.
-- Detekuj v posledních N bitech [geometrickou posloupnost](https://cs.wikipedia.org/wiki/Geometrick%C3%A1_posloupnost) s daným koeficientem (pro koeficienty, které jsou mocnina dvou je možná optimalizovaná implementace, v ostatních případech je nutné použít násobičku). Použij max. jednu násobičku
+  - Nápověda: {{ m::spoiler() }} Jak na čísle reprezentovaném v binárce poznáme, že je sudé? Je potřeba ukládat N samotných čísel, nebo nám stačí ukládat jejich sudost? {{ m::spoilerend() }}
+- Detekuj v posledních N číslech [aritmetickou posloupnost](https://cs.wikipedia.org/wiki/Aritmetick%C3%A1_posloupnost), tj. že každé číslo je o libovolné K větší/menší než to předchozí. Koeficient K posloupnosti posíláme na výstup VALUE. Použij jednu odčítačku.
+  - Poznámka: Koeficient K může klidně být záporný (ve dvojkovém doplňku), tj. posloupnost je klesající. Na obvodu to nic nemění, záporné číslo je taky číslo.
+  - Nápověda: {{ m::spoiler() }} O aritmetickou posloupnost se jedná, pokud rozdíl sousedních čísel je nějaká jedna hodnota. Máme jedno odčítačku, takže nemůžeme rozdíly počítat paralelně, musíme je počítat hned, jak čísla přicházejí. Neukládáme tedy samotné přicházející čísla, ale pouze rozdíly mezi nimi. K tomu samozřejmě musíme uložit i jedno předchozí číslo, abychom měli proti čemu rozdíl počítat. {{ m::spoilerend() }}
+- Detekuj v posledních N číslech [geometrickou posloupnost](https://cs.wikipedia.org/wiki/Geometrick%C3%A1_posloupnost) s daným předem určeným koeficientem K (pro koeficienty, které jsou mocnina dvou je možná optimalizovaná implementace, v ostatních případech je nutné použít násobičku).
+  - Poznámka: Oproti předchozímu příkladu je zde koeficient zafixovaný zadáním - umíme tedy detekovat pouze jeden konkrétní "typ" geometrické posloupnosti. Tím se vyhneme nutnosti dělit. Navíc, pokud je koeficient mocnina dvou, stává se násobení jím triviální, a není potřeba ani násobička. Pokud je koeficent mocnina dvou plus jedna nebo mínus jedna, stačí místo násobičky sčítačka.
+  - Nápověda: {{ m::spoiler() }} Potřebujeme ověřit, že v posloupnosti platí $X_n = X_{n-1} \cdot K$, tedy že každé přicházející číslo je $K$-násobek předchozího. Ukládáme tedy předchozí přijaté číslo, a vynásobíme ho s $K$. Pokud se příští přijate číslo rovná této hodnotě, tvoří poslední dvě přijaté čísla žádanou posloupnost. Tuto pravdivostní hodnotu uložíme do shift registru. Posloupnost délky $N$ jsme nalezli, pokud v tomto shift registru o délce $N-1$ jsou samé $1$. {{ m::spoilerend() }}
 - ...
 
 ### Proudový analyzátor vyváženosti
@@ -146,6 +159,7 @@ module STREAM_DETECT_BITS #(
 ) (
     input INP,
     input we,
+    input init,
     input clk,
     output [15:0] BALANCE,
     output BALANCED
@@ -153,11 +167,13 @@ module STREAM_DETECT_BITS #(
 endmodule
 ```
 
-Analyzátor beží do nekonečna a na výstupu vždy indikuje vyváženost počtu 0 a 1 ve vstupním proudu *od začátku jeho existence*, tedy nevíme předem z kolika bitů musíme tuto vlastnost vypočítat, není tedy možné ukládat samotné bity, musíme je zpracovávat průběžně.
+Analyzátor beží do nekonečna a na výstupu vždy indikuje vyváženost počtu 0 a 1 ve vstupním proudu *od jeho inicializace*, tedy nevíme předem z kolika bitů musíme tuto vlastnost vypočítat, není tedy možné ukládat samotné bity, musíme je zpracovávat průběžně.
 
-Je potřeba držet si "vyváženost", tj. číslo se znaménkem ve dvojkovém doplňku, které značí, o kolik víc jedniček, než nul, jsme viděli. Tuto hodnotu dávame na výstup BALANCE. Alternativně lze separátně držet počet jedniček a počet nul a tu pak odečíst, výsledek bude stejný. Výstup BALANCED indikuje, že BALANCE je 0, tj. počet jedniček a nul byl stejný.
+Je potřeba držet si "vyváženost", tj. číslo se znaménkem ve dvojkovém doplňku, které značí, o kolik víc jedniček, než nul, jsme viděli. Tuto hodnotu dávame na výstup BALANCE. Alternativně lze separátně držet počet jedniček a počet nul a tu pak odečíst, výsledek bude stejný. Výstup BALANCED indikuje, že BALANCE je 0, tj. počet jedniček a nul byl stejný. Pro zobrazení hodnot ve dvojkovém doplňku během vývoje doporučuji *Probe*, nastavenou na *Radix: Signed Decimal*.
 
-### Výpočet matematického výrazu (!!!)
+Protože modul musí začít ve "vyváženém" stavu, ale iniciální hodnota všech pameťových buňek je doopravdy náhodná, potřebuje tento modul navíc (také synchronní) vstup INIT, pomocí kterého lze modul přivést do dobře definovaného, iniciálního, "vyváženého" stavu. Co to konkrétně znamená, záleží na zvolené vnitřní reprezentaci dat v modulu.
+
+### Výpočet matematického výrazu / provedení algoritmu (!!!)
 
 Varianta s paralelními vstupy:
 
@@ -192,8 +208,45 @@ endmodule
 
 Modul musí vypočítat zadaný výraz (e.g. $(A-B)+(C-D)$) pomocí předem určené výpočetní jednotky/jednotek (e.g. jediné sčítačky). Modul musí tento výraz pomocí vhodného, vámi navrženého, algoritmu ve více krocích vypočítat, výsledek vystavit na výstup OUTP a indikovat DONE=1. Platí standardní interface start-done.
 
-U paralelní varianty je buď garantované, že vstupy zůstanou po celou dobu jednoho výpočtu konstantní, anebo není a vstupy se budou během výpočtu měnit, a jsou validní pouze v tom cyklu, ve kterém byl START=1. O kterou variantu se jedná bude upřesněno v zadání.
+U paralelní varianty je buď garantované, že vstupy zůstanou po celou dobu jednoho výpočtu konstantní, anebo tomu tak není, a vstupy se mohou během výpočtu měnit, a jsou validní pouze v tom cyklu, ve kterém byl START=1. Hodnoty vstupů mimo tento moment nesmíme použít, nejsou to hodnoty pro nás! O kterou variantu se jedná bude upřesněno v zadání.
 
 U sériové varianty typicky platí, že počínaje cyklem, kde START=1, bude v každém clocku na vstupu INP jedna z potřebných hodnot, v nějakém pořadí, e.g. A-B-C-D. Nemusí to ale být vždy přesně takto: první hodnota může být k dispozici např. *až v následujícím cyklu po START=1*. Na hodnotu je pak potřeba jeden cyklus počkat. Zároveň můžou mezi jednotlivými hodnotami být mezery - např. předchozí modul hodnoty vypočítává průbežně a nemá je k dispozici hned za sebou. Pokud v následující notaci *číslo* značí prodlevu tolika cyklů, ve kterých nejsou na vstupu žádné užitečné data, proud hodnot na vstupu může mít např. následující podobu: 1-A-2-B-2-C-D (první startovní cyklus, nedostáváme nic, potom A, potom dva cykly nic, potom B, ...). Hodnoty je pak potřeba ze vstupu přečíst ve správnou dobu. Během toho čekání je možné provádět nějaké výpočty, ale není to nutné, počet cyklů odevzdaného obvodu nemusí být optimální.
 
-Ukázkové zapojení této varianty pro výraz $(A-B)+(C-D)$ s postupem je k dispozici [zde](./20_soubory-z-hodin.md).
+Ukázkové zapojení paralelní varianty pro výraz $(A-B)+(C-D)$ s postupem je k dispozici [zde](./20_soubory-z-hodin.md).
+
+Další příklady výrazů k výpočtu:
+
+- $A + 2 \cdot B + 3 \cdot C + 4 \cdot D$ pomocí jediné sčítačky.
+  - Na výpočet stačí 4 cykly, plus případné registrování vstupů/výstupů.
+  - Nápověda: {{ m::spoiler() }} Násobení mocninou dvou lze provést posunem, který je instantní, a $3 \cdot X = 2 \cdot X + X$. Násobička tedy není potřeba. {{ m::spoilerend() }}
+- $A^3 + B^2 + C \cdot D$ pomocí jediné násobičky a sčítačky
+  - Nabízí se dvě varianty implementace. Druhá varianta bude pomalejší a komplexnější.
+    - V každém cyklu vynásobit + možná sečíst
+    - V každém cyklu vynásobit *anebo* sečíst
+  - Nápověda: {{ m::spoiler() }} $A^3 = A^2 \cdot A$, tento výpočet je potřeba provést ve dvou cyklech. {{ m::spoilerend() }}
+- $ A! $, tedy [faktoriál](https://cs.wikipedia.org/wiki/Faktori%C3%A1l) $A$
+  - Výsledky budou velké, použijeme tedy 32-bitové čísla. I tak budeme schopni spočítat nejvýše $12!$, vstupní hodnota může tedy být 4 bitová.
+  - Nápověda: {{ m::spoiler() }} Bude potřeba udržovat si čítač, který projede rozsah od $2$ do $A$ včetně (nebo od $A$ do $2$, což možná vyjde lépe) a výpočet provádět v akumulátoru, který začně neutrálním prvkem pro násobení. {{ m::spoilerend() }}
+- $A + B - C + D \pmod{N}$, kde $N \gt \max{(A, B, C, D)}$, pomocí jedné sčítačky/odčítačky
+  - $N$ je v tomto případě další vstup, jako $A, B, C, D$.
+  - Obecné modulo vyžaduje děličku, kterou nemáme k dispozici. Ovšem, protože všechna čísla na vstupu jsou menší než $N$, jediné případy, kdy bychom se mohli dostat během výpočtu mimo rozsah hodnot modulární grupy, jsou následující:
+    - Pokud výsledek součtu má hodnotu $\ge N$, nebude ale určitě mít hodnotu $\ge 2 \cdot N$, modulo tedy lze provést pomocí pouhého odečtení $N$.  
+    Matematicky: $\Bigl(N \le A \lt 2 \cdot N\Bigr) \Rightarrow \Bigl((A \bmod N) = (A - N)\Bigr) $
+    - Pokud výsledek odečtení má hodnotu $\lt 0$, nebude ale určitě mít hodnotu $\lt -N$, modulo lze tedy provést přičtením $N$.  
+    Matematicky: $\Bigl(-N \le A \lt 0 \Bigr) \Rightarrow \Bigl((A \bmod N) = (A + N)\Bigr) $
+  - Po každém příčtení/odečtení v průběhu výpočtu je tedy potřeba zkontrolovat, zda jsme se nedostali mimo rozsah hodnot příjatelných jako výsledek $(\bmod{N})$, a pokud ano, provést korekci přičtením/odečtením $N$. Protože máme pouze jedinou sčítačku, musí se tato korekce stát až v následujícím cyklu.
+  - Algoritmus výpočtu může tedy vypadat nějak takto: {{ m::spoiler(el="div", enable="true") }}<ol>
+    $\\
+    1.\> \var{R1} \leftarrow \var{A} + \var{B} \\
+    2.\> \t{if}\ \var{R1} \ge \var{N}\ \t{then}\ \var{R1} \leftarrow \var{R1} - \var{N} \\
+    3.\> \var{R1} \leftarrow \var{R1} - \var{C} \\
+    4.\> \t{if}\ \var{R1} \lt 0\ \t{then}\ \var{R1} \leftarrow \var{R1} + \var{N} \\
+    5.\> \var{R1} \leftarrow \var{R1} + \var{D} \\
+    6.\> \t{if}\ \var{R1} \ge \var{N}\ \t{then}\ \var{R1} \leftarrow \var{R1} - \var{N} \\
+    7.\> \t{return}\ \var{R1} \\
+    $  
+    </ol>  
+    Případně lze provést optimalizaci, a kroky $2$, $4$, a $6$ <em>přeskočit</em>, pokud není podmínka splněna, a v daném kroku by se tak nic nestalo.
+    {{ m::spoilerend(el="div") }}
+
+Je možná varianta tohoto zadání, kde místo matematického výrazu (který je potřeba převést na algoritmus), bude poskutnut přímo algoritmus k implementaci.

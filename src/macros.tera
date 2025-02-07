@@ -41,3 +41,8 @@
 \end{document}
 </kroki>
 {% endmacro %}
+
+{# el: span/div, type: click/hover #}
+{% macro spoiler(el="span", type="click", enable="true") %}<{{el}} class="{% if enable == "true" %}spoiler {% endif%}{{type}}" onclick="this.classList.toggle('active');">{% endmacro %}
+
+{% macro spoilerend(el="span") %}</{{el}}>{% endmacro %}

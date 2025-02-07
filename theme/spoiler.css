@@ -1,0 +1,15 @@
+.spoiler {
+    filter: blur(8px);
+    transition: filter 0.1s ease;
+}
+
+.spoiler.click {
+    cursor: pointer;
+}
+.spoiler.click.active {
+    filter: none;
+}
+
+.spoiler.hover:hover {
+    filter: none;
+}
