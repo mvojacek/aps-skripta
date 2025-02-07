@@ -1,9 +1,9 @@
 ---
 name: Feature
-about: Issue ohledně změny/přidavku do skript
+about: Issue ohledně změny/přídavku do skript
 title: "[FEAT] "
 labels: feature
-assignees: jaywor1
+assignees: mvojacek
 
 ---
 
