@@ -234,7 +234,7 @@ Další příklady výrazů k výpočtu:
     Matematicky: $\Bigl(N \le A \lt 2 \cdot N\Bigr) \Rightarrow \Bigl((A \bmod N) = (A - N)\Bigr) $
     - Pokud výsledek odečtení má hodnotu $\lt 0$, nebude ale určitě mít hodnotu $\lt -N$, modulo lze tedy provést přičtením $N$.  
     Matematicky: $\Bigl(-N \le A \lt 0 \Bigr) \Rightarrow \Bigl((A \bmod N) = (A + N)\Bigr) $
-  - Po každém příčtení/odečtení v průběhu výpočtu je tedy potřeba zkontrolovat, zda jsme se nedostali mimo rozsah hodnot příjatelných jako výsledek $(\bmod{N})$, a pokud ano, provést korekci přičtením/odečtením $N$. Protože máme pouze jedinou sčítačku, musí se tato korekce stát až v následujícím cyklu.
+  - Po každém příčtení/odečtení v průběhu výpočtu je tedy potřeba zkontrolovat, zda jsme se nedostali mimo rozsah hodnot příjatelných jako výsledek $(\bmod\ N)$, a pokud ano, provést korekci přičtením/odečtením $N$. Protože máme pouze jedinou sčítačku, musí se tato korekce stát až v následujícím cyklu.
   - Algoritmus výpočtu může tedy vypadat nějak takto: {{ m::spoiler(el="div", enable="true") }}<ol>
     $\\
     1.\> \var{R1} \leftarrow \var{A} + \var{B} \\
@@ -248,5 +248,8 @@ Další příklady výrazů k výpočtu:
     </ol>  
     Případně lze provést optimalizaci, a kroky $2$, $4$, a $6$ <em>přeskočit</em>, pokud není podmínka splněna, a v daném kroku by se tak nic nestalo.
     {{ m::spoilerend(el="div") }}
+  - Tento postup je příklad často používané techniky, kdy jsou požadavky na výsledek jendodušší zajišťovat průběžně jednoduchým výpočtem, místo komplexním výpočtem na konci. Příklad z praxe je např. výpočet kroku [MixColumns](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard#The_MixColumns_step) v šifře AES - zde se násobí polynom polynomem modulo polynom z $\t{GF}(2^8)$. Spočítat polynomiální modulo je náročné, ale pokud postupujeme při násobení bit po bitu, můžeme místo závěrečného modula průbežně aplikovat podmíněný xor: "*If processed bit by bit, then, after shifting, a conditional XOR with $\t{1B}_{16}$ should be performed if the shifted value is larger than $\t{FF}_{16}$ (overflow must be corrected by subtraction of generating polynomial).*"
 
-Je možná varianta tohoto zadání, kde místo matematického výrazu (který je potřeba převést na algoritmus), bude poskutnut přímo algoritmus k implementaci.
+Je možná varianta tohoto zadání, kde místo matematického výrazu (který je potřeba prvně převést na algoritmus), bude poskutnut přímo algoritmus k implementaci.
+
+Dalšími příklady jsou [algoritmy probírané na hodinách](./01_navrh-sekvencnich.md#sekvenční-algoritmy-probírané-na-hodinách), ke kterým je k dispozici i [implementace v Logisimu](./20_soubory-z-hodin.md).
