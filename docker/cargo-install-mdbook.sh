@@ -25,6 +25,7 @@ PACKAGES_LOCKED=(
     mdbook-external-links@0.1.1
     mdbook-pagetoc@0.2.0
     https://github.com/mvojacek/mdbook-tera?tag=v1
+    mdbook-minijinja@0.2.0
 )
 
 PACKAGES_NOTLOCKED=(
