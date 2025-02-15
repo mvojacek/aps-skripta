@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Příklad plného zadání: Umocňování pomocí metody Square and Multiply
 
 <!--

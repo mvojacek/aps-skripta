@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # ALU - Úvod
 
 ```admonish warning title="Poznámka"

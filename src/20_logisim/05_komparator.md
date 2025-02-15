@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Komparátor
 
 {{ todo("Přepsat stránku") }}

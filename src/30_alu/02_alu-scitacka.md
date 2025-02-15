@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # ALU - Sčítačka/odčítačka
 
 Sčítačka je podstatná část ALU. Po určitých úpravách z ní můžeme udělat dokonce i odčítačku. Začneme jednoduše, a to s jedno bitovou verzí.

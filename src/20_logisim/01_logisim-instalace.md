@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Instalace Logisimu Evolution
 
 ```admonish important title="Máte správný Logisim?"

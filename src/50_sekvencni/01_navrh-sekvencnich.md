@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Návrh sekvenčních obvodů
 
 ## Rozhraní typického sekvenčního obvodu

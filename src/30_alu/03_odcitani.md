@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Binární odčítačka
 
 ## Odčítání jako sčítání

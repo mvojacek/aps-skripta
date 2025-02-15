@@ -29,6 +29,9 @@
   - [Ukázkové zadání: Umocňování](./50_sekvencni/10_zadani-exp.md)
   - [Další zadání a info k testu](./50_sekvencni/19_dalsi-zadani-test.md)
   - [Soubory z hodin](./50_sekvencni/20_soubory-z-hodin.md)
+{% if env.APS_TEST_SEKVENCNI | default("") | length > 0 %}
+  - [TEST](./50_sekvencni/90_test.md)
+{% endif %}
 
 - [CPU]()
   - [Úvod](./60_cpu/01_cpu-uvod.md)

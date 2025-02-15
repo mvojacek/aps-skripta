@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Multiplexory a dekodéry
 
 ### Reprezentace čísel jako binární řetězce

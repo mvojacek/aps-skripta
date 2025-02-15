@@ -34,6 +34,8 @@ preprocess_summary = true
 before = ["index", "links", "cmdrun"]
 undefined_behavior = "strict"
 templates = "templates"
+prelude_string = "{% include prelude %}"
+global_env = true
 
 [preprocessor.minijinja.variables]
 my_var = "my_var_value"

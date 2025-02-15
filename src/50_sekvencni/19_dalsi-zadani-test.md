@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Další zadání a informace k testu
 
 ## Test

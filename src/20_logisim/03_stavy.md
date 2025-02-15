@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Třetí stav a zkraty
 
 {{ todo("Přepsat stránku") }}

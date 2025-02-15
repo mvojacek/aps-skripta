@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Paměti - Synchronní obvody
 
 Původní verze lekce viz asynchronní obvody

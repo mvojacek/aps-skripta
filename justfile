@@ -47,3 +47,12 @@ push-mdbook-docker TAG:
 
 pull:
     docker compose pull
+
+test-serve TEST:
+    docker compose run -e "APS_TEST={{TEST}}" --rm mdbook serve -n 0.0.0.0 -p 3000
+    docker compose logs -f
+
+test-z1: (test-serve "z1")
+
+test-kill:
+    docker compose down --remove-orphans -t 0

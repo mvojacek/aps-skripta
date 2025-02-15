@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Hradla - Teorie
 
 ### Pravdivostní tabulka

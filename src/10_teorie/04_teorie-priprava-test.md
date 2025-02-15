@@ -1,5 +1,3 @@
-{% include prelude %}
-
 <style>
 table { margin: 1em;}
 </style>

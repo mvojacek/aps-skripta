@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Booleova algebra
 
 Booleova algebra je algebraická struktura se dvěma binárními a jednou unární operací.

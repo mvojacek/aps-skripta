@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Logisim - Základy
 
 {{ todo("Přepsat stránku") }}

@@ -1,5 +1,3 @@
-{% include prelude %}
-
 # Markdown
 
 Tyto skripta se kompilují pomocí [mdbook](https://rust-lang.github.io/mdBook/), je tedy možné používat všechny tímto programem podporované konstrukce.
@@ -18,11 +16,6 @@ Kvůli konfliktu syntaxu s jinja templatováním je nutné použít pro vytvoře
 
 ```markdown
 {% raw -%}
-{% from "todo.j2" import todo %}
-# -- OR --
-{% include prelude %}
-
-# then:
 {{ todo("This and that needs to be done") }}
 {%- endraw %}
 ```
@@ -33,7 +26,7 @@ Umožňuje napříč celými skripty používat jinja templates ([specifikace](h
 
 Templates, včetně souborů obsahující makra, jsou ve složce templates. Globální proměnné lze přidat v book.toml.
 
-Naimportování všech důležitých maker lze provést pomocí `{% raw %}{% include prelude %}{% endraw %}`, kde `prelude` je v book.toml zadefinované jako "prelude.md", které se nachází v templates/ a importuje makra.
+Naimportování všech důležitých maker lze provést pomocí `{% raw %}{% include prelude %}{% endraw %}`, kde `prelude` je v book.toml zadefinované jako "prelude.md", které se nachází v templates/ a importuje makra. **NEW:** prelude se includuje ve všech kapitolách automaticky, není potřeba includovat nic z ní.
 
 ### Příklad
 
@@ -50,8 +43,6 @@ Autoři těchto skript jsou {{ authors | join(", ") }}.
 | {{ loop.index }} | {{ author }} |
 {% endfor -%}
 | end | end |
-
-{% include prelude %}
 
 {% call spoiler(el="div") %}
 {{ gate("xor", "OUT", "IN1", "IN2") }}
