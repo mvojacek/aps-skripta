@@ -34,12 +34,15 @@ DOCKER_IMAGE := "ghcr.io/mvojacek/mdbook"
 list-tags:
     skopeo list-tags docker://{{DOCKER_IMAGE}}  | jq -r '.Tags[]'
 
-build-mdbook-docker TAG:
-    # build
+build-docker-full TAG:
     docker build -t {{DOCKER_IMAGE}}:{{TAG}} docker
-    # push
+
+build-docker-buildah TAG:
+    cd docker && buildah unshare ./buildah-build-tools.sh
+    cd docker && docker build -t {{DOCKER_IMAGE}}:{{TAG}} -f Dockerfile.buildah .
+
+push-mdbook-docker TAG:
     docker push {{DOCKER_IMAGE}}:{{TAG}}
-    # update latest
     [ "{{TAG}}" = "latest" ] || docker tag {{DOCKER_IMAGE}}:{{TAG}} {{DOCKER_IMAGE}}:latest && docker push {{DOCKER_IMAGE}}:latest
 
 pull:

@@ -1,6 +1,6 @@
 services:
   mdbook:
-    image: ghcr.io/mvojacek/mdbook:v4
+    image: ghcr.io/mvojacek/mdbook:v5
     volumes:
       - .:/work
     working_dir: /work
