@@ -1,3 +1,5 @@
+{% include prelude %}
+
 # Zadání projektu ALU
 
 Vytvořte v Logisim Evolution modul tzv. Aritmeticko-Logické jednotky (ALU). ALU je (v našem provedení) kombinační obvod, který umí provést vždy jednu vybranou z několika podporovaných aritmetických nebo logických operací.

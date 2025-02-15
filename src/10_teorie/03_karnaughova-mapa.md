@@ -1,3 +1,5 @@
+{% include prelude %}
+
 # Karnaughova mapa
 
 Karnaughova mapa je prostředek pro minimalizaci logických obvodů. Pro pochopení Karnaughovy mapy musíme první pochopit Grayův kód.

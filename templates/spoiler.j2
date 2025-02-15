@@ -1,0 +1,4 @@
+{# el: span/div, type: click/hover #}
+{% macro spoiler(type="click", el="span", enable=true) -%}
+    <{{el}} class="{% if enable %}spoiler{% endif %} {{type}}" onclick="this.classList.toggle('active');">{{ caller() }}</{{el}}>
+{%- endmacro %}

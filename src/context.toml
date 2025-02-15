@@ -1,3 +1,0 @@
-[ch_markdown]
-tera_test = "This string is from the context.toml file"
-checklist_usage = "{{#check Note-1 | This is an important note}}"

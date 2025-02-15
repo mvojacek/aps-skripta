@@ -1,19 +1,19 @@
-{% import "macros.tera" as m %}
+{% include prelude %}
 
-<style> 
+<style>
 table { margin: 1em;}
 </style>
 
 # Teorie - Příprava na test
 
-{{#check TODO | Přepsat stránku }}
+{{ todo("Přepsat stránku") }}
 
 #### 1. **Nakresli logická hradla**, zapiš **operátor hradla jako výraz** (např. X=A+B), nakresli **pravdivostní tabulku**:
 
 a) NOT
 
 ```admonish check title="Řešení",collapsible=true
-{{ m::gate1(gate="not") }}
+{{ gate("not", "X") }}
 
 $ X = \overline{A} $
 
@@ -26,7 +26,7 @@ $ X = \overline{A} $
 b) OR
 
 ```admonish check title="Řešení",collapsible=true
-{{ m::gate2(gate="or") }}
+{{ gate("or", "X") }}
 
 $ X = A + B $
 
@@ -41,7 +41,8 @@ $ X = A + B $
 c) XNOR
 
 ```admonish check title="Řešení",collapsible=true
-{{ m::gate2(gate="xnor") }}
+
+{# {{ gate("xnor", "X") }} #}
 
 $ X = \overline{(A \bigoplus B)} $
 
@@ -56,7 +57,7 @@ $ X = \overline{(A \bigoplus B)} $
 d) AND
     
 ```admonish check title="Řešení",collapsible=true
-{{ m::gate2(gate="and") }}
+{{ gate("and", "X") }}
   
 $ X = A \cdot B $
 

@@ -1,6 +1,8 @@
+{% include prelude %}
+
 # Třetí stav a zkraty
 
-{{#check TODO | Přepsat stránku }}
+{{ todo("Přepsat stránku") }}
 
 Váš obvod může mít 4 stavy
 

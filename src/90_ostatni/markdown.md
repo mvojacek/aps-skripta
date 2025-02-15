@@ -1,3 +1,5 @@
+{% include prelude %}
+
 # Markdown
 
 Tyto skripta se kompilují pomocí [mdbook](https://rust-lang.github.io/mdBook/), je tedy možné používat všechny tímto programem podporované konstrukce.
@@ -12,26 +14,66 @@ Umožňuje vložit do markdownu inline TODO, ze kterých se udělá globální s
 
 ### Příklad
 
+Kvůli konfliktu syntaxu s jinja templatováním je nutné použít pro vytvoření TODO jinja makro:
+
 ```markdown
-{{ ch_markdown.checklist_usage }}
+{% raw -%}
+{% from "todo.j2" import todo %}
+# -- OR --
+{% include prelude %}
+
+# then:
+{{ todo("This and that needs to be done") }}
+{%- endraw %}
 ```
 
-## tera [:blue_book:](https://github.com/mvojacek/mdbook-tera)
+## minijinja [:blue_book:](https://github.com/ssanderson/mdbook-minijinja)
 
-Nahrazuje template výrazy [tera](https://github.com/Keats/tera) v markdownu podle contextu v [src/context.toml](../context.toml). Tohle je nejjednodušší způsob, jak zadefinovat a recyklovat řetězce napříč celými skripty.
+Umožňuje napříč celými skripty používat jinja templates ([specifikace](https://jinja.palletsprojects.com/en/stable/templates/)) pomocí implementace [minijinja](https://github.com/mitsuhiko/minijinja) ([rozdíly oproti specifikaci](https://github.com/mitsuhiko/minijinja/blob/main/COMPATIBILITY.md)).
+
+Templates, včetně souborů obsahující makra, jsou ve složce templates. Globální proměnné lze přidat v book.toml.
+
+Naimportování všech důležitých maker lze provést pomocí `{% raw %}{% include prelude %}{% endraw %}`, kde `prelude` je v book.toml zadefinované jako "prelude.md", které se nachází v templates/ a importuje makra.
 
 ### Příklad
 
-{{ ch_markdown.tera_test }}
+```markdown
+{% raw -%}
 
-Autoři těchto skript jsou {{ ctx.config.book.authors | join(sep=", ") }}.
+{% set authors = ["Michal Vojáček", "Michal Javor"] %}
+
+Autoři těchto skript jsou {{ authors | join(", ") }}.
 
 | Číslo | Autor |
 |------:|:------|
-{% for author in ctx.config.book.authors -%}
+{% for author in authors -%}
 | {{ loop.index }} | {{ author }} |
 {% endfor -%}
 | end | end |
+
+{% include prelude %}
+
+{% call spoiler(el="div") %}
+{{ gate("xor", "OUT", "IN1", "IN2") }}
+{% endcall %}
+
+{%- endraw %}
+```
+
+{% set authors = ["Michal Vojáček", "Michal Javor"] %}
+
+Autoři těchto skript jsou {{ authors | join(", ") }}.
+
+| Číslo | Autor |
+|------:|:------|
+{% for author in authors -%}
+| {{ loop.index }} | {{ author }} |
+{% endfor -%}
+| end | end |
+
+{% call spoiler(el="div") %}
+{{ gate("xor", "OUT", "IN1", "IN2") }}
+{% endcall %}
 
 ## cmdrun [:blue_book:](https://github.com/FauconFan/mdbook-cmdrun)
 
@@ -65,7 +107,7 @@ $$ \nabla f(x) \in \mathbb{R}^n $$
 Markdown neumožňuje specifikaci velikosti a centrování obrázků, tento preprocesor tuto funkcionalitu přidává.
 
 Do budoucna chci projekt upravit a rozvolnit syntaxi, aby šlo specifikovat pouze zarovnání, bez šířky.  
-TODO: {{#check image-size-fork | Forknout mdbook-image-size a rozvolnit syntaxi}}
+{{ todo("Forknout mdbook-image-size a rozvolnit syntaxi") }}
 
 ### Příklad
 
@@ -118,15 +160,15 @@ Takhle vypadá rozbalovací sekce.
 
 ## quiz
 
-{{#check TODO | quiz }}
+{{ todo("quiz") }}
 
 ## toc
 
-{{#check TODO | toc }}
+{{ todo("toc") }}
 
 ## kroki
 
-{{#check TODO | kroki }}
+{{ todo("kroki") }}
 
 ## emojicodes [:blue_book:](https://github.com/blyxyas/mdbook-emojicodes)
 
@@ -140,13 +182,11 @@ Umožňuje vkládat do textu emoji pomocí Github shortcode ohraničeného ::
 
 ## embedify
 
-{{#check TODO | embedify }}
+{{ todo("embedify") }}
 
 ## footnote
 
-{{#check TODO | footnote }}
-
-# TODO
+{{ todo("footnote") }}
 
 ## pagetoc [:blue_book:](https://github.com/slowsage/mdbook-pagetoc)
 

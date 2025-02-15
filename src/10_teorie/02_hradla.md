@@ -1,4 +1,4 @@
-{% import "macros.tera" as m %}
+{% include prelude %}
 
 # Hradla - Teorie
 
@@ -19,7 +19,7 @@ Hradla, které mají jeden vstup jsou následující
 
 #### Symbol
 
-{{ m::gate1(gate="buffer") }}
+{{ gate("buffer") }}
 
 #### Definice
 
@@ -49,7 +49,7 @@ Neboli 0 &rarr; 1 nebo 1 &rarr; 0
 
 #### Symbol
 
-{{ m::gate1(gate="not") }}
+{{ gate("not") }}
 
 #### Definice
 
@@ -87,7 +87,7 @@ Hradlo **AND** neboli logické **"a"** , se využívá když chcete naplnit dvě
 
 #### Symbol
 
-{{ m::gate2(gate="and") }}
+{{ gate("and") }}
 
 #### Definice
 
@@ -119,7 +119,7 @@ Hradlo **OR** neboli logické **"nebo"** , se využívá když chcete naplnit as
 
 #### Symbol
 
-{{ m::gate2(gate="or") }}
+{{ gate("or") }}
 
 #### Definice
 
@@ -151,7 +151,7 @@ Hradlo **XOR** neboli exkluzivní OR , se využívá když chcete naplnit pouze 
 
 #### Symbol
 
-{{ m::gate2(gate="xor") }}
+{{ gate("xor") }}
 
 #### Definice
 
@@ -194,7 +194,7 @@ Hradlo **NAND** má opačný výstup hradla **AND**
 
 #### Symbol
 
-{{ m::gate2(gate="nand") }}
+{{ gate("nand") }}
 
 #### Definice
 
@@ -226,7 +226,7 @@ Hradlo **NOR** má opačný vstup hradla **OR**
 
 #### Symbol
 
-{{ m::gate2(gate="nor") }}
+{{ gate("nor") }}
 
 #### Definice
 
@@ -259,7 +259,7 @@ Hradlo **XNOR** je opak hradla **XOR**, jednoduše řečeno se jedná o ekvivale
 
 #### Symbol
 
-{{ m::gate2(gate="xnor") }}
+{{ gate("xnor") }}
 
 #### Definice
 

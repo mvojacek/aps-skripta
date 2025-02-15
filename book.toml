@@ -29,11 +29,19 @@ additional-js = [
 
 open-on-text = "Found a bug? [Edit this page on GitHub.]"
 
-[preprocessor.tera]
-after = ["links"]
+[preprocessor.minijinja]
+preprocess_summary = true
+before = ["index", "links", "cmdrun"]
+undefined_behavior = "strict"
+templates = "templates"
+
+[preprocessor.minijinja.variables]
+my_var = "my_var_value"
+prelude = "prelude.md"
 
 [preprocessor.cmdrun]
-after = ["tera"]
+after = ["minijinja"]
+before = ["index", "links"]
 
 [preprocessor.katex]
 after = ["cmdrun"]
@@ -46,35 +54,12 @@ after = ["cmdrun"]
 [preprocessor.admonish]
 command = "mdbook-admonish"
 assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
-#after = ["cmdrun"]
-before = ["links"]
+after = ["cmdrun"]
+before = ["index", "links"]
 
 [preprocessor.quiz]
 after = ["cmdrun"]
 renderer = ["html"]
-
-# [preprocessor.svgbob] # replaced by kroki
-# # svgbob configuration:
-# # doc: https://docs.rs/svgbob/latest/svgbob/struct.Settings.html
-# # default values: https://github.com/ivanceras/svgbob/blob/master/packages/svgbob/src/settings.rs#L29-L38
-# font_size = 14
-# font_family = "Iosevka Fixed, monospace"
-# fill_color = "black"
-# background = "transparent"               # default overridden, differs from svgbob's default
-# stroke_color = "var(--fg)"               # default overridden, differs from svgbob's default
-# stroke_width = 2.0
-# scale = 8.0
-# enhance_circuitries = true
-# include_backdrop = true
-# include_styles = true
-# include_defs = true
-# merge_line_with_shapes = false
-# # preprocessor configuration:
-# code_block = "bob"                       # render only code-blocks marked as "bob", e.g.: ```bob
-
-# [preprocessor.graphviz] # replaced by kroki
-# command = "mdbook-graphviz"
-# output-to-file = false # defaults to false, change to true to create SVG files instead of rendering them inline
 
 [preprocessor.open-on-gh]
 command = "mdbook-open-on-gh"
@@ -108,10 +93,11 @@ after = ["cmdrun"]
 # renderer = ["html"]
 
 [preprocessor.checklist]
-before = ["tera"] # must run before Tera to avoid conflicts with Tera's syntax
-title = "TODO"
+after = ["cmdrun"]
+title = "TODOs"
 
 [preprocessor.pagetoc]
+after = ["cmdrun"]
 
 # [output.pdf]
 

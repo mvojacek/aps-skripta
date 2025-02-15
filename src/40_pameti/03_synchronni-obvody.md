@@ -1,8 +1,10 @@
+{% include prelude %}
+
 # Paměti - Synchronní obvody
 
 Původní verze lekce viz asynchronní obvody
 
-{{#check TODO | Přepsat stránku }}
+{{ todo("Přepsat stránku") }}
 
 ## Synchronní obvody
 

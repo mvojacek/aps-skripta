@@ -1,8 +1,10 @@
+{% include prelude %}
+
 # Paměti - Asynchronní obvody
 
 [Původní verze lekce](https://docs.google.com/document/d/1NGTikBfkWAnwpol82G0NdqacZL8hJSLKO40L2ferYpw/edit)
 
-{{#check TODO | Přepsat stránku }}
+{{ todo("Přepsat stránku") }}
 
 Asynchronní obvody fungují bez clocku, takže jakmile je na vstupu hodnota, zpracuje se.
 

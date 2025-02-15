@@ -1,3 +1,5 @@
+{% include prelude %}
+
 # Binární odčítačka
 
 ## Odčítání jako sčítání
@@ -139,9 +141,11 @@ ale $4$ lze reprezentovat pouze ve 4- a více-bitových číslech.
 
 Je to opravdová situace, která může nastat ve strojových číslech se znaménkem:
 
+{% raw %}
 {{#playground ../code/negative_max_abs_yes.rs}}
 
 {{#playground ../code/negative_max_abs_no.rs}}
+{% endraw %}
 
 ```
 

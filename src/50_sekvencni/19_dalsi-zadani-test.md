@@ -1,4 +1,4 @@
-{% import "macros.tera" as m %}
+{% include prelude %}
 
 # Další zadání a informace k testu
 
@@ -96,7 +96,7 @@ Tento sekvenční modul je tzv. *proudový*, tzn. zpracovává *proud (stream)* 
 
 Hodnotu na vstupu bereme v potaz (zahrneme jí do výpočtu) pouze, pokud WE=1. Tedy pokud WE=0, výsledek se nesmí změnit!. Hodnota výsledku je nedefinovaná (nebude testována), dokud modul nezpracoval alespoň N hodnot.
 
-Nápověda: {{ m::spoiler() }} Evidentně bude potřeba nějak mít uložených vždy posledních N hodnot. Na to se hodí shift registr, buď manuálně postavený, nebo ten logisimový. {{ m::spoilerend() }}
+Nápověda: {% call spoiler() %} Evidentně bude potřeba nějak mít uložených vždy posledních N hodnot. Na to se hodí shift registr, buď manuálně postavený, nebo ten logisimový. {% endcall %}
 
 ### Proudový detektor vlastností posloupnosti
 
@@ -136,20 +136,20 @@ Příklady možných detektorů pro jednobitovou variantu:
 
 - Detekuj pattern '10011' (bit úplně vlevo přišel jako poslední)
 - Detekuj situaci, kde v posledních N bitech (sudé N) je *stejný počet 0 a 1*.
-  - Nápověda: {{ m::spoiler() }} Pro nízke N je možné sestavit pravdivostní tabulku detektoru této vlastnosti, a implementovat ho pomocí Karnaughovy mapy, nebo pomocí nástrojů vestavěných v Logisimu. {{ m::spoilerend() }}
+  - Nápověda: {% call spoiler() %} Pro nízke N je možné sestavit pravdivostní tabulku detektoru této vlastnosti, a implementovat ho pomocí Karnaughovy mapy, nebo pomocí nástrojů vestavěných v Logisimu. {% endcall %}
 - Detekuj situaci, kde sekvence N bitů tvoří [palindrom](https://cs.wikipedia.org/wiki/Palindrom)
 - ...
 
 Příklady možných detektorů pro vícebitovou variantu
 
 - Detekuj situaci, že všech N posledních čísel bylo sudých
-  - Nápověda: {{ m::spoiler() }} Jak na čísle reprezentovaném v binárce poznáme, že je sudé? Je potřeba ukládat N samotných čísel, nebo nám stačí ukládat jejich sudost? {{ m::spoilerend() }}
+  - Nápověda: {% call spoiler() %} Jak na čísle reprezentovaném v binárce poznáme, že je sudé? Je potřeba ukládat N samotných čísel, nebo nám stačí ukládat jejich sudost? {% endcall %}
 - Detekuj v posledních N číslech [aritmetickou posloupnost](https://cs.wikipedia.org/wiki/Aritmetick%C3%A1_posloupnost), tj. že každé číslo je o libovolné K větší/menší než to předchozí. Koeficient K posloupnosti posíláme na výstup VALUE. Použij jednu odčítačku.
   - Poznámka: Koeficient K může klidně být záporný (ve dvojkovém doplňku), tj. posloupnost je klesající. Na obvodu to nic nemění, záporné číslo je taky číslo.
-  - Nápověda: {{ m::spoiler() }} O aritmetickou posloupnost se jedná, pokud rozdíl sousedních čísel je nějaká jedna hodnota. Máme jedno odčítačku, takže nemůžeme rozdíly počítat paralelně, musíme je počítat hned, jak čísla přicházejí. Neukládáme tedy samotné přicházející čísla, ale pouze rozdíly mezi nimi. K tomu samozřejmě musíme uložit i jedno předchozí číslo, abychom měli proti čemu rozdíl počítat. {{ m::spoilerend() }}
+  - Nápověda: {% call spoiler() %} O aritmetickou posloupnost se jedná, pokud rozdíl sousedních čísel je nějaká jedna hodnota. Máme jedno odčítačku, takže nemůžeme rozdíly počítat paralelně, musíme je počítat hned, jak čísla přicházejí. Neukládáme tedy samotné přicházející čísla, ale pouze rozdíly mezi nimi. K tomu samozřejmě musíme uložit i jedno předchozí číslo, abychom měli proti čemu rozdíl počítat. {% endcall %}
 - Detekuj v posledních N číslech [geometrickou posloupnost](https://cs.wikipedia.org/wiki/Geometrick%C3%A1_posloupnost) s daným předem určeným koeficientem K (pro koeficienty, které jsou mocnina dvou je možná optimalizovaná implementace, v ostatních případech je nutné použít násobičku).
   - Poznámka: Oproti předchozímu příkladu je zde koeficient zafixovaný zadáním - umíme tedy detekovat pouze jeden konkrétní "typ" geometrické posloupnosti. Tím se vyhneme nutnosti dělit. Navíc, pokud je koeficient mocnina dvou, stává se násobení jím triviální, a není potřeba ani násobička. Pokud je koeficent mocnina dvou plus jedna nebo mínus jedna, stačí místo násobičky sčítačka.
-  - Nápověda: {{ m::spoiler() }} Potřebujeme ověřit, že v posloupnosti platí $X_n = X_{n-1} \cdot K$, tedy že každé přicházející číslo je $K$-násobek předchozího. Ukládáme tedy předchozí přijaté číslo, a vynásobíme ho s $K$. Pokud se příští přijate číslo rovná této hodnotě, tvoří poslední dvě přijaté čísla žádanou posloupnost. Tuto pravdivostní hodnotu uložíme do shift registru. Posloupnost délky $N$ jsme nalezli, pokud v tomto shift registru o délce $N-1$ jsou samé $1$. {{ m::spoilerend() }}
+  - Nápověda: {% call spoiler() %} Potřebujeme ověřit, že v posloupnosti platí $X_n = X_{n-1} \cdot K$, tedy že každé přicházející číslo je $K$-násobek předchozího. Ukládáme tedy předchozí přijaté číslo, a vynásobíme ho s $K$. Pokud se příští přijate číslo rovná této hodnotě, tvoří poslední dvě přijaté čísla žádanou posloupnost. Tuto pravdivostní hodnotu uložíme do shift registru. Posloupnost délky $N$ jsme nalezli, pokud v tomto shift registru o délce $N-1$ jsou samé $1$. {% endcall %}
 - ...
 
 ### Proudový analyzátor vyváženosti
@@ -218,15 +218,15 @@ Další příklady výrazů k výpočtu:
 
 - $A + 2 \cdot B + 3 \cdot C + 4 \cdot D$ pomocí jediné sčítačky.
   - Na výpočet stačí 4 cykly, plus případné registrování vstupů/výstupů.
-  - Nápověda: {{ m::spoiler() }} Násobení mocninou dvou lze provést posunem, který je instantní, a $3 \cdot X = 2 \cdot X + X$. Násobička tedy není potřeba. {{ m::spoilerend() }}
+  - Nápověda: {% call spoiler() %} Násobení mocninou dvou lze provést posunem, který je instantní, a $3 \cdot X = 2 \cdot X + X$. Násobička tedy není potřeba. {% endcall %}
 - $A^3 + B^2 + C \cdot D$ pomocí jediné násobičky a sčítačky
   - Nabízí se dvě varianty implementace. Druhá varianta bude pomalejší a komplexnější.
     - V každém cyklu vynásobit + možná sečíst
     - V každém cyklu vynásobit *anebo* sečíst
-  - Nápověda: {{ m::spoiler() }} $A^3 = A^2 \cdot A$, tento výpočet je potřeba provést ve dvou cyklech. {{ m::spoilerend() }}
+  - Nápověda: {% call spoiler() %} $A^3 = A^2 \cdot A$, tento výpočet je potřeba provést ve dvou cyklech. {% endcall %}
 - $ A! $, tedy [faktoriál](https://cs.wikipedia.org/wiki/Faktori%C3%A1l) $A$
   - Výsledky budou velké, použijeme tedy 32-bitové čísla. I tak budeme schopni spočítat nejvýše $12!$, vstupní hodnota může tedy být 4 bitová.
-  - Nápověda: {{ m::spoiler() }} Bude potřeba udržovat si čítač, který projede rozsah od $2$ do $A$ včetně (nebo od $A$ do $2$, což možná vyjde lépe) a výpočet provádět v akumulátoru, který začně neutrálním prvkem pro násobení. {{ m::spoilerend() }}
+  - Nápověda: {% call spoiler() %} Bude potřeba udržovat si čítač, který projede rozsah od $2$ do $A$ včetně (nebo od $A$ do $2$, což možná vyjde lépe) a výpočet provádět v akumulátoru, který začně neutrálním prvkem pro násobení. {% endcall %}
 - $A + B - C + D \pmod{N}$, kde $N \gt \max{(A, B, C, D)}$, pomocí jedné sčítačky/odčítačky
   - $N$ je v tomto případě další vstup, jako $A, B, C, D$.
   - Obecné modulo vyžaduje děličku, kterou nemáme k dispozici. Ovšem, protože všechna čísla na vstupu jsou menší než $N$, jediné případy, kdy bychom se mohli dostat během výpočtu mimo rozsah hodnot modulární grupy, jsou následující:
@@ -235,7 +235,7 @@ Další příklady výrazů k výpočtu:
     - Pokud výsledek odečtení má hodnotu $\lt 0$, nebude ale určitě mít hodnotu $\lt -N$, modulo lze tedy provést přičtením $N$.  
     Matematicky: $\Bigl(-N \le A \lt 0 \Bigr) \Rightarrow \Bigl((A \bmod N) = (A + N)\Bigr) $
   - Po každém příčtení/odečtení v průběhu výpočtu je tedy potřeba zkontrolovat, zda jsme se nedostali mimo rozsah hodnot příjatelných jako výsledek $(\bmod\ N)$, a pokud ano, provést korekci přičtením/odečtením $N$. Protože máme pouze jedinou sčítačku, musí se tato korekce stát až v následujícím cyklu.
-  - Algoritmus výpočtu může tedy vypadat nějak takto: {{ m::spoiler(el="div", enable="true") }}<ol>
+  - Algoritmus výpočtu může tedy vypadat nějak takto: {% call spoiler(el="div", enable=true) %}<ol>
     $\\
     1.\> \var{R1} \leftarrow \var{A} + \var{B} \\
     2.\> \t{if}\ \var{R1} \ge \var{N}\ \t{then}\ \var{R1} \leftarrow \var{R1} - \var{N} \\
@@ -246,8 +246,8 @@ Další příklady výrazů k výpočtu:
     7.\> \t{return}\ \var{R1} \\
     $  
     </ol>  
-    Případně lze provést optimalizaci, a kroky $2$, $4$, a $6$ <em>přeskočit</em>, pokud není podmínka splněna, a v daném kroku by se tak nic nestalo.
-    {{ m::spoilerend(el="div") }}
+    Případně lze provést optimalizaci, a kroky $2$, $4$, a $6$ <em>přeskočit</em>, pokud není podmínka splněna (tedy v daném kroku by se nic nestalo).
+    {% endcall %}
   - Tento postup je příklad často používané techniky, kdy jsou požadavky na výsledek jendodušší zajišťovat průběžně jednoduchým výpočtem, místo komplexním výpočtem na konci. Příklad z praxe je např. výpočet kroku [MixColumns](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard#The_MixColumns_step) v šifře AES - zde se násobí polynom polynomem modulo polynom z $\t{GF}(2^8)$. Spočítat polynomiální modulo je náročné, ale pokud postupujeme při násobení bit po bitu, můžeme místo závěrečného modula průbežně aplikovat podmíněný xor: "*If processed bit by bit, then, after shifting, a conditional XOR with $\t{1B}_{16}$ should be performed if the shifted value is larger than $\t{FF}_{16}$ (overflow must be corrected by subtraction of generating polynomial).*"
 
 Je možná varianta tohoto zadání, kde místo matematického výrazu (který je potřeba prvně převést na algoritmus), bude poskutnut přímo algoritmus k implementaci.

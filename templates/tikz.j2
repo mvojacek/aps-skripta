@@ -1,0 +1,32 @@
+
+{% macro tikzpicture() -%}
+<kroki type="tikz">
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{math}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{0.125pt}
+\begin{document}
+    \begin{tikzpicture}
+        {{ caller() }}
+    \end{tikzpicture}
+\end{document}
+</kroki>
+{%- endmacro %}
+
+{% set single_port_gates = ["buffer", "not"] %}
+
+{% macro gate(gate, out="Q", in1="A", in2="B") -%}
+{% call tikzpicture() -%}
+    \ctikzset{logic ports=ieee, logic ports/scale=0.8};
+    \node [{{gate}} port] (G) {};
+    \draw (G.in 1) -- ++(0,0) node[left](A){ {{-in1-}} };
+    {% if gate not in single_port_gates -%}
+        \draw (G.in 2) -- ++(0,0) node[left](B){ {{-in2-}} };
+    {%- endif %}
+    \draw (G.out) -- ++(0,0) node[right](X){ {{-out-}} };
+{%- endcall %}
+{%- endmacro %}

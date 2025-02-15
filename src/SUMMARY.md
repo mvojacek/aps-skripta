@@ -26,8 +26,8 @@
 
 - [Návrh sekvenčních obvodů]()
   - [Návrh sekvenčních obvodů](./50_sekvencni/01_navrh-sekvencnich.md)
-  - [Zadání: Umocňování](./50_sekvencni/10_zadani-exp.md)
-  - [Další zadání a test](./50_sekvencni/19_dalsi-zadani-test.md)
+  - [Ukázkové zadání: Umocňování](./50_sekvencni/10_zadani-exp.md)
+  - [Další zadání a info k testu](./50_sekvencni/19_dalsi-zadani-test.md)
   - [Soubory z hodin](./50_sekvencni/20_soubory-z-hodin.md)
 
 - [CPU]()

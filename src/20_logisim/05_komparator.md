@@ -1,6 +1,8 @@
+{% include prelude %}
+
 # Komparátor
 
-{{#check TODO | Přepsat stránku }}
+{{ todo("Přepsat stránku") }}
 
 ### Cvičení
 

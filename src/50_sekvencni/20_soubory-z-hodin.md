@@ -1,3 +1,5 @@
+{% include prelude %}
+
 # Logisim soubory z hodin
 
 - [sekv_exp_sq_mul.circ :paperclip:](../logisim/sekv_exp_sq_mul.circ)
