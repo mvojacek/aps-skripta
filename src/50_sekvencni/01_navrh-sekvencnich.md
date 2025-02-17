@@ -25,7 +25,7 @@ Typický plně synchronní sekvenční obvod bude mít kromě datových vstupů 
 
 ### Synchronizace s hodinovým vstupem
 
-Synchronní obvod může být synchronizovaný buď na sestupnou na náběžnou hranu hodin, nebo využívat obě hrany (tato technika se nazývá [Double Data Rate](https://en.wikipedia.org/wiki/Double_data_rate), neboli DDR, což znáte z počítačových pamětí). Návrh používající DDR je vhodný pouze pro realizaci v silikonu (ASIC), nikoliv pro FPGA, kde paměťové prvky reagují buď na jeden nebo druhý typ hrany.
+Synchronní obvod může být synchronizovaný buď na sestupnou nebo na náběžnou hranu hodin, nebo využívat obě hrany (tato technika se nazývá [Double Data Rate](https://en.wikipedia.org/wiki/Double_data_rate), neboli DDR, což znáte z počítačových pamětí). Návrh používající DDR je vhodný pouze pro realizaci v silikonu (ASIC), nikoliv pro FPGA, kde paměťové prvky reagují buď na jeden nebo druhý typ hrany.
 
 ```admonish info
 Ve všech naších návrzích budeme používat výhradně **náběžnou** hranu hodin.
