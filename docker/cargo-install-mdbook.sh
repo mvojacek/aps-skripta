@@ -25,7 +25,7 @@ PACKAGES_LOCKED=(
     mdbook-footnote@0.1.1
     mdbook-external-links@0.1.1
     mdbook-pagetoc@0.2.0
-    https://github.com/mvojacek/mdbook-minijinja?tag=v0.2.0-7
+    https://github.com/mvojacek/mdbook-minijinja?tag=v0.2.0-8
 )
 
 PACKAGES_NOTLOCKED=(
