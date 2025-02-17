@@ -55,7 +55,7 @@ Při zapojení lze provést optimalizaci, kde přeskočíme první iteraci Doubl
 
 Stejný princip lze použít i pro *umocňování*, pouze s vyššími operátory: Začínáme s hodnotou *1* (neutrální prvek vůči *násobení*), a v každém cyklu *umocníme na druhou*, a pak podmíněně *vynásobíme* hodnotu $A$ podle bitu z $B$:
 
-$$ A ^ B \stackrel{např.}{=} A ^ {13_{10}} = A ^ {\red{1}\green{1}\blue{0}\purple{1}_2} = \Biggl( \Bigl( (1^2 \times \red{1}A)^2 \times \green{1}A \Bigr)^2 \times \blue{0}A \Biggr)^2 \times \purple{1}A $$
+$$ A ^ B \stackrel{např.}{=} A ^ {13_{10}} = A ^ {\red{1}\green{1}\blue{0}\purple{1}_2} = \Biggl( \Bigl( (1^2 \times A^\red{1})^2 \times A^\green{1} \Bigr)^2 \times A^\blue{0} \Biggr)^2 \times A^\purple{1} $$
 
 Více informací o tomto algoritmu je k dispozici v [KBB přednášce](https://radojcic.cz/kbb3/prezentace/3_teorie_cisel.pdf), kde se používá pro modulární umocňování, a taky v KBB skriptech.
 
