@@ -3,7 +3,8 @@
 set -euo pipefail
 
 PACKAGES_LOCKED=(
-    mdbook@0.4.43
+    # mdbook@0.4.43
+    "https://github.com/mvojacek/mdBook?tag=v0.4.43-1&bin=mdbook"
     mdbook-katex@0.9.1
     mdbook-pandoc@0.7.3
     mdbook-pdf@0.1.10
@@ -24,7 +25,7 @@ PACKAGES_LOCKED=(
     mdbook-footnote@0.1.1
     mdbook-external-links@0.1.1
     mdbook-pagetoc@0.2.0
-    https://github.com/mvojacek/mdbook-minijinja?tag=v0.2.0-2
+    https://github.com/mvojacek/mdbook-minijinja?tag=v0.2.0-7
 )
 
 PACKAGES_NOTLOCKED=(
@@ -41,7 +42,13 @@ function cargo_install() {
         # git@github.com/username/repo?tag=version
         # git@github.com/username/repo?branch=branch
         # git@github.com/username/repo#commit
-        local commit='' tag='' branch='' url=''
+        # for repos with multiple binaries, append &bin=bin
+        local commit='' tag='' branch='' bin='' url=''
+        if [[ $package =~ \&bin= ]]; then
+            bin="${package##*bin=}"
+            bin="${bin%%\&*}"
+            package="${package%%\&bin=*}"
+        fi
         if [[ $package =~ \# ]]; then
             commit="${package##*#}"
             package="${package%%#*}"
@@ -76,9 +83,14 @@ function cargo_install() {
             return
         fi
 
+        local bins=()
+        if [[ -n $bin ]]; then
+            bins+=("$bin")
+        fi
+
         # install
         echo "[#] Installing $package"
-        cargo install "${cargo_install[@]}" "$@" --git "$url"
+        cargo install "${cargo_install[@]}" "$@" --git "$url" "${bins[@]}"
         echo "[#] Installed $package"
     else
         # split version from package

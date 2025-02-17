@@ -26,8 +26,10 @@ additional-js = [
     "./theme/presentationHider.js",
     "./theme/pagetoc.js"
 ]
-
 open-on-text = "Found a bug? [Edit this page on GitHub.]"
+
+[build]
+extra-watch-dirs = [ "./templates" ]
 
 [preprocessor.minijinja]
 preprocess_summary = true

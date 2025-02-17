@@ -218,7 +218,7 @@ Více informací na wikipedii: [Bitwise operators](https://en.wikipedia.org/wiki
 | :bangbang: | `rotr` | ROTR A | $\forall i: \var{OUTP}_i \leftarrow \var{A}_{i+1}$ <br> $\var{OUTP}_{15} \leftarrow \var{A}_{0}$ | Rotace doprava |
 | :bangbang: | `rotl` | ROTL A | $\forall i: \var{OUTP}_i \leftarrow \var{A}_{i-1}$ <br> $\var{OUTP}_{0} \leftarrow \var{A}_{15}$ | Rotace doleva |
 
-```admonish tip
+```admonish tip title="Násobení a dělení pomocí posunů"
 Pomocí logických posunů (a správného použití carry) lze rychle provést dělení a násobení dvěma, a to jak u čísel bez znaménka, tak u čísel v doplňkovém kódu.
 ```
 

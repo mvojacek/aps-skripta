@@ -1,0 +1,63 @@
+
+{% macro fulliframecustom(id="fulliframe", disable_navigation=true) -%}
+<style>
+.sidetoc {
+  display: none;
+}
+#open-on-gh {
+  display: none;
+}
+main {
+  position: relative;
+}
+.content {
+    overflow-y: auto;
+    padding: 0 5px 50px 5px;
+}
+.content main {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    max-width: 100%;
+}
+.content main iframe {
+  width: 100%;
+  visibility: hidden;
+  border: none;
+}
+</style>
+{{ caller(id) }}
+<script>
+  var frame = document.getElementById("{{id}}");
+  frame.onload = function() {
+    // console.log("scroll height: " + frame.contentWindow.document.body.scrollHeight);
+    frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
+    // frame.style.width  = frame.contentWindow.document.body.scrollWidth + 'px';
+    frame.style.visibility = "visible";
+    {%- if disable_navigation -%}
+    frame.contentWindow.document.querySelectorAll("a").forEach(function(link) {
+      if (!link.getAttribute("href").startsWith("#")) {
+          //link.setAttribute("href", "#");
+          link.removeAttribute("href");
+      }
+      link.removeAttribute("target");
+    });
+    frame.contentWindow.document.querySelectorAll("form").forEach(function(form) {
+      form.removeAttribute("action");
+    });
+    {%- endif %}
+  }
+</script>
+
+{%- endmacro -%}
+
+{%- macro fulliframe(url, id="fulliframe", disable_navigation=true) %}
+{%- call(id) fulliframecustom(id, disable_navigation) -%}
+<iframe id="{{id}}" src="{{url}}"></iframe>
+{%- endcall %}
+{%- endmacro %}
+
+{%- macro fulliframeinline(doc, id="fulliframe", disable_navigation=true) %}
+{%- call(id) fulliframecustom(id, disable_navigation) -%}
+<iframe id="{{id}}" srcdoc="{{doc|e}}"></iframe>
+{%- endcall %}
+{%- endmacro %}

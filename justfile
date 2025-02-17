@@ -21,7 +21,7 @@ build:
     UID=$(id -u) GID=$(id -g) docker compose run mdbook build
 
 serve:
-    UID=$(id -u) GID=$(id -g) docker compose up
+    UID=$(id -u) GID=$(id -g) docker compose up --no-attach kroki --no-attach kroki-cache
 
 services:
     UID=$(id -u) GID=$(id -g) docker compose up -d kroki-cache kroki
@@ -49,7 +49,7 @@ pull:
     docker compose pull
 
 test-serve TEST:
-    docker compose run -e "APS_TEST={{TEST}}" --rm mdbook serve -n 0.0.0.0 -p 3000
+    docker compose run -e "APS_TEST_SEKVENCNI={{TEST}}" -e "APS_TEST_THEME=1" --rm mdbook serve -n 0.0.0.0 -p 3000
     docker compose logs -f
 
 test-z1: (test-serve "z1")

@@ -1,0 +1,2 @@
+*.md filter=git-crypt diff=git-crypt
+*.html filter=git-crypt diff=git-crypt

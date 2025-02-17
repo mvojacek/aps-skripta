@@ -1,6 +1,6 @@
 services:
   mdbook:
-    image: ghcr.io/mvojacek/mdbook:v6
+    image: ghcr.io/mvojacek/mdbook:v8
     volumes:
       - .:/work
     working_dir: /work
@@ -13,6 +13,8 @@ services:
       - kroki
     environment:
       - APS_TEST_SEKVENCNI=${APS_TEST_SEKVENCNI:-}
+      - APS_TEST_THEME=${APS_TEST_THEME:-}
+      - RUST_LOG=${RUST_LOG:-}
   kroki-cache:
     image: ghcr.io/mvojacek/docker-caching-proxy:v1
     network_mode: host
