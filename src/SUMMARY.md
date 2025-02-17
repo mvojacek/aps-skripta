@@ -31,7 +31,7 @@
   - [Soubory z hodin](./50_sekvencni/20_soubory-z-hodin.md)
 {% if env.APS_TEST_SEKVENCNI | default("") | length > 0 %}
   - [TEST](./50_sekvencni/zadani_test/{{env.APS_TEST_SEKVENCNI}}.md)
-    - [Wikipedie k testu](./50_sekvencni/zadani_test/wiki.md)
+    - [Wikipedie k testu](./50_sekvencni/zadani_test/{{"wiki"}}.md)
 {% endif %}
 
 - [CPU]()

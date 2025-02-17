@@ -1,1 +1,2 @@
-/{{env.APS_TEST_SEKVENCNI}}*
+/{{env.APS_TEST_SEKVENCNI}}.md
+/{{"wiki"}}.md
