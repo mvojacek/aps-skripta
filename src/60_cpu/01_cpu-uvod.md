@@ -1,5 +1,7 @@
 # CPU - Úvod
 
+{{ todo("Přepsat stránku") }}
+
 CPU neboli **C**entral **P**rocessing **U**nit je užitečný pro jakýkoliv logický problém. Zvládne využívat *tupé* jednotky vašeho počítače a rozhoduje, co mají dělat...
 
 

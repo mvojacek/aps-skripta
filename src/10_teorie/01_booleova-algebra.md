@@ -1,5 +1,7 @@
 # Booleova algebra
 
+{{ todo("Přepsat stránku") }}
+
 Booleova algebra je algebraická struktura se dvěma binárními a jednou unární operací.
 
 Jedná se o šestici ($A$, $\land$, $\lor$, $-$,  $0$, $1$), kde $A$ je neprázdná množina

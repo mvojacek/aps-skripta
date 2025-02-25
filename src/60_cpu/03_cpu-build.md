@@ -1,5 +1,7 @@
 # CPU - Stavba
 
+{{ todo("Přepsat stránku") }}
+
 Doporučuji si CPU rozdělit na 5 částí:
 - Registry - vnitřní paměti CPU
 - CU (Control Unit) - něco co vaši instrukci přijme a podle toho vykoná kroky

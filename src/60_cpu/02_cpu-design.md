@@ -1,5 +1,7 @@
 # CPU - Návrh
 
+{{ todo("Přepsat stránku") }}
+
 Průvodce návrhem CPU. 
 
 ### Architektura

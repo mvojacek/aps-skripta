@@ -1,5 +1,7 @@
 # CPU - Programování
 
+{{ todo("Přepsat stránku") }}
+
 ### Od assembly k operačním systémům
 
 Alexandr Pleskot (4.K 2024/25) ve spolupráci s Danem Bulantem v rámci svého maturitního projektu vypracoval článek, který pojednává o assembly, vztahu k C a operačnímu systému. Je to hezký úvod do programování v assembly, a následně přehled o tom, co je potřeba, aby na procesoru mohl bežet operační systém, což už je mimo obsah tohoto předmětu (my se spokojíme s tzv. "baremetal" mikrokontrolerem).
