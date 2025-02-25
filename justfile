@@ -49,10 +49,13 @@ pull:
     docker compose pull
 
 test-serve TEST:
-    docker compose run -e "APS_TEST_SEKVENCNI={{TEST}}" -e "APS_TEST_THEME=1" --rm mdbook serve -n 0.0.0.0 -p 3000
-    docker compose logs -f
+    # docker compose run -e "APS_TEST_SEKVENCNI={{TEST}}" -e "APS_TEST_THEME=1" --rm mdbook serve -n 0.0.0.0 -p 3000
+    APS_TEST_SEKVENCNI={{TEST}} APS_TEST_THEME=1 MDBOOK_HOST=0.0.0.0 just serve
 
 test-z1: (test-serve "z1")
+test-z2: (test-serve "z2")
+test-z3: (test-serve "z3")
+test-z4: (test-serve "z4")
 
 test-kill:
     docker compose down --remove-orphans -t 0
