@@ -44,6 +44,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Pull required docker images
         run: |
