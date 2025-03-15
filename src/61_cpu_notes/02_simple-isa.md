@@ -53,6 +53,12 @@ Moderní RISC architektura [RISC-V](https://en.wikipedia.org/wiki/RISC-V#Design)
   - Registr x0 je vždy 0
   - Některé registry mají speciální názvy a účely
 
+```admonish info title="Blokový diagram",collapsible=true
+![](./riscv-diagram-comparch.png)
+```
+
+Interaktivní simulátor: [comparch.edu.cvut.cz](https://comparch.edu.cvut.cz/qtrvsim/app/)
+
 Cheatsheet instrukcí: [RISCV_CARD.pdf](../docs/RISCV_CARD.pdf)
 
 Reference: [riscv-unprivileged.pdf](../docs/riscv-unprivileged.pdf) - 670 stran, ale pro nás je podstatná pouze kapitola 2 - RV32I Base Integer Instruction Set - to je ~15 stránek velmi hezky formátované a srozumitelné dokumentace k nejdůležitějším instrukcím této ISA.
