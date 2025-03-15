@@ -43,6 +43,7 @@
 - [CPU (poznámky)]()
   - [Poznámky z hodin](./61_cpu_notes/01_lecture-notes.md)
   - [Jednoduché architektury (ISA)](./61_cpu_notes/02_simple-isa.md)
+  - [customasm](./61_cpu_notes/03_customasm.md)
 
 - [Ostatní]()
   - [Markdown](./90_ostatni/markdown.md)
