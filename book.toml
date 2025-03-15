@@ -90,8 +90,8 @@ after = ["cmdrun"]
 [preprocessor.embedify]
 after = ["cmdrun"]
 
-[preprocessor.footnote]
-after = ["cmdrun"]
+# [preprocessor.footnote]
+# after = ["cmdrun"]
 
 # [preprocessor.external-links] # breaks tables
 # renderer = ["html"]

@@ -34,11 +34,15 @@
     - [Wikipedie k testu](./50_sekvencni/zadani_test/{{"wiki"}}.md)
 {% endif %}
 
-- [CPU]()
+- [CPU (outdated)]()
   - [Úvod](./60_cpu/01_cpu-uvod.md)
   - [Návrh](./60_cpu/02_cpu-design.md)
   - [Stavba](./60_cpu/03_cpu-build.md)
   - [Programování](./60_cpu/04_cpu-programming.md)
+
+- [CPU (poznámky)]()
+  - [Poznámky z hodin](./61_cpu_notes/01_lecture-notes.md)
+  - [Jednoduché architektury (ISA)](./61_cpu_notes/02_simple-isa.md)
 
 - [Ostatní]()
   - [Markdown](./90_ostatni/markdown.md)

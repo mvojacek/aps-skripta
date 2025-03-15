@@ -1,0 +1,6 @@
+- [8080instructions.pdf](https://senzor.robotika.sk/zp/8080instructions.pdf)
+- [8080 Programmers Manual.pdf](https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf)
+- [MIPS_Instruction_Set.pdf](https://senzor.robotika.sk/zp/8080instructions.pdf)
+- [MIPS Programmers Guide](https://www.cs.unibo.it/~solmi/teaching/arch_2002-2003/AssemblyLanguageProgDoc.pdf)
+- [RISCV_CARD.pdf](https://www.cs.sfu.ca/~ashriram/Courses/CS295/assets/notebooks/RISCV/RISCV_CARD.pdf)
+- [riscv-unprivileged.pdf](https://lf-riscv.atlassian.net/wiki/spaces/HOME/pages/16154769/RISC-V+Technical+Specifications)
