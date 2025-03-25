@@ -86,4 +86,66 @@ Výpisky:
 
 ## 11.3.2025: Zrušeno
 
-## 18.3.2025: Návrh ISA, mapování strojového kódu
+## 25.3.2025: Návrh ISA, Obecnost procesoru
+
+- Adresní režimy (pokračování), implementace (všech) adresních režimů v datové cestě
+  - `mov R1, [R1 + R2*d + c]` - přístup do pole struktur (C `struct`) ke konkrétní položce (`field`) struktury. Bežné na CISC
+    - ořezané varianty toho adresního režimu, e.g. pouze `+c`
+  - postinkrement, predekrement - ekvivalent `a = arr[i++]` a `a = arr[--i]` v C. Implementováno v HW paralelně s paměťovým přístupem. Nutné pro hardwarovoou podporu zásobníku, tedy instrukcí `push` a `pop`
+  - x86 instrukce `lea`, a jak se komplexní adresní režim na x86 "zneužívá" k bežným výpočtům (které s adresou nebo pamětí nemusí mít nic společného)
+- Adresní režimy jsou vlastností datové cesty procesoru, každý parametr každé instrukce podporuje některé adresní režimy, ne nutně všechny
+- Operace, které musí jít nutně provést na obecném procesoru (ne nutně pomocí jediné instrukce):
+  - [ALU] provést ALU operaci na libovolných datech v CPU (registry, paměť, immediate v instrukcích neboli konstanty v kódu)
+  - [move] přesun (kopírování) dat mezi libovolnými registry
+  - [load/store] přesun dat do/z paměti z/do libovolného registru na vypočtenou adresu (tj. adresu z e.g. registru)
+    - můžou být též implementovány jako varianty move instrukce, pokud v ní je místo na pár bitů na rozlišení - mají totiž podobnou sadu operandů
+  - [load imm] načtení konstanty (tj. dat z instrukcí) do libovolného registru
+  - [jump] skok (změna PC) na vypočtenou adresu (tj. e.g. z registru)
+    - může být např. vynechán pokud lze realizovat move instrukcí
+  - [cond] podmíněné spuštění (příští) instrukce
+    - může být realizováno jako podmíněný skok (bežné), ale nemusí - je to ekvivalentní přeskočení příští instrukce, pokud příští instrukce je jump
+    - přeskočení příští instrukce může být komplikované, pokud jsou instrukce variabilní délky - potom pomáhá mít v instrukci její délku
+    - podmínky: lt, gt, eq, zero, sign (negative), overflow
+      - konkrétní realizace není specifikovaná
+      - typicky každý flag výstup z ALU by měl jít použít jako podmínka
+      - operandy pro porovnání nebo test můžou být specifikovány v instrukci, nebo může být použit výsledek z předchozí (např. ALU) operace
+      - je potřeba umět vyhodnotit podmínku i její opak
+        - e.g. opak od $A \gt B$ je $A \le B$
+        - nemusí to být implementováno v HW, protože v assembleru půjde podmínky invertovat tím, že podmíněným skokem "přeskočíme jump instrukci" na kód pro opačnou podmínku
+        - alu záporné varianty instrukcí (jz -> jnz, jeq -> jne) zjednodušují při programování v assembleru uvažování o podmínkách. Instrukce lze realizovat též jako pseudo-instrukce v assembleru
+  - [io] musí jít komunikovat s input a output zařízeními - různé způsoby, je jedno jak
+- Ne vsechny tyto operace musí být na procesoru přímo proveditelné v jedné instrukci - stačí když lze provést pomocí několika instrukcí (tuto skutečnost budete na vašem CPU muset demonstrovat)
+  - Je tedy možné některé instrukce "omezit" (zafixovat některé z jejich operandů, nebo některé instrukce pro některé adresní režimy vůbec neimplementovat), pokud lze toto omezení "zrušit" použitím posloupnosti jiných instrukcí procesoru
+  - Např:
+    - ALU instrukce nemusí umět brát immediate, pokud umí brát registr, a do registru lze jinak načíst immediate
+      - Opačně (např. v RISC-V): Nemusíme mít instrukci typu load imm, pokud umíme ALU operaci s nulovým registrem a immediate
+    - Práci s paměti nemusí jít provést nad libovolnými registry, pokud umíme mezi registry hodnoty přesouvat
+      - Opačně (ale nepraktické): Nemusíme umět přesouvat mezi registry, pokud umíme libovolný registr uložit+načíst z paměti
+    - Jump může jít realizovat jako move do (v tomto případě nutně uživatelského) registru PC.
+      - Pořád je potřeba nějak řešit podmínky. Příklad pro tuto variantu může být např. instrukce, která podle podmínky zabrání spuštění příští move instrukce (tedy i jumpu, a jump je schopen přeskočit libovolné instrukce => naplnili jsme požadavek "podmíněné spuštění instrukce").
+    - Pokud v instrukci není dost bitů pro všechny nutné operandy, lze instrukci rozdělit na dvě instrukce "přípavu" a "dokončení" operace. Procesor si parametry z přípravy zapamatuje do speciálních registrů a použije je při dokončení
+      - Např. načíst 16bit immediate, pokud instrukce jsou 16bitové, lze realizovat dvěmi instrukcemi: load high 8 bits, load low 8 bits
+    - Pokud datová a instrukční paměť jsou ta samá paměť (u některých CPU je a u některých není), není load imm vůbec potřeba - načíst konstantu lze jednoduše pomocí move instrukcí se správnou (předem známou) adresou
+  - Je vhdoné zvolit nějaký kompromis mezi:
+    - Počtem instrukcí
+    - Komplexitou implementace instrukcí v HW
+    - Množstvím a velikostí operandů s ohledem na zvolenou velikost instrukce
+    - Přidanou komplexitou při programování v assembleru (přesouvání dat, atypické skokové struktury, etc.)
+    - Počet nutných instrukcí pro bežně používané operace (klasické C konstrukty jako for loopy, if-else, práce s array a strukturami, etc.)
+      - Ovlivňuje rychlost procesoru i velikost kódu
+- Mapování instrukcí do strojového kódu
+  - Nejjednodušší způsob - fixně velký (e.g. pro procesor se 14 instrukcemi minimálně 4 bity) tzv. "opcode" (operační kód) na začátku instrukce, který přesně identifikuje typ instrukce
+  - (výhoda) Dekódování instrukci (zjištění ze strojového kódu, o kterou instrukci se jedná) lze pak v HW realizovat jednoduše dekodérem
+  - (nevýhoda) Každá instrukce má k dispozici stejný počet bitů na operandy - některým instrukcím to nemusí stačit, pro některé to může být zbytečně moc
+    - Instrukce, kterým to nestačí, se musí ořezat, rozdělit na dvě instrukce, nebo začít zabírat dvě adresy (variabilní délka instrukcí přidává komplexitu), nebo se musí zvětšit všechny instrukce (ještě víc wasted místa v ostatních instrukcích)
+  - Do nevyužitého prostoru v instrukcích se ale můžou přidat bity upřesňující variantu/režim/chování instrukce, např:
+    - load a store a move můžou být pouze varianty jedné univerzální move instrukce - berou totiž podobné operandy - jednodušší dekódování+datová cesta
+    - jump instrukce může obsahovat 1 bit pro každou možnou podmínku - pokud je 1, skočí se pouze, pokud je podmínka splňená. Samé nuly => nepodmíněný skok
+    - V případě chytrého použití variant instrukcí počet různých instrukcí (a případně nutná šířka opcode) rapidně klesá - jednodušší implementace
+  - Jiný způsob - VLSM - operační kód je pro každou instrukcí různě dlouhý, ale mezi sebou se nepřekrývají
+    - Instrukce s velkým počtem operandů mají krátký opcode - takových může být málo
+    - Instrukce s malým počtem operandů mají delší opcode - může jich být víc
+    - Stejný princip jako Variable Length Subnet Mask v sítích
+    - Pro 8bit instrukce (bez variabilní délky instrukcí) v podstatě nutnost
+    - Na příští hodině detaily
+- DÚ (TBA): Sestavit si vlastní ISA splňující tyto kritéria s nějakou zajímavostí, inspirovat se dá na stránce s jednoduchými ISA.
