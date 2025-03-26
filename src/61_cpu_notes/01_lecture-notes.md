@@ -133,6 +133,7 @@ Výpisky:
     - Přidanou komplexitou při programování v assembleru (přesouvání dat, atypické skokové struktury, etc.)
     - Počet nutných instrukcí pro bežně používané operace (klasické C konstrukty jako for loopy, if-else, práce s array a strukturami, etc.)
       - Ovlivňuje rychlost procesoru i velikost kódu
+- *konec středeční skupiny*
 - Mapování instrukcí do strojového kódu
   - Nejjednodušší způsob - fixně velký (e.g. pro procesor se 14 instrukcemi minimálně 4 bity) tzv. "opcode" (operační kód) na začátku instrukce, který přesně identifikuje typ instrukce
   - (výhoda) Dekódování instrukci (zjištění ze strojového kódu, o kterou instrukci se jedná) lze pak v HW realizovat jednoduše dekodérem
