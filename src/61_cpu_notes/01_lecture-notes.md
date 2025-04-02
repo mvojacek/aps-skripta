@@ -150,3 +150,58 @@ Výpisky:
     - Pro 8bit instrukce (bez variabilní délky instrukcí) v podstatě nutnost
     - Na příští hodině detaily
 - DÚ (TBA): Sestavit si vlastní ISA splňující tyto kritéria s nějakou zajímavostí, inspirovat se dá na stránce s jednoduchými ISA.
+
+## 1.4.2025: Návrh blokového diagramu CPU
+
+Konkrétně návrh blokohového diagramu jednocyklového procesoru podle zvolené instrukční sady.
+
+Postup návrhu:
+
+- Projít si všechny instrukce, jejich chování, uvědomit si, s jakými daty pracují, jaké jednotky (ALU, etc.) používají, a kam ukládají výsledek.
+  - *Pro každou kombinaci chování musí procesorem existovat fyzické cesty, kterými data mohou téct, aby provedli danou operaci, jinak procesor nebude jednocyklový*
+- Umístit do blokového designu všechny moduly, které budou v procesoru potřeba, označit jejich vstupy a výstupy, včetně kontrolních signálů a clocku
+  - GPR (general purpose register file), s nějakým počtem zapisovacích a čtecích portů, podle potřeb ISA
+  - ALU
+  - Datovou paměť
+  - Instrukční paměť, PC registr, CU (control unit, kontrolní jednotku)
+    - Separátní instrukční a datovou paměť máme, aby šly paměťové instrukce načíst a provést v jediném cyklu. V případě sjednocené paměti bychom museli v jednom cyklu načíst instrukci, a pak až v dalším cyklu provést paměťovou operaci
+- Na každém vstupu každého modulu budeme možná potřebovat pro různé instrukce přivést jedny z více různých dat (z různých míst v procesoru)
+  - Tento problém výběru N z 1 můžeme vyřešit přidáním kontrolního signálů, který řídí, která z hodnot se vybere, a komponenty, která podle tohoto signálu umí výběr provést
+  - Není problém tohle udělat pro každý ze vstupů, i pokud nakonec zjistíme, že tam byla potřeba pouze jední hodnota, a výběr tedy nebylo potřeba řešit - stačí výběrový řídící signál zafixovat na konstantní hodnotu (všechny syntézní nástroje toto vyoptimalizují na přímé spojení drátů).
+- Pro každou instrukci projdeme tok dat, který zkrz CPU vyžaduje, a přidáme do možného výběru daných vstupů dráty s daty, které tam instrukce potřebuje.
+  - ie. chceme-li kopírovat z libovolného registru do libovolného registru - musí jít přivést čtecí výstup z GPR do zapisovacího vstupu GPR
+- Je výhodné při kreslení diagramu používat "tunely" / "labely drátů" - pokud dva dráty na různých místech stejně pojmenujete, chápou se jako spojené.
+  - Zredukujete tím šum z množství drátů, a zároveň tím diagram lépe zdokumentujete, protože každý drát smysluplně pojmenujete
+- U každé komponenty dbejte na označení a pojmenování všech kontrolních signálů. Tyto signály nejsou potřeba nikam připojovat, předpokladá se, že je generuje CU.
+- Každá sekvenční komponenta musí mít symbol clock inputu, není potřeba ho nikam zapojovat, všechny clocky se chápou spojené
+- Pozor na to, že každá instrukce (vyjma úspěšných skoků) musí implicitně zvětšit PC, aby se v příštím cyklu spustila následující instrukce. Bez této funkcionality bude procesor opakovaně spouštět pouze první instrukci, nespustí tedy program, tedy není programovatelný, tedy to **není procesor**!
+- Zapojení IO instrukcí silně závisí na jejich konkrétní variantě, nicméně vždy platí, že budou vysílat nějaké hodnoty mimo procesor, nebo je přijímat z vnějšku. To můžeme označit např. použitím kraje papíru jako hranice modulu procesoru, nebo pomocí symbolu $\vcenter{\rightarrow}\!\boxtimes$, kterým označíme fyzický pin procesoru jako reálného integrovaného obvodu (ie. drát co z něj vede ven)
+  - Kde v CPU se tyto odchozí hodnoty berou, nebo kam se mají příchozí hodnoty v CPU uložit, je zřejmé z instrukce, a podle toho je potřeba upravit datovou cestu
+  - Jednobitové statusové IO signály se vypočítají v CU (jde o kontrolní signály) pokud jde o výstupy, nebo slouží jako vstupy do CU (jde o stavové/statusové signály) pokud jde o vstupy. Zejména
+  - e.g. `out_valid`, který navenek signalizuje, že CPU chce odeslat (validní) hodnotu
+  - e.g. `in_valid`, který procesoru zvenku udává, že je k dispozici hodnota, kterou input instrukce může přečíst
+  - e.g. `in_acknowledge`, kterým procesor indikuje, že hodnotu na vstupu zpracoval a odesílatel ji může přestat vysílat
+- Žádný modul nelze v jednom cyklu použít na dva různé účely zároveň.
+- Statusové výstupy z ALU (a klidně další) je potřeba uložit, aby s nimi mohly příští instrukce pracovat. Těmto hodnotám a registru kam je uložíme, se říká příznaky (flags)
+  - Může být jeden N-bit flag registr, nebo N jedno-bitových registrů (pro N flagů), není v tom rozdíl. Zvolte, s čím se vám bude v kontextu vybraných instrukcí lépe pracovat
+  - Ne všechny instrukce způsobí uložení flagů, obecně by se měly uložit pouze ty flagy, které nebývají v tomto cyklu smysluplné hodnoty. Např. při operaci xor se nastaví zero a sign ale ne carry, protože neexistuje smysluplná hodnota carry ve výsledku operace xor. Pro zjednodušení může např. ALU operace přepsat všechny flagy, ale ostatní instrukce ne.
+    - Nezáleží na podobě konkrétní implementace, ale záleží na tom, aby bylo zvolené chování **zdokumentované**. V momentě, kdy je chování zdokumentované, nemůže být "špatně" - je to to co jste vy jako návrhář zvolili, a je zodpovědností programátora se tomu přizpůsobit. Procesor ale musí stále být obecný.
+  - Flagy se používají na různých místech, např. CU je potřebuje pro rozhodnutí o podmínkách skoků, a ALU bude svůj CIN brát také z flagů. Nezapomeňte tyto skutečnosti v diagramu naznačit - pokud CU nemá vstup "flags", který má hodnotu z flag registru, nemá podle čeho o skoku rozhodnout!
+- Kontrolní jednotka má jako vstup aktuální instrukci, a jako výstup případné dekódované immediate hodnoty. Ale má i spoustu dalších vstupů a výstupů z následujících dvou kategorií:
+  - Kontrolní signály (výstupy) - řídí konfiguraci datové cesty. Nemusíte je u CU uvádět jako výstupy explicitně, stačí naznačit pár výstupů a nadepsat "control signals" nebo podobně. Předpokládá se, že všechny pojmenované *non-driven* dráty (bez nějakého zdroje signálu) jsou kontrolními signály a generuje je právě CU.
+  - Stavové (status) signály (vstupy) - další informace o stavu datové cesty, které CU potřebuje k rozhodování. Sem patří např. flagy, `in_valid` z IO, případný signál `done` z např. sekvenční násobičky v ALU, na kterou se musí počkat, etc.
+- Kontrolní jednotka umí dekódovat instrukci, můžeme jí pověřit kromě generování signálů i dalšími vypočetními úkoly, které s dekódování instrukce souvisí, např.:
+  - Extrakce immediate argumentů z instrukce spravným způsobem (dle typu instrukce)
+  - Vypočítání nové hodnoty flagů, pokud je potřeba flagy instrukcí přímo upravit (tj. ne nepřímo výpočtem z ALU)
+- Každý vodič má vyznačenou **velikost** - pokud má CPU 16-bit data, bude velká část vodičů 16bit, avšak ne všechny. Např. vstup a výstup flag registru, immediate hodnoty z instrukce, a další budou mít jinou velikost
+  - **Nelze spojit vodiče dvou různých šířek** - taková operace je nejasná, nespecifikuje, co se zbylými dráty. Je potřeba provést konverzi.
+  - Konverze mají několik typů podle hodnot, nad kterými pracují. Rozlišujeme *zvětšení* / *zmenšení* podle velikosti, a *signed* / *unsigned* podle typu dat na drátě.
+  - Zvětšení:
+    - Unsigned: hodnotu interpretujeme jako číslo bez znaménka, stačí tedy na MSB straně hodnotu rozšířit nulami (Zero Extend), a hodnota zůstane zachovaná.
+    - Signed: hodnotu interpretujeme jako číslo *se znaménkem v dvojkovém doplňku*, tj. při rozšíření musí zůstat znaménko i hodnota čísla zachovaná. Nestačí rozšířit nulami - to by vždy vytvořilo kladné číslo, ještě ke všemu jiné hodnoty. Na první pohled se to zdá komplikované, ale tato konverze se dá implementovat jednoduše: rozšíříme hodnotu na MSB straně čísla nikoliv nulami, ale hodnotou znaménka čísla (tedy hodnotě MSB). Tedy z čísla `SXXXXXXX` uděláme `SSSSSSSSSXXXXXXX`, kde `S` je sign bit čísla a `XXXXXXX` je zbytek čísla. Např. rozšíření 4-bit hodnoty $-2$ = `1110` na 8-bit vytvoří hodnotu `11111110`, což je v 8-bit dvojkovém doplňku pořád $-2$. Tento postup funguje i pro kladné čísla, kde `S=0`. Tomuto postupu se říká Sign Extend.
+  - Zmenšení:
+    - Unsigned: Jednoduše zahodíme MSB bity. Pokud některý z nich byl 1 (lze spočítat hradlem OR pokud je to potřeba), znamená to overflow - hodnota nebude stejná jako vstup, a nelze s tím nic dělat. Výsledná hodnota bude mít hodnotu $a \bmod 2^{N}$, kde $a$ je vstupní hodnota a $N$ je počet bitů výsledku.
+    - Signed: Chceme zachovat znaménko čísla. Oddělíme tedy sign bit `S` od zbytku čísla. Zbytek čísla zmenšíme postupem pro unsigned číslo na $N-1$ bitů, a před výsledek vrátíme sign bit `S`, čímž cískáme `N`-bitové číslo. Výsledek bude mít hodnotu $\t{sgn}(a) \cdot (\lvert a \rvert \bmod 2^{N-1})$.
+
+## 8.4.2025: Mapování instrukcí do strojového kódu
+
