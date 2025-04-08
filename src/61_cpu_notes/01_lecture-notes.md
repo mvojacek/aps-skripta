@@ -205,3 +205,61 @@ Postup návrhu:
 
 ## 8.4.2025: Mapování instrukcí do strojového kódu
 
+- První krok - projít instrukční sadu, určit velikosti všech operandů podle hodnot, které se do nich musí vejít
+  - Tyto velikosti per instrukce sečíst -> celková velikost operandů instrukce
+- Metoda "fixně velký opcode": opcode bude mít fixní počet bitů tak, aby měl dost hodnot pro celkový počet instrukcí
+  - Identifikovat instrukci s největší celkovou velikostí operandu - takto velký bude operand pro všechny instrukce
+  - Podle počtu instrukcí (s případnou budoucí rezervou) zvolit velikost opcode
+  - Formát instrukce: `<opcode><operands>` - pro všechny instrukce stejné velikosti (jak jsem je zvolili v předchozích dvou krocích)
+  - Menší instrukce budou obsahovat nevyužité bity (neefektivní) - doporučuji je zadefinovat jako `0`
+  - Lehké přidávání instrukcí, a přidávání operandů do instrukcí, ve kterých je místo
+  - Možnost "sloučit" instrukce s podobnými operandy do jedné a přidat operand, který mezi nimi rozhoduje (stejný princip jako u obecné "alu instrukce", která má ALU opcode jako jeden z operandů). E.g. load a store můžou být jedna load/store instrukce, kde jednobitový operand rozhoduje o směru přenosu
+    - Tím se dá zredukovat počet instrukcí a případně velikost opcode - plus se víc efektivně využívá prostor na operandy
+  - Nevýhoda - větší instrukce, počet bitů nejspíš nebude dělitelný 8 (horší práce se strojovým kódem na konvenčních počítačích, e.g. při psaní compileru)
+    - Možnost zaokrouhlit velikost instrukce nahoru na násobek 8 - "padding" bity zadefinujte jako `0`. Víc neefektivní, ale "normálnější"
+- Metoda "variabilně velký opcode" pomocí VLSM (Variable-Length Subnet Mask), [tutoriál](https://www.cs.vsb.cz/grygarek/SPS/lect/VLSM/VLSM.html)
+  - Seřadit instrukce od největšího operandu po nejmenší
+  - Identifikovat maximální velikost operandu, a počet instrukcí s touto velikostí (běžně bude jedna, někdy dvě)
+  - Zvolit *minimální* velikost opcode tak, aby se do něj vešlo *počet největších instrukcí + 1* hodnot. Pokud je jenom jedna, stačí jediný bit.
+  - Velikost instrukce: *minimální velikost opcode* + *velikost největšího operandu*. Většinou tedy *velikost největšího operandu + 1*.
+  - Formát instrukce: `<opcode><operands>` ALE:
+    - operands jsou vždy na konci instrukce a přesně tak velké, jak je potřeba (pro různé instrukce různě)
+    - opcode vyplní zbytek instrukce - klidně celou instrukci, pokud nemá žádné operandy
+    - variabilně velký opcode tvoří jakýsi "prefix" s určitou délkou, který unikátně identifikuje tuto instrukci
+    - zbytek instrukce po tomto prefixu jsou operands, které se jakoby předávájí této instrukci pro zpracování
+    - Tyto části lze přirovnat k částem adresy sítě v routovací tabulce (PSI): opcode je adresa sítě, operands je adresa zařízení uvnitř sítě
+    - Velikost opcode odpovídá velikosti síťového prefixu v zápisu takové adresy: 10.0.1.2/8 má 8bit prefix (síť, *opcode*) a zbytek 24b adresu (zařízení, *operands*)
+    - Největší instrukce bude nejspíš `/1`, někdy `/2`, pokud jich je více
+  - Vyplňujeme tabulku ve formátu `<opcode><operands>`, kde sloupce jsou bity instrukce a řádky jsou jednotlivé instrukce
+  - Od největší instrukce postupuje postupně a pro každou instrukci:
+    - Na novém řádku vyznačíme její název, ve sloupcích bitů instrukce vyznačíme (od LSB) všechny operandy instrukce
+      - K názvu doplníme i asm podobu instrukce a dokumentaci chování instrukce (pokud je plbá dokumentace jinde, stačí stručně)
+      - Tyto bity se předpokládá že můžou nabýt libovolných (legálních v rámci požadavků konkrétní instrukce) hodnot
+    - Zbylé bity (směrem od MSB) tvoří opcode. Opcode každé instrukce je konstanta, podle které musí CU být schopna instrukci jednoznačně poznat (stejně jako router musí jednoznačně vědět, do které sítě má paket nasměrovat)
+      - Jako opcode můžeme zvolit libovolné bity tak, aby *nenastala kolize s žádnou jinou instrukcí, která už v tabulce je*.
+      - Doporučuji začínat od nuly a pak binárně počítat nahoru - budete mít v mapování a v opcodech větší pořádek, a instrukce budou seřazené vzestupně podle opcodu
+      - Podmínka zabránění kolizím: Pro *libovolný pár instrukcí* musí platit:
+        - Vezmeme **menší** z délek jejich prefixů (tj. pokud se jedná o instrukce s prefixem délek `/3` a `/5`, bereme `3`) a nazveme hodnotu `N`
+        - Pokud porovnáme prvních `N` bitů obou instrukcí, **nesmí se rovnat** (musí se lišit alespoň v jednom bitu)
+          - V opačném případě je menší instrukce "subnet" té větší, tj. tu menší jste namapovali přes *už existující* hodnoty strojového kódu té větší! CU neumí mezi těmito instrukcemi rozlišit!
+        - Bity pro opcode vybírejte v souladu s touto podmínkou, zároveň doporučuji průběžně podmínku kontrolovat, pokud si nejste mapováním jistí.
+    - Více informací najdete v libovolném návodě na VLSM, e.g. [tutoriál](https://www.cs.vsb.cz/grygarek/SPS/lect/VLSM/VLSM.html)
+    - Tato metoda předpokládá, že znáte celou sadu instrukcí předem, a vytvoří velmi efektivní mapování s minimálním možným počtem bitů, a nejspíše v něm zůstane spousta dalšího místa na spoustu dalších malých instrukcí.
+      - Stejně jako u VLSM se může stát, že pokud později budete chtít přidat velkou instrukci, nenajdete na ní místo. To lze vyřešit přemapováním instrukcí od začátku (címž to může vyjít jinak a lépe) nebo přidáním dalšího bitu před začátek instrukce, čímž se zdvojnásobí prostor v instrukci, a vaše nová instrukce se tam pak garantovaně vejde.
+    - Vlivem toho, jak mapování funguje, skončí podobné instrukce (load, store, etc.) s podobným layoutem operandů a podobným opcodem (možná se budou lišit o jediný bit!). Máme tedy "zadarmo" výsledek techniky "slučování instrukcí", nemusíme pro to nic extra dělat.
+- Obecné tipy pro mapování instrukcí:
+  - Mapování provádějte jako tabulku v excelu, vytvořte si podmíněné formátování buněk s bity tak, aby e.g. 0 byla červená a 1 zelená.
+    - Do této tabulky můžete zároveň vložit dokumentaci k instrukcím - bude pak úplně postačovat jako příručka k instrukční sadě procesoru
+    - Spolu s blokovým diagramem datové cesty CPU, a stručným popisem sady registrů, pamětí, velikostí, etc. tvoří *kompletní dokumentaci k CPU*. Dokumentace je nedílnou součástí závěrečného projektu.
+  - Snažte se, aby podobné druhy argumentů (destination register, 8bit immediate, flags, etc...) byly v co nejvíce instrukcích na tom samém místě - např. pokud je imm8 vždy na konci instrukci, stačí z CU vyvést těchto 8 bitů jako immediate, nemusíte pro extrakci tohoto immedate z instrukce vůbec řešit, o jakou instrukci jde. Pokud bude potřeba, použije se, a bude správně, jinak se nepoužije.
+- Implementace dekódování instrukce jako obvodu:
+  - Chceme z efektivně zakódované instrukce získat informaci o tom, o kterou instrukci se jedná, a to v kódování "1 z N".
+    - To znamená uvnitř CU chceme mít 1 vodič pro každou instrukci, a aby daný vodič byl true pouze a pouze pokud spouštíme tuto danou instrukci (tj. všechny ostatní musí být false).
+  - Varianta "fixní velikost opcode" - dekodér.
+  - Varianta "variabilní velikost obcode" - *parallel decision tree*:
+    - Pro každou instrukci potřebujete ověřit že nějakých X počátečních bitů instrukce má nějakou konstantní hodnotu
+    - Tak *pro každou instrukci* vytáhneme správný počet bitů z instrukce, a provedeme porovnání s konstantou
+      - Porovnání s konstantou může být optimalizovaná varianta 1 více vstupový AND se znegovanými vstupy (jako mintermy uvnitř dekodéru!)
+      - Nebo prostě komparátor a konstanta (pozor, ta je v hexadecimální soustavě, a pozor na správné velikosti!)
+    - Můžete pro účely optimalizace zapojení recyklovat některé vodiče, např. definovat instrukci na základě toho, že to *není jiná instrukce* AND *nějaké bity z instrukce* - pouze tam, kde to zjednoduší obvod.
+- Zbytek CU potom má jediný úkol: Každý "instrukční" signál, který jsme vygenerovali dekódováním instrukce, "rozsvítí" přesně ty sadu kontrolních vodičů, které jsou potřeba pro provedení instrukce. Protože všechny ostatní instrukční signály budou "mlčet", můžeme požadavky na kontrolní signály od všech instrukčních vodičů jednoduše ORnout.
