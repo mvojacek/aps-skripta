@@ -261,5 +261,81 @@ Postup návrhu:
     - Tak *pro každou instrukci* vytáhneme správný počet bitů z instrukce, a provedeme porovnání s konstantou
       - Porovnání s konstantou může být optimalizovaná varianta 1 více vstupový AND se znegovanými vstupy (jako mintermy uvnitř dekodéru!)
       - Nebo prostě komparátor a konstanta (pozor, ta je v hexadecimální soustavě, a pozor na správné velikosti!)
+      - Na optimalitě tohoto obvodu nezáleží, na zjednodušování obvodu máme nástroje. Jde hlavně o to popsat *chování* obvodu co nejsrozumitelnějším, přehledným a udržitelným způsobem!
     - Můžete pro účely optimalizace zapojení recyklovat některé vodiče, např. definovat instrukci na základě toho, že to *není jiná instrukce* AND *nějaké bity z instrukce* - pouze tam, kde to zjednoduší obvod.
 - Zbytek CU potom má jediný úkol: Každý "instrukční" signál, který jsme vygenerovali dekódováním instrukce, "rozsvítí" přesně ty sadu kontrolních vodičů, které jsou potřeba pro provedení instrukce. Protože všechny ostatní instrukční signály budou "mlčet", můžeme požadavky na kontrolní signály od všech instrukčních vodičů jednoduše ORnout.
+
+## 15.4.2025: Zapojení kontrolní jednotky, Vstupy a výstupy CPU
+
+- Dekódování instrukcí viz minulý týden
+- Jakmile máme dekódovaný typ instrukce ve formátu 1 z N, musíme z této reprezentace vypočítat všechny kontrolní signály, tj:
+  - Jednobitové kontrolní signály (všechny WE, dvouvstupové muxy, ovládání IO, etc.)
+    - Předpokládáme výchozí stav kontrolního signálu $0$ (pokud potřebujete $1$, invertuje kontrolní signál a postupujte stejně)
+    - Poté stačí aby ty dekódované instrukční signály, které daný kontrolní signál potřebují v nevýchozím stavu, ho přinutili do žádoucího stavu
+    - Stačí tedy ORnout všechny "požadavky" na nevýchozí hodnotu
+    - Případně můžete na kontrolním signálů provádět další výpočty, pokud je to potřeba (e.g. podmínky jumpu)
+  - Vícebitové kontrolní signály (výber registrů v GPR, selector signály větších multiplexorů)
+    - Zde chceme na výstup kontrolního signálu přivést jednu z N hodnot (některé bity instrukce, jiné bity instrukce, konstanta, hodnota z registru nebo IO, etc.)
+    - Mezi všemi variantami rozhodujeme multiplexorem - nyní stačí spočítat selector tohoto multiplexoru, typicky 1-3 bity
+    - Každý z bitů selektoru považujeme za samostatný kontrolní signál - použijeme metodu pro jednobitové kontrolní signály tak, aby každá instrukce navodila přesně tu kombinaci bitů selektoru tak, aby multiplexor vybral příslušnou hodnotu.
+      - Existují i alternativy, např. postavit vnitřek multiplexoru bez dekodéru - v předchozím bodě de facto implementujeme encoder, jenom abysme pak hodnotu poslali do multiplexeru, tedy do dekodéru uvnitř něj. Tuto zbytečnou encoder-decoder cestu můžete vynechat tím, že si postavíte vlastní MUX, který přímo bere selector v podobě $1 z N$. Musíte pak ale zaručit, že neporušíte kódování $1 z N$ - jinak dostanete na výstupu multiplexoru divné hodnoty.
+- Vstupy a výstupy procesoru
+  - Výběr z IO komponent implementovaných v Logisimu - procesor musi mít "zajímavé" a "uživatelsky" přívětivé IO na plný počet bodů
+  - Doopravdy: Vstupy a výstupy existují mimo procesor, a jsou k němu připojené pomocí fyzických pinů procesoru
+  - Zjednodušení pro nás: IO stavíme uvnitř procesoru, na stejné úrovní, aby bylo jednodušší procesor debuggovat, ALE:
+  - IO musí být na jednom místě pohromadě a být k procesoru připojené pomocí tunelů, jako kdyby CPU bylo samostatný modul (vizuálně).
+    - Této sekci obvodu o velikosti jedné obrazovky říkáme "**Control room**", a musí v ní být kompaktním a přehledným způsobem vizualizované:
+      - Všechny IO a jejich ovládací prvky (již zmíněno)
+      - Hodnoty všech registrů CPU, včetně interních! (stačí pod sebou tunely a hexa nebo decimální probes - tunel tvoří popisek a probe hodnotu)
+      - Indikace aktuálně spouštené instrukce - buď číslo *a k němu legenda* nebo sada $1 z N$ popsaných LED (signály k nim už máte v CU)
+      - Důležité operandy: Pro ALU instrukci alu opcode, pro mov instrukci číslo src a dst registru, etc.
+      - Hodnoty flagů - stejným způsobem
+      - Zkrátka: všechno, co je potřeba vedět při debuggování CPU, aby z toho bylo poznat, co CPU chce udělat, a ověřit, že to skutečně udělalo - aby šlo jednoduše zkontrolovat, že daná instrukce funguje.
+      - Toto je **povinné**, pokud nebude control room v uspokojivém stavu nebo bude úplně chybět, nebudu CPU opravovat!
+        - Berte to tak, že to děláte i pro sebe - lépe se vám budou hledat chyby a bude si jistější tím, že CPU funguje.
+  - Vstupy (plusy značí "hodnotu" IO co se týče přivětivosti - pointa je mít něco realistického, použitelného a originálního)
+    - Sada tlačítek, switchů +
+    - Joystick ++
+    - Keyboard +++
+      - bufferuje znaky, je potřeba klávesnici při přečtení znaku požádat o jeho odstanění z fronty
+    - Slider ++
+    - "Magická hodnota od uživatele", tj. input pin
+      - vhodné např. pokud plánujete ve svém programu provádět výpočty a potřebujete uživatelské číslo
+    - Sekvenční obvod pro zadávání dat tlačítky, např. keypad na pin apod. ++++
+      - zde si můžete vymyslet cokoliv a použít jakoukoliv kombinaci vstupních komponent
+    - Generátor náhodných čísel +
+    - ...další (ptejte se!)
+  - Výstupy
+    - Sada LED +
+    - LED Bar +
+    - Sada RGB LED +
+    - LED matrix ++
+      - vhodné ukládat aktuální zobrazované data v externích registrech a nechat CPU registry adresovat - jako by tvořily paměť/GPR
+      - pokud chcete, aby obraz zůstal konstantní mezitím co CPU upravuje registry - druhá řada registrů a "překlopení" dat do nich naráz - tzv. "Double buffering"
+    - 7-segment displej (s logisimovým BCD-to-7segment +) (s vlastním ++)
+      - vhodné pokud máte ALU, které umí konverzi na BCD! Jinak můžete zobrazovat hodnoty v hexu...
+    - Hex displej +
+    - RGB video +++
+      - Obsahuje interní framebuffer
+    - TTY +++
+      - vypisuje písmena. V kombinaci s klávesnicí tvoří kompletní terminál, na kterém lze implementovat hello world, vlastní shell, etc.
+    - Buzzer ++ (s timerem +++)
+      - nastavitelná frekvence a hlasitost
+      - lze přidat timer, i.e. instrukce zapne buzzer na N clocků (pak se buzzer sám vypne), jednoduchý sekvenční obvod
+        - stav timeru lze číst v CPU (hodnota a flag zero)
+      - v kombinaci s klávesnicí lze postavit klávesy, nebo dokonce tracker - e.g. řádek "c7d5e3<enter>" zahraje noty C-D-E na 5-7-3 taktů.
+    - "Magický output pin" - prefeuji nějaký z displejů
+  - Alespoň nějaké IO je povinné!
+- Blocking vs. nonblocking IO
+  - Někdy IO operace není připravená, zatím nelze provést, nebo trvá určitý čas. Pak se implementace dělí na (platí i o softwaru):
+    - e.g. Klávesnice nemá teď žádný znak, který by nám poslala; síťová karta už odesílá něco jiného a je busy, ...
+    - Blocking - instrukce/funkce/etc. zastaví procesor/thread/etc.
+      - Je to nutné implementovat, e.g. zastavit procesor dokud nenastane podmínka - ale nesmíme zastavit clock, to nejde.
+      - Co když po nějaké době už hodnotu nechceme, protože uplynulo moc času? Nejde udělat nic, protože CPU neběží, leda že by mělo nějaky hardwarový timer s timeoutem.
+      - Většina operací musí být non-blocking - představte si hru, která zamrzne pokaždé, když nic nedržíte, protože čeká na input.
+    - Non-blocking - instrukce se vždy provede a pokračuje dál, nehledě na úspěch - tzn. může selhat
+      - V případě selhání (není zmáčknutá klávesa, etc.) má alternativní definované chování - do registru dá nulu / náhodu / nezmění ho.
+      - Selhání je potřeba oznámit programátorovi! Buď nastavit flag, nebo speciální hodnota (která se nemůže přirozeně vygenerovat) do registru.
+      - Převést non-blocking na blocking IO je jednoduché - prostě jump zpátky na instrukci, dokud neuspěje!
+        - Ale můžeme i zkontrolovat jinou podmínku, e.g. čas, a nechat toho a pokračovat v programu
+    - Non-blocking je v 90% případů užitečnější než blocking!
