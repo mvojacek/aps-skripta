@@ -52,3 +52,11 @@ jmpi {addr: u16} => {
     asm { jmpri {reladdr} }
 }
 ```
+
+## Generování zobrazovacích instrukcí pro 16x16 LED matrix displej
+
+Studenti Maxim Sklenář a Joshua Remington v roce 2025 vytvořili webovou aplikaci, pomocí které lze generovat instrukční posloupnost, která zobrazí zadaný pixelart na 16x16 LED matrix displeji.
+
+[matrix.sklenar.org](https://matrix.sklenar.org/)
+
+<!-- Source code: [Gitlab]() -->
