@@ -5,10 +5,32 @@ Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už lé
 ```
 
 ```admonish info title="Verze Logisimu Evolution"
-Minimální požadovaná verze Logisimu Evolution v tomto předmětu je 3.9.0.
+Požadovaná verze Logisimu Evolution v tomto předmětu je **4.0.0**
 ```
 
-## Java 21
+## Instalace logisimu
+
+[Windows](https://github.com/logisim-evolution/logisim-evolution/releases/download/v4.0.0/logisim-evolution-4.0.0-aarch64.msi) (pozn: na školních PC je nutné provést manuální instalaci)
+
+[Mac x86](https://github.com/logisim-evolution/logisim-evolution/releases/download/v4.0.0/logisim-evolution-4.0.0-x86_64.dmg)
+
+[Mac arm](https://github.com/logisim-evolution/logisim-evolution/releases/download/v4.0.0/logisim-evolution-4.0.0-aarch64.dmg)
+
+Linux: níže
+
+### Linux
+
+Flatpak: `flatpak install com.github.reds.LogisimEvolution`
+
+Snap: `snap install snap install logisim-evolution`
+
+Případně další metody [zde](https://github.com/logisim-evolution/logisim-evolution?tab=readme-ov-file#download), nebo manuální instalace níže.
+
+## Manuální instalace
+
+
+
+### Java 21
 
 Logisim Evolution od verze 3.9.0 vyžaduje Javu 21.
 
