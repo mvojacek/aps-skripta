@@ -5,6 +5,7 @@
 \or:{+}
 \and:{\cdot}
 \bnot:{\overline{#1}}
+\n:{\overline{#1}}
 \slice:{#1_{[\textnormal{\small{#2}}]}}
 \c:{\begingroup\color{#1}#2\endgroup}
 \red:{\c{red}{#1}}

@@ -1,12 +1,20 @@
-# Instalace Logisimu Evolution
+# Instalace a nastevní Logisimu Evolution
 
 ```admonish important title="Máte správný Logisim?"
 Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už léta zastaralý, je nestabilní, nepodporuje moderní komponenty, a **projektové soubory s Logisimem Evolution nejsou kompatibilní!**
 ```
 
 ```admonish info title="Verze Logisimu Evolution"
-Požadovaná verze Logisimu Evolution v tomto předmětu je **4.0.0**
+Požadovaná verze Logisimu Evolution v tomto předmětu je **{{ logisim_version }}**
 ```
+
+## Logisim template
+
+Nastavte si v Logisimu template: `File > Preferences... > Template > User template > Select > Vybrat template file`
+
+Šablona je nastavená tak, aby komponenty odpovídaly doporučenému vizuálnímu stylu (narrow gates).
+
+[Download - template](../logisim/template.circ)
 
 ## Instalace logisimu
 
@@ -28,11 +36,11 @@ Případně další metody [zde](https://github.com/logisim-evolution/logisim-ev
 
 ## Manuální instalace
 
-
-
 ### Java 21
 
 Logisim Evolution od verze 3.9.0 vyžaduje Javu 21.
+
+
 
 ### Linux
 
@@ -79,10 +87,3 @@ yay -S logisim-evolution-bin
 
 Pokud preferujete instalaci ze zdrojáku, můžete vynechat `-bin`.
 
-## Logisim template
-
-Template si můžete nastavit v `File > Preferences... > Template > User template > Select > Vybrat template file`
-
-Všechny gaty jsou nastaveny na `narrow`, všechny plexery mají disabled output zero.
-
-[Download - template](../logisim/template.circ)

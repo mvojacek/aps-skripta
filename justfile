@@ -29,6 +29,9 @@ services:
 down:
     UID=$(id -u) GID=$(id -g) docker compose down
 
+fix-perms:
+    sudo chown -R $(id -u):$(id -g) .
+
 DOCKER_IMAGE := "ghcr.io/mvojacek/mdbook"
 
 list-tags:

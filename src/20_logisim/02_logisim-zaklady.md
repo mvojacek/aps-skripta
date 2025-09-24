@@ -7,7 +7,7 @@ Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už lé
 ```
 
 ```admonish info title="Verze Logisimu Evolution"
-Požadovaná verze Logisimu Evolution v tomto předmětu je 4.0.0.
+Požadovaná verze Logisimu Evolution v tomto předmětu je **{{ logisim_version }}**.
 ```
 
 Po úspěšném nainstalovaní `logisim-evolution` (viz. [návod](01_logisim-instalace)) a spuštěním, uvidíte tohle:

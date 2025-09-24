@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 535 189">
+   <polyline fill="none" points="298,110 338,110" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="168,110 198,110" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="438,80 468,80" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="168,150 318,150 318,130 338,130" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="328,60 308,60 308,70 118,70 118,110 138,110" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="288,30 298,30 298,40 328,40" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="188,30 98,30 98,90 98,150 138,150" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <circle cx="98.0" cy="90.0" fill="rgb(0, 0, 0)" r="5.0" stroke="none" stroke-width="3.0"/>
+   <circle cx="118.0" cy="110.0" fill="rgb(0, 0, 0)" r="5.0" stroke="none" stroke-width="3.0"/>
+   <circle cx="78.0" cy="50.0" fill="rgb(0, 0, 0)" r="5.0" stroke="none" stroke-width="3.0"/>
+   <polyline fill="none" points="472,80 469,80" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polygon fill="none" points="474,71 498,71 508,80 498,89 474,89" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <text fill="rgb(0, 0, 0)" font-family="Monospaced" font-size="12" x="474.0" y="86.0">x1</text>
+   <text fill="rgb(0, 0, 0)" font-family="Monospaced" font-size="16" font-weight="bold" x="510.0" y="89.0">X2</text>
+   <circle cx="468.0" cy="80.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <polyline fill="none" points="53,90 58,90 98,90 198,90" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polygon fill="none" points="19,81 43,81 53,90 43,99 19,99" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <text fill="rgb(0, 0, 0)" font-family="Monospaced" font-size="12" x="24.0" y="96.0">x1</text>
+   <text fill="rgb(0, 0, 0)" font-family="Monospaced" font-size="16" font-weight="bold" x="5.0" y="99.0">B</text>
+   <circle cx="58.0" cy="90.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <polyline fill="none" points="53,170 58,170 118,170 118,110" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polygon fill="none" points="19,161 43,161 53,170 43,179 19,179" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <text fill="rgb(0, 0, 0)" font-family="Monospaced" font-size="12" x="24.0" y="176.0">x1</text>
+   <text fill="rgb(0, 0, 0)" font-family="Monospaced" font-size="16" font-weight="bold" x="6.0" y="179.0">C</text>
+   <circle cx="58.0" cy="170.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <polyline fill="none" points="53,50 58,50 78,50 78,10 188,10" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polygon fill="none" points="19,41 43,41 53,50 43,59 19,59" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <text fill="rgb(0, 0, 0)" font-family="Monospaced" font-size="12" x="24.0" y="56.0">x1</text>
+   <text fill="rgb(0, 0, 0)" font-family="Monospaced" font-size="16" font-weight="bold" x="5.0" y="59.0">A</text>
+   <circle cx="58.0" cy="50.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <polyline fill="none" points="158,110 139,103 139,117 158,110" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <circle cx="163.0" cy="110.0" fill="none" r="4.5" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <circle cx="168.0" cy="110.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <circle cx="138.0" cy="110.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <polyline fill="none" points="158,150 139,143 139,157 158,150" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <circle cx="163.0" cy="150.0" fill="none" r="4.5" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <circle cx="168.0" cy="150.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <circle cx="138.0" cy="150.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <polyline fill="none" points="158,50 139,43 139,57 158,50" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <circle cx="163.0" cy="50.0" fill="none" r="4.5" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <circle cx="168.0" cy="50.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <circle cx="138.0" cy="50.0" fill="rgb(0, 0, 0)" r="2.0" stroke="none" stroke-width="2.0"/>
+   <path d="M203.0,35.0 A15.0,15.0 90.0 0,0 203.0,5.0" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <polyline fill="none" points="203,5 189,5 189,35 203,35" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <path d="M213.0,115.0 A15.0,15.0 90.0 0,0 213.0,85.0" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <polyline fill="none" points="213,85 199,85 199,115 213,115" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <polyline fill="none" points="218,20 258,20 258,20" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="168,50 238,50 238,40 258,40 258,40" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <path d=" M288.0,30.0 C278.0,15.0 278.0,15.0 258.0,15.0 C266.0,30.0 266.0,30.0 258.0,45.0 C278.0,45.0 278.0,45.0 288.0,30.0 Z" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <polyline fill="none" points="228,100 268,100 268,100" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="138,50 78,50 78,130 248,130 248,120 268,120 268,120" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <path d=" M298.0,110.0 C288.0,95.0 288.0,95.0 268.0,95.0 C276.0,110.0 276.0,110.0 268.0,125.0 C288.0,125.0 288.0,125.0 298.0,110.0 Z" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <path d="M353.0,135.0 A15.0,15.0 90.0 0,0 353.0,105.0" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <polyline fill="none" points="353,105 339,105 339,135 353,135" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <path d="M343.0,65.0 A15.0,15.0 90.0 0,0 343.0,35.0" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <polyline fill="none" points="343,35 329,35 329,65 343,65" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+   <circle cx="363.0" cy="50.0" fill="none" r="4.5" stroke="rgb(0, 0, 0)" stroke-width="2.0"/>
+   <polyline fill="none" points="368,50 388,50 388,70 408,70 408,70" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <polyline fill="none" points="368,120 388,120 388,90 408,90 408,90" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="3.0"/>
+   <path d=" M438.0,80.0 C428.0,65.0 428.0,65.0 408.0,65.0 C416.0,80.0 416.0,80.0 408.0,95.0 C428.0,95.0 428.0,95.0 438.0,80.0 Z" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-width="2.0"/>
+</svg>

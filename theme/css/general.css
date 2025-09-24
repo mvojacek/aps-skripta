@@ -244,7 +244,7 @@ sup {
 /*CUSTOM*/
 
 /* svg dark mode using invert */
-svg {
+svg, .svg {
     -webkit-filter: invert(var(--dark-mode-invert)); /* safari 6.0 - 9.0 */
     filter: invert(var(--dark-mode-invert));
 }

@@ -1,6 +1,7 @@
 /book
 /src/quiz
 /fragments
+/dev
 
 *.old
 .obsidian/

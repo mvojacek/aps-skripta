@@ -19,7 +19,8 @@
 
 {% set single_port_gates = ["buffer", "not"] %}
 
-{% macro gate(gate, out="Q", in1="A", in2="B") -%}
+{% macro gate(gate, out="Q", in1="A", in2="B", width="13rem") -%}
+{% call resizesvg(width=width) -%}
 {% call tikzpicture() -%}
     \ctikzset{logic ports=ieee, logic ports/scale=0.8};
     \node [{{gate}} port] (G) {};
@@ -29,4 +30,21 @@
     {%- endif %}
     \draw (G.out) -- ++(0,0) node[right](X){ {{-out-}} };
 {%- endcall %}
+{%- endcall %}
+{%- endmacro %}
+
+{% set resizesvg_ns = namespace(number=0) -%}
+{% macro resizesvg(width="auto", height="auto") -%}
+{% set id = "resizesvg" ~ resizesvg_ns.number -%}
+<div id="{{id}}" style="display:block;">
+{{ caller() }}
+</div>
+<style>
+  #{{id}} svg {
+    height: {{height}}; !important;
+    width: {{width}} !important;
+    display: block;
+  }
+</style>
+{%- set resizesvg_ns.number = resizesvg_ns.number + 1 %}
 {%- endmacro %}
