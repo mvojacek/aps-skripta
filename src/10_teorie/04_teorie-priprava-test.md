@@ -160,6 +160,8 @@ V prvním testu stačí pouze:
 - výraz $\rightarrow$ tabulka
 - obvod $\leftrightarrow$ výraz
 
+Pokud k tomu nejste explicitně vyzváni, výraz žádným způsobem neupravujte/neminimalizujte! Správný výraz je ten, který *přesně* odpovídá zadanému zapojení (vyjma: komutativity, asociativity).
+
 ### obvod $\rightarrow$ výraz
 
 ```{{zadani}}
