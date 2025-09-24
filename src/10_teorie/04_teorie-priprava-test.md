@@ -39,63 +39,23 @@ V testu je potřeba na základě jednoho z těchto údajů vypsat všechny 3 ost
 **Nakresli logická hradla**, zapiš **operátor hradla jako výraz** (např. X=A+B), nakresli **pravdivostní tabulku**.
 ```
 
-a) NOT
+{% macro gate_by_name(letter, name, var, table) -%}
+{{ letter }}) {{ name | upper }}
 
 ```{{reseni}}
-{{ gate("not", "X") }}
+{{ gate(name | lower, var) }}
 
-$ X = \overline{A} $
+$ {{var}} = {{ caller() }} $
 
-|A|X|
-|:-:|:-:|
-|0|1|
-|1|0|
+{{ truth_table(var, table) }}
 ```
+{%- endmacro -%}
 
-b) OR
 
-```{{reseni}}
-{{ gate("or", "X") }}
-
-$ X = A + B $
-
-|A|B|X|
-|:-:|:-:|:-:|
-|0|0|0|
-|0|1|1|
-|1|0|1|
-|1|1|1|
-```
-
-c) XNOR
-
-```{{reseni}}
-{{ gate("xnor", "X") }}
-
-$ X = \overline{(A \oplus B)} $
-
-|A|B|X|
-|:-:|:-:|:-:|
-|0|0|1|
-|0|1|0|
-|1|0|0|
-|1|1|1|
-```
-
-d) AND
-    
-```{{reseni}}
-{{ gate("and", "X") }}
-  
-$ X = A \cdot B $
-
-|A|B|X|
-|:-:|:-:|:-:|
-|0|0|0|
-|0|1|0|
-|1|0|0|
-|1|1|1|
-```
+{% call gate_by_name("a", "NOT",  "X", "10"  ) -%} \n{A}        {%- endcall %}
+{% call gate_by_name("b", "OR",   "X", "0111") -%} A \or B      {%- endcall %}
+{% call gate_by_name("c", "XNOR", "X", "1001") -%} \n{A \xor B} {%- endcall %}
+{% call gate_by_name("d", "AND",  "X", "0001") -%} A \and B     {%- endcall %}
 
 ### Podle tvaru
 
@@ -103,50 +63,24 @@ $ X = A \cdot B $
 **Pojmenuj** následující hradla, zapiš jejich **výraz** a **pravdivostní tabulku**.
 ```
 
-a) {{ gate("nor", "X") }}
+{% macro gate_by_shape(letter, name, var, table) -%}
+{{ letter }}) {{ gate(name | lower, var) }}
 
 ```{{reseni}}
-NOR
+{{ name | upper }}
 
-$ X = \overline{(A + B)} $
+$ {{var}} = {{ caller() }} $
 
-|A|B|X|
-|:-:|:-:|:-:|
-|0|0|1|
-|0|1|0|
-|1|0|0|
-|1|1|0|
+{{ truth_table(var, table) }}
 ```
+{%- endmacro -%}
 
-b) {{ gate("xor", "Y") }}
 
-```{{reseni}}
-XOR
+{% call gate_by_shape("a", "NOR",    "X", "1000") -%} \n{A \or B}  {%- endcall %}
+{% call gate_by_shape("b", "XOR",    "Y", "0110") -%} A \xor B     {%- endcall %}
+{% call gate_by_shape("c", "NAND",   "Z", "1110") -%} \n{A \and B} {%- endcall %}
+{% call gate_by_shape("d", "BUFFER", "W", "01"  ) -%} A            {%- endcall %}
 
-$ Y = A \oplus B $
-
-|A|B|Y|
-|:-:|:-:|:-:|
-|0|0|0|
-|0|1|1|
-|1|0|1|
-|1|1|0|
-```
-
-c) {{ gate("nand", "Z") }}
-
-```{{reseni}}
-NAND
-
-$ Z = \overline{(A \cdot B)} $
-
-|A|B|Z|
-|:-:|:-:|:-:|
-|0|0|1|
-|0|1|1|
-|1|0|1|
-|1|1|0|
-```
 
 ### Podle výrazu nebo podle tabulky
 
@@ -253,17 +187,7 @@ $\textnormal{ {{-name-}} } = {{ lines[0] }}$
 ```
 
 ```admonish example title="Pravdivostní tabulka",collapsible=true
-{% set lst = table | list -%}
-{% set len = lst | length -%}
-{% set cols = log2(len) | int -%}
-{% set vars = letters_range('A', cols) -%}
-
-{% for v in vars %}| {{v}} {% endfor %}| {{name}} |
-{% for v in vars %}| :-: {% endfor %}| :-: |
-{% for x in lst -%}
-{% set bits = bin(loop.index0, cols) | list -%}
-{% for b in bits %}| {{b}} {% endfor %}| {{x}} |
-{% endfor -%}
+{{ truth_table(name, table) }}
 ```
 {%- if lines[1] is defined %}
 

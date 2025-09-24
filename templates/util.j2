@@ -2,3 +2,17 @@
 {% macro svg(src, width="auto", height="auto") -%}
 <img src="{{src}}" width="{{width}}" height="{{height}}" class="svg">
 {%- endmacro %}
+
+{% macro truth_table(name, table) -%}
+{% set lst = table | list -%}
+{% set len = lst | length -%}
+{% set cols = log2(len) | int -%}
+{% set vars = letters_range('A', cols) -%}
+
+{% for v in vars %}| {{v}} {% endfor %}| {{name}} |
+{% for v in vars %}| :-: {% endfor %}| :-: |
+{% for x in lst -%}
+{% set bits = bin(loop.index0, cols) | list -%}
+{% for b in bits %}| {{b}} {% endfor %}| {{x}} |
+{% endfor -%}
+{%- endmacro %}

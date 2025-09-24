@@ -1,7 +1,7 @@
 {% from "spoiler.j2" import spoiler %}
 {% from "tikz.j2" import tikzpicture, gate, resizesvg %}
 {% from "todo.j2" import todo %}
-{% from "util.j2" import svg %}
+{% from "util.j2" import svg, truth_table %}
 
 {%- if env.APS_TEST_THEME | length > 0 -%}
 <style>
