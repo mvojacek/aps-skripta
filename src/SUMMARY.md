@@ -1,8 +1,8 @@
 # Summary
 
 - [Teorie]()
-  - [Booleova algebra](./10_teorie/01_booleova-algebra.md)
-  - [Logická hradla](./10_teorie/02_hradla.md)
+  - [Logická hradla](./10_teorie/01_hradla.md)
+  - [Booleova algebra](./10_teorie/02_booleova-algebra.md)
   - [Karnaughova mapa](./10_teorie/03_karnaughova-mapa.md)
   - [Příprava na test](./10_teorie/04_teorie-priprava-test.md)
 
