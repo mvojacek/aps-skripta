@@ -64,7 +64,7 @@ Obvod můžeme popsat i výrazem:
 
 $$ X' = X + A $$
 
-kde $X'$ značí příští hodnotu a $X$ tu stávající. Pokud nám ale vyjde jiné $X'$, než jsem měli $X$, obvod na něj okamžitě zareaguje (je to vstup) a spustí výpočet znovu po dosazení $X'$ za $X$, tedy potenciálně je nutné popsat obvod takto:
+kde $X'$ značí příští hodnotu a $X$ tu stávající. Pokud nám ale vyjde jiné $X'$, než jsme měli $X$, obvod na něj okamžitě zareaguje (je to vstup) a spustí výpočet znovu po dosazení $X'$ za $X$, tedy potenciálně je nutné popsat obvod takto:
 
 $$ X' = (X + A) + A = X + A $$
 
@@ -128,7 +128,7 @@ Na následujícím obrázku vidíme 4 definice.
 
 - `High Level` (Active-High) - zde probíhá ukládání
 - `Low Level` (Active-Low) - značí se jako `CLK` nebo `ENA`
-- `Rising/Falling edge` hodnota se zpracuje v okamžíku přechodu `CLK` signálu z high na low a opačně
+- `Rising/Falling edge` hodnota se zpracuje v okamžiku přechodu `CLK` signálu z high na low a opačně
 
 #### Latch
 
