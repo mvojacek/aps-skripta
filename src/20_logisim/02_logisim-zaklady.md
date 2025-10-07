@@ -48,7 +48,7 @@ Jsou celkem 4
 
 <img src="../img/logisim-uvod-2.png"/>
 
-V zelénem obdelníku se vyskytují složky obsahující různé komponenty.
+V zeleném obdélníku se vyskytují složky obsahující různé komponenty.
 
 #### Zadání
 
@@ -90,7 +90,7 @@ Náš nově vytvořený obvod vložíme do `main`
 
 <img src="../img/logisim-uvod-custom-and.png">
 
-Následovně můžeme měnit hodnotu input pinů a to, že vyberem červenou ruku nahoře v nabídce nebo pomocí zkratky `Ctrl + 1`
+Následovně můžeme měnit hodnotu input pinů a to tak, že vybereme červenou ruku nahoře v nabídce nebo pomocí zkratky `Ctrl + 1`
 
 
 
