@@ -55,7 +55,7 @@ Vznikne nám následující tabulka
 
 2. Zakroužkujeme sousedy
 
-Musíme zakroužkovat všechny $ 1$, kroužkujeme buď samostatnou $1$ (v tomto případě je výsledek stejný jako při stavění pomocí mintermů přímo z pravdivostní tabulky, tady K-mapa nemá žádný přínos) nebo obdélníky s obsahem rovným některé mocnině $2$ $2,4,8... $, z čehož přímo výplývá (jako nutná podmínka), že obě dělky stran obdélníků musí být mocniny dvou.
+Musíme zakroužkovat všechny $ 1$, kroužkujeme buď samostatnou $1$ (v tomto případě je výsledek stejný jako při stavění pomocí mintermů přímo z pravdivostní tabulky, tady K-mapa nemá žádný přínos) nebo obdélníky s obsahem rovným některé mocnině $2$ $2,4,8... $, z čehož přímo vyplývá (jako nutná podmínka), že obě délky stran obdélníků musí být mocniny dvou.
 
 ![](../img/karnaughova-mapa-1-2.png =512x center)
 
@@ -104,7 +104,7 @@ ukázali, že K-Mapa dál funguje, jenom není výsledek optimální - 1x1 čtve
 
 ![](../img/karnaughova-mapa-3.png =512x center)
 
-Vidíme, že je blok nezávislý na tom, jestli je $ A$ $0$ nebo $1$ , takže zahrneme jen proměnou $B$ a $C $
+Vidíme, že je blok nezávislý na tom, jestli je $ A$ $0$ nebo $1$ , takže zahrneme jen proměnné $B$ a $C $
 
 - $ B $ musí být $ 0 $
 - $ C $ musí být $ 0 $
