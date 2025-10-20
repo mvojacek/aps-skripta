@@ -245,21 +245,19 @@ A \xor B
 
 Výsledek zde: $\Box$
 
-$$ X=(AC + C + B) + \overline{B \cdot \overline{C}} + \overline{C}(\overline{A}C +C) $$
+$ X=(AC + C + B) + \overline{B \cdot \overline{C}} + \overline{C}(\overline{A}C +C) $
 
 </details>
 <details>
   <summary>Řešení</summary>
 
-$$ X = (C(A+1)+B)+\overline{B}+C+\overline{C}(C(\overline{A}+1)) $$
+$ X = (C+B)+\overline{B}+C+\overline{C}(C) \qquad$ _absorbce (2x)_
 
-$$ X = (AC+B)+\overline{B} + C + \overline{C} \cdot (\overline{A}C) $$
+$ X = C+B+\overline{B}+C \qquad$ _asociativita, vyloučení třetího a neutralita 0_
 
-$$ X = AC + B + \overline{B} + C + 0 $$
+$ X = C+1 \qquad$ _idempotence, vyloučení třetího_
 
-$$ X = AC + 1 + C $$
-
-$$ X = 1 $$
+$ X = 1 \qquad$ _agresivita 1_
 
 </details>
 
@@ -267,19 +265,17 @@ $$ X = 1 $$
 
 Výsledek zde: $\Box + \Box$
 
-$$ X=(A+C)(A \cdot B + \overline{\overline{A} + B}) + AC + C $$
+$ X=(A+C)(A \cdot B + \overline{\overline{A} + B}) + AC + C $
 
 <details>
   <summary>Řešení</summary>
 
-$$ X = (A+C)(A \cdot B + A \cdot \overline{B}) + C $$
+$ X = (A+C)(A \cdot B + A \cdot \overline{B}) + C \qquad$ _De Morgan, absorbce_
 
-$$ X = (A+C)(A \cdot (B+\overline{B})) + C $$
+$ X = (A+C)(A \cdot (B+\overline{B})) + C \qquad$ _distributivita (vytkutí násobení)_
 
-$$ X = ((A+C) \cdot A) + C $$
+$ X = ((A+C) \cdot A) + C \qquad$ _vyloučení třetího a neutralita 1_
 
-$$ X = A \cdot A + A \cdot C + C $$
-
-$$ X = A +C $$
+$ X = A + C \qquad$ _absorbce_
 
 </details>
