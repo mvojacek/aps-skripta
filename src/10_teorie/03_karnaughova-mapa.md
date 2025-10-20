@@ -117,8 +117,6 @@ Jelikož se jedná o torus (viz. gif), můžeme označit i hodnoty, které se na
 
 ![](../img/karnaughova-mapa-4.png =512x center)
 
-![](../img/karnaughova-mapa-4.png =512x center)
-
 Vidíme, že je výraz $ Q_2 $ nezávislý na proměnné $ B $ (může být $ 0 $ nebo $ 1 $)
 
 - $ A $ musí být $ 0 $
