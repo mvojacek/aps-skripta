@@ -251,7 +251,7 @@ $ X=(AC + C + B) + \overline{B \cdot \overline{C}} + \overline{C}(\overline{A}C 
 <details>
   <summary>Řešení</summary>
 
-$ X = (C+B)+\overline{B}+C+\overline{C}(C) \qquad$ _absorbce (2x)_
+$ X = (C+B)+(\overline{B}+C)+\overline{C}(C) \qquad$ _absorbce, De Morgan, absorbce_
 
 $ X = C+B+\overline{B}+C \qquad$ _asociativita, vyloučení třetího a neutralita 0_
 
@@ -279,3 +279,7 @@ $ X = ((A+C) \cdot A) + C \qquad$ _vyloučení třetího a neutralita 1_
 $ X = A + C \qquad$ _absorbce_
 
 </details>
+
+---
+
+Pro další procvičení mohou posloužit příklady ze cvičebnice pro první test, kde je uvedená i minimalizovaná podoba výrazu.
