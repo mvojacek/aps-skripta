@@ -253,11 +253,11 @@ $$ X=(AC + C + B) + \overline{B \cdot \overline{C}} + \overline{C}(\overline{A}C
 
 $$ X = (C(A+1)+B)+\overline{B}+C+\overline{C}(C(\overline{A}+1)) $$
 
-$$ X = (AC+B)+\overline{B} + C + \overline{C} \cdot (\overline{A}C) $$
+$$ X = (C+B)+\overline{B} + C + \overline{C} \cdot (\overline{A}C) $$
 
-$$ X = AC + B + \overline{B} + C + 0 $$
+$$ X = C + B + \overline{B} + C + 0 $$
 
-$$ X = AC + 1 + C $$
+$$ X = C + 1 + C $$
 
 $$ X = 1 $$
 
