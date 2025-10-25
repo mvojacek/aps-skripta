@@ -2,8 +2,8 @@
 
 ### Reprezentace čísel jako binární řetězce
 
-Čísel (zatím kladných, později celých) je nekonečno, a jsou to abstraktní objekty. Aby s nimy šlo pracovat, je potřeba je umět nějak
-vyjádřit. My, lidé, na to používáme desitkovou soustavu, zapíšeme např. číslo 137. Počítače pracují pouze s 0 a 1, takže tato reprezentace není vhodná. Je potřeba zvolit nějakou jinou. 
+Čísel (zatím kladných, později celých) je nekonečno, a jsou to abstraktní objekty. Aby s nimi šlo pracovat, je potřeba je umět nějak
+vyjádřit. My, lidé, na to používáme desítkovou soustavu, zapíšeme např. číslo 137. Počítače pracují pouze s 0 a 1, takže tato reprezentace není vhodná. Je potřeba zvolit nějakou jinou. 
 
 #### Dvojková soustava
 
@@ -37,7 +37,7 @@ Dekodér má $2^n$ výstupů a $n$ bitový vstup (*selector*). Provádí převod
 
 <img src="../img/decd.gif">
 
-Dekodér může mít ještě vstup ENA (enable). Pokud existuje, a je na jeho vstup přivedena $0$, dekodér má na výstupu samé nuly, což má většinou za efekt vypnutí rozhodovací logiky za ním přiojené (nenastala ani jedna z variant). Generuje pak kód "*až* 1 z N".
+Dekodér může mít ještě vstup ENA (enable). Pokud existuje, a je na jeho vstup přivedena $0$, dekodér má na výstupu samé nuly, což má většinou za efekt vypnutí rozhodovací logiky za ním připojené (nenastala ani jedna z variant). Generuje pak kód "*až* 1 z N".
 
 ```admonish warning
 Pokud používáte dekodér s enable v Logisimu, ujistěte se, že máte nastavenou možnost "Disabled output" na "Zero". Druhá možnost "Floating" by generovala třetí stav, který je až na výjimky zakázaný!
@@ -87,7 +87,7 @@ Pokud má 1-bitový demultiplexor nastavený "Disabled output" na "Zero", chová
 {{ todo("Přepsat cvičení") }}
 
 ```admonish error title="Důležité"
-V kombinačních obvodech je až na vyjímky zakázáno používat třetí stav! Každý obvod, pro který by šla vytvořit pravdivostní tabulka, jde postavit ze základních hradel, bez třetího stavu!
+V kombinačních obvodech je až na výjimky zakázáno používat třetí stav! Každý obvod, pro který by šla vytvořit pravdivostní tabulka, jde postavit ze základních hradel, bez třetího stavu!
 ```
 
 Vytvořte si vlastní dekodér, který bude mít 2 bitový `SEL` vstup.
