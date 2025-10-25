@@ -1,4 +1,4 @@
-# Instalace a nastevní Logisimu Evolution
+# Instalace a nastavení Logisim Evolution
 
 ```admonish important title="Máte správný Logisim?"
 Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už léta zastaralý, je nestabilní, nepodporuje moderní komponenty, a **projektové soubory s Logisimem Evolution nejsou kompatibilní!**
@@ -30,7 +30,7 @@ Linux: níže
 
 Flatpak: `flatpak install com.github.reds.LogisimEvolution`
 
-Snap: `snap install snap install logisim-evolution`
+Snap: `snap install logisim-evolution`
 
 Případně další metody [zde](https://github.com/logisim-evolution/logisim-evolution?tab=readme-ov-file#download), nebo manuální instalace níže.
 
