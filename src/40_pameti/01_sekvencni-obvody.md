@@ -52,7 +52,7 @@ Z chování obvodu vidíme, že pokud je $A=0$, $X$ se nezmění ($X'=X$), a pok
 | 0 | S | S  |
 | 1 | S | 1  |
 
-V této tabulce může S nabýt libovolných hodnot ($0$ nebo $1$) a každá varianta repreznetuje jeden řádek. Nicméně z takto zjednodušené tabulky je lépe vidět časové chování obvodu:
+V této tabulce může S nabýt libovolných hodnot ($0$ nebo $1$) a každá varianta reprezentuje jeden řádek. Nicméně z takto zjednodušené tabulky je lépe vidět časové chování obvodu:
 
 Pokud se obvod nachází v nějakém "stavu" $S$, tak při $A=0$ v něm **zůstane**, ale při $A=1$ **přejde** do stavu $S=1$.
 
