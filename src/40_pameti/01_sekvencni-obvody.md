@@ -20,7 +20,7 @@ Příklad kombinačního obvodu
 
 ### Sekvenční obvody
 
-Sekvenční obvody jsou ty obvody, které nejsou kombinační, tj. vyskutyjí se v nich nějaké cykly. Tyto cykly způsobují zajímavé chování (paměť), ale jsou obtížnější analyzovat.
+Sekvenční obvody jsou ty obvody, které nejsou kombinační, tj. vyskytují se v nich nějaké cykly. Tyto cykly způsobují zajímavé chování (paměť), ale jsou obtížnější analyzovat.
 
 Příkladný sekvenční obvod s `OR`
 

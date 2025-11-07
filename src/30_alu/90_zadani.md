@@ -30,7 +30,7 @@ Je potřeba dodržet přesné názvy souborů, včetně kapitalizace! ALU budu v
 
 ### Projekt v Logisimu
 
-- Použijte Logisim **Evolution** 3.9.0
+- Použijte Logisim **Evolution** 4.0.0
 - Modul ALU v Logisimu se **musí** jmenovat `ALU`. Pokud ho máte jiný, vytvořte správně pojmenovaný modul a překopírujte obsah (Ctrl-A, Ctrl-C, Ctrl-V).
 - Všechna dvou-vstupová hradla musí mít **velikost Narrow**, pokud není vyloženě vhodné mít jinou. Doporučuji použít [template](../logisim/template.circ).
 - *Všechny* moduly mají **pojmenované *všechny* vstupy a výstupy** vhodným jménem.
