@@ -12,7 +12,7 @@ Kombinační obvody lze ekvivalentně zadefinovat několika způsoby:
 
 - Hodnoty výstupů jsou plně definované pouze hodnotami vstupů
 - Obvod implementuje matematickou funkci, tj. lze popsat pravdivostní tabulkou
-- V obvodu se nevyskytují žádné cykly (nepřímá závislost závislost vstupu hradla na jeho výstupu)
+- V obvodu se nevyskytují žádné cykly (nepřímá závislost vstupu hradla na jeho výstupu)
 
 Příklad kombinačního obvodu
 
