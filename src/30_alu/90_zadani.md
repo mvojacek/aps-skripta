@@ -113,9 +113,39 @@ Do výsledného hodnocení se bude vždy započítávat pouze vaše vlastní pr�
 
 ## Hodnocení
 
-Za ALU, které **správně** implementuje všechny zadané operace, je možné získat až 20 bodů.
+Hodnocení ALU je rozloženo do průbežného plnění domácích úkolů o komponentách ALU (10b) a do odevzdání samotného hotového ALU (10b).
 
-V případě, že povinné ALU je hodnocené 20 body, je možné získat až 6 bonusových bodů za bonusové operace.
+V samotném ALU se hodnotí:
+
+- správnost _všech povinných_ operací (4b)
+- provedení a vzhled zapojení (3b)
+- správnost a úprava dokumentace (3b)
+
+Pokud jsou všechny části vyjímečně kvalitně zpracovány, může být udělen 1 bonusový bod.
+
+Dále je možné získat až 6 bonusových bodů za bonusové operace, ale pouze pokud povinná část ALU byla ohodnocena plnými 10b.
+
+### Časté problémy
+
+- Absence povinné části odevzdání (dokumentace, prohlášení, etc.) (= 0 bodů)
+- Použití zakázaných komponent (= 0 bodů)
+- Errory, zkraty, třetí stav (= 0 bodů)
+- **Nezapojené (floating) vstupy do komponent** (podle závažnosti)
+- Nesmyslné zapojení (podle závažnosti)
+- Použití více než jedné sčítačky (= 0 bodů za zapojení)
+- Drobná neefektivita, např. (-1 bod za zapojení)
+  - **Porovnávání s konstantou pomocí (drahého) obecného komparátoru**
+  - Zbytečné operace na velkých (např. 16bit) hodnotách
+  - U BCD: použití sčítačky a komparátoru místo zjednodušeného obvodu
+  - U CLA: přítomnost kritické cesty, která je řádově odpovídá šířce sčítačky (nedošlo ke zrychlení sčítání)
+
+Za neefektivitu se **nepovažuje**:
+
+- Zbytečné operace na 1bit hodnotách - jsou zanedbatelné
+- Použití vícevstupového multiplexoru, kde více vstupů ma stejnou hodnotu (stejný vodič), nebo jsou to konstanty - tyto případy lze velmi jednoduše mechanicky zjednodušit, a tak s tím počítáme
+  - Ale pozor na to, že při použití takového multiplexoru musí být všechny vstupy zapojené!
+- Zapojení, které sice lze zjednodušit, ale jeho aktuální podoba byla explicitně navržena tak, aby bylo patrné, jak obvod funguje (pro přehlednost, atd.)
+
 
 ## Vstupy a výstupy (I/O) ALU
 
