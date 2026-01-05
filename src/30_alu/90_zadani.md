@@ -130,8 +130,10 @@ Dále je možné získat až 6 bonusových bodů za bonusové operace, ale pouze
 - Absence povinné části odevzdání (dokumentace, prohlášení, etc.) (= 0 bodů)
 - Použití zakázaných komponent (= 0 bodů)
 - Errory, zkraty, třetí stav (= 0 bodů)
-- **Nezapojené (floating) vstupy do komponent** (podle závažnosti)
+- **Nezapojené (floating) vstupy do komponent** (-1 bod za zapojení)
 - Nesmyslné zapojení (podle závažnosti)
+- **Překrývající se dráty a/nebo komponenty** (-1 bod za zapojení)
+- **Nikam nevedoucí (zbytečné) dráty nebo komponenty** (-1 bod za zapojení)
 - Použití více než jedné sčítačky (= 0 bodů za zapojení)
 - Drobná neefektivita, např. (-1 bod za zapojení)
   - **Porovnávání s konstantou pomocí (drahého) obecného komparátoru**
@@ -146,6 +148,34 @@ Za neefektivitu se **nepovažuje**:
   - Ale pozor na to, že při použití takového multiplexoru musí být všechny vstupy zapojené!
 - Zapojení, které sice lze zjednodušit, ale jeho aktuální podoba byla explicitně navržena tak, aby bylo patrné, jak obvod funguje (pro přehlednost, atd.)
 
+### Automatická kontrola některých problémů
+
+Zadání ALU je zadefinované tak, aby šlo ALU nasadit na FPGA. Pokud by tomu něco bránilo, nejspíš jsou za to body dolů. Zkontrolovat "nasaditelnost" a tím pádem i některé náležitosti vašeho obvodu můžete tak, že necháte Logisim vygenerovat z vašeho modulu HDL, což je zdrojový kód pro popis obvodů. Logisim během toho kroku spustí tzv. Design Rule Checking (DRC), který kontroluje např:
+
+- Nezapojené vstupy modulů
+- Zkraty
+- Splittery nenapojené na žádnou sběrnici
+- K ničemu nepřipojené dráty
+- Dráty s nějakou hodnotou (sources) které nejsou připojené k něčemu užitečnému (sinks). Tohle varování nebrání syntéze pro FPGA a nemusí vadit, pokud nejde o extrém.
+
+#### Návod
+
+1. Uložte nebo zazálohujte svůj projekt, tímto procesem ho částečně poškodíte
+1. Otevřete modul ALU
+1. V horní liště: FPGA -> Synthetize & Download
+1. V nově otevřeném okně:
+  1. Tlačítko "Annotate": vygeneruje náhodné labely všude kde je potřeba (**odteď projekt neukládejte**)
+  1. Jako "Target Board" vyberte třeba "BASYS3", je to docela jedno
+  1. Ujistěte se, že v "Toplevel:" je vybraný modul "ALU", jinak ho vyberte
+  1. Mezi "Toplevel:" a tlačítkem "Execute" vyberte "**Generate HDL only**" místo "Synthetize & Download"
+  1. Stiskněte "Execute"
+1. Pokud se zobrazí okno "Component to FPGA board mapping", nic závažného nebrání vašemu projektu v konverzi na HDL a následnému nasazení na FPGA
+  - Pokud ne, budou ve spodní části okna nejaké Errory a/nebo Warningy
+1. V **obou případech** se podívejte do "Warnings" a "Errors" a vyhodnoťte závažnost problému
+  - Na záznamy lze klikat, což vás přesune na místo, kde varování vzniklo
+  - Okno nebrání v používání Logisimu, můžete ho nechat otevřené
+  - Poznamenejte si bokem, co všechno je potřeba opravit
+1. Zavřete Logisim **bez uložení**, abyste zahodili změny způsobene krokem "Annotate"
 
 ## Vstupy a výstupy (I/O) ALU
 
