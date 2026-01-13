@@ -161,21 +161,21 @@ Zadání ALU je zadefinované tak, aby šlo ALU nasadit na FPGA. Pokud by tomu n
 #### Návod
 
 1. Uložte nebo zazálohujte svůj projekt, tímto procesem ho částečně poškodíte
-1. Otevřete modul ALU
-1. V horní liště: FPGA -> Synthetize & Download
-1. V nově otevřeném okně:
-  1. Tlačítko "Annotate": vygeneruje náhodné labely všude kde je potřeba (**odteď projekt neukládejte**)
-  1. Jako "Target Board" vyberte třeba "BASYS3", je to docela jedno
-  1. Ujistěte se, že v "Toplevel:" je vybraný modul "ALU", jinak ho vyberte
-  1. Mezi "Toplevel:" a tlačítkem "Execute" vyberte "**Generate HDL only**" místo "Synthetize & Download"
-  1. Stiskněte "Execute"
-1. Pokud se zobrazí okno "Component to FPGA board mapping", nic závažného nebrání vašemu projektu v konverzi na HDL a následnému nasazení na FPGA
-  - Pokud ne, budou ve spodní části okna nejaké Errory a/nebo Warningy
-1. V **obou případech** se podívejte do "Warnings" a "Errors" a vyhodnoťte závažnost problému
-  - Na záznamy lze klikat, což vás přesune na místo, kde varování vzniklo
-  - Okno nebrání v používání Logisimu, můžete ho nechat otevřené
-  - Poznamenejte si bokem, co všechno je potřeba opravit
-1. Zavřete Logisim **bez uložení**, abyste zahodili změny způsobene krokem "Annotate"
+2. Otevřete modul ALU
+3. V horní liště: FPGA -> Synthetize & Download
+4. V nově otevřeném okně:
+    1. Tlačítko "Annotate": vygeneruje náhodné labely všude kde je potřeba (**odteď projekt neukládejte**)
+    2. Jako "Target Board" vyberte třeba "BASYS3", je to docela jedno
+    3. Ujistěte se, že v "Toplevel:" je vybraný modul "ALU", jinak ho vyberte
+    4. Mezi "Toplevel:" a tlačítkem "Execute" vyberte "**Generate HDL only**" místo "Synthetize & Download"
+    5. Stiskněte "Execute"
+5. Pokud se zobrazí okno "Component to FPGA board mapping", nic závažného nebrání vašemu projektu v konverzi na HDL a následnému nasazení na FPGA
+    - Pokud ne, budou ve spodní části okna nejaké Errory a/nebo Warningy
+6. V **obou případech** se podívejte do "Warnings" a "Errors" a vyhodnoťte závažnost problému
+    - Na záznamy lze klikat, což vás přesune na místo, kde varování vzniklo
+    - Okno nebrání v používání Logisimu, můžete ho nechat otevřené
+    - Poznamenejte si bokem, co všechno je potřeba opravit
+7. Zavřete Logisim **bez uložení**, abyste zahodili změny způsobene krokem "Annotate"
 
 ## Vstupy a výstupy (I/O) ALU
 
