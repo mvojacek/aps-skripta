@@ -3,30 +3,20 @@
 {{ todo("Přepsat stránku") }}
 
 ```admonish important title="Máte správný Logisim?"
-Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už léta zastaralý, je nestabilní, nepodporuje moderní komponenty, a **projektové soubory s Logisimem Evolution nejsou kompatibilní!**
+Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už léta zastaralý, je nestabilní, nepodporuje moderní komponenty, a **projektové soubory s Logisimem Evolution nejsou kompatibilní a nebudou akceptovány!**
 ```
 
 ```admonish info title="Verze Logisimu Evolution"
-Požadovaná verze Logisimu Evolution v tomto předmětu je **{{ logisim_version }}**.
+Požadovaná verze Logisimu Evolution v tomto předmětu je **{{ logisim_version }}**. Soubory vytvořené ve starších verzích nemusí být kompatibilní a nebudou akceptovány!
 ```
 
 Po úspěšném nainstalovaní `logisim-evolution` (viz. [návod](01_logisim-instalace)) a spuštěním, uvidíte tohle:
 
 <img src="../img/logisim-zaklady-uvod.png"/>
 
-## Template
+## Logisim template
 
-Jako první vám doporučuji nahrát template, kde jsou všechny gaty nastavené na narrow.
-
-[template.circ](../logisim/template.circ)
-
-Nahrajeme template:
-
-File --> Open --> vybereme `template.circ` soubor, který jsme stáhli.
-
-Uložíme zvlášť, abychom nepřepsali náš template:
-
-File --> Save As --> Uložíme nový soubor (taky můžeme použít zkratku `Ctrl + Shift + S`)
+Stáhněte a nastavte si v Logisimu [template](./02a_template.md)!
 
 ## Základy
 

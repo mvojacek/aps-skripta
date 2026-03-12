@@ -10,6 +10,7 @@
 
 - [Logisim]()
   - [Instalace](./20_logisim/01_logisim-instalace.md)
+    - [Template](./20_logisim/01a_template.md)
   - [Základy](./20_logisim/02_logisim-zaklady.md)
   - [Třetí stav a zkraty](./20_logisim/03_stavy.md)
   - [Multiplexory a dekodéry](./20_logisim/04_multiplexory-dekodery.md)
@@ -29,6 +30,7 @@
 - [Návrh sekvenčních obvodů]()
   - [Návrh sekvenčních obvodů](./50_sekvencni/01_navrh-sekvencnich.md)
   - [Ukázkové zadání: Umocňování](./50_sekvencni/10_zadani-exp.md)
+  - [Domácí úkol: Norma](./50_sekvencni/11_zadani-norma.md)
   - [Další zadání a info k testu](./50_sekvencni/19_dalsi-zadani-test.md)
   - [Soubory z hodin](./50_sekvencni/20_soubory-z-hodin.md)
 {% if env.APS_TEST_SEKVENCNI | default("") | length > 0 %}

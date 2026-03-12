@@ -1,52 +1,44 @@
 # Instalace a nastavení Logisim Evolution
 
 ```admonish important title="Máte správný Logisim?"
-Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už léta zastaralý, je nestabilní, nepodporuje moderní komponenty, a **projektové soubory s Logisimem Evolution nejsou kompatibilní!**
+Pozor na to, že používate Logisim **Evolution**. Klasický Logisim je už léta zastaralý, je nestabilní, nepodporuje moderní komponenty, a **projektové soubory s Logisimem Evolution nejsou kompatibilní a nebudou akceptovány!**
 ```
 
 ```admonish info title="Verze Logisimu Evolution"
-Požadovaná verze Logisimu Evolution v tomto předmětu je **{{ logisim_version }}**
+Požadovaná verze Logisimu Evolution v tomto předmětu je **{{ logisim_version }}**. Soubory vytvořené ve starších verzích nemusí být kompatibilní a nebudou akceptovány!
 ```
 
 ## Logisim template
 
-Nastavte si v Logisimu template: `File > Preferences... > Template > User template > Select > Vybrat template file`
-
-Šablona je nastavená tak, aby komponenty odpovídaly doporučenému vizuálnímu stylu (narrow gates).
-
-[Download - template](../logisim/template.circ)
+Stáhněte a nastavte si v Logisimu [template](./02a_template.md)!
 
 ## Instalace logisimu
 
-[Windows](https://github.com/logisim-evolution/logisim-evolution/releases/download/v4.0.0/logisim-evolution-4.0.0-aarch64.msi) (pozn: na školních PC je nutné provést manuální instalaci)
+Pozor na outdated balíčky v různých repozitářích. Potřebujete verzi **{{ logisim_version }}**
 
-[Mac x86](https://github.com/logisim-evolution/logisim-evolution/releases/download/v4.0.0/logisim-evolution-4.0.0-x86_64.dmg)
+Aktuální balíčky lze stáhnout jako [release z githubu](https://github.com/logisim-evolution/logisim-evolution/releases/tag/v{{ logisim_version }}). Vyberte si příslušnou verzi pro vaše OS.
 
-[Mac arm](https://github.com/logisim-evolution/logisim-evolution/releases/download/v4.0.0/logisim-evolution-4.0.0-aarch64.dmg)
+## Logisim s manuální Javou
 
-Linux: níže
+Pokud vám nevyhovuje žádný z balíčků v releases, stáhněte si soubor `.jar` (Java archive) a budete ho ručně spouštět v Javě. Logisim vyžaduje Javu minimálně verze 21.
 
-### Linux
+Pokud už máte na počítači Javu alespoň 21, nebo jí umíte nainstalovat, můžete spustit logisim z příkazové řádky:
 
-Flatpak: `flatpak install com.github.reds.LogisimEvolution`
+```sh
+java -jar logisim-evolution-{{ logisim_version }}.jar
+```
 
-Snap: `snap install logisim-evolution`
-
-Případně další metody [zde](https://github.com/logisim-evolution/logisim-evolution?tab=readme-ov-file#download), nebo manuální instalace níže.
-
-## Manuální instalace
-
-### Java 21
-
-Logisim Evolution od verze 3.9.0 vyžaduje Javu 21.
-
-
+### Instalace Javy 21
 
 ### Linux
 
-Nejpřímočařejší nainstalovat openjdk z repozitářů, e.g. na ubuntu:
+Nejpřímočařejší nainstalovat openjdk z repozitářů:
 
-`apt-get install openjdk-21-jre`
+Ubuntu: `apt-get install openjdk-21-jre`  
+Arch: `pacman -S jre21-openjdk`  
+...etc. pro vaši distribuci
+
+Pokud instalace z repozitářů není možná, nebo preferujete portable instalaci, můžete si stáhnout a rozbalit [Eclipse Temurin OpenJDK 21](https://adoptium.net/temurin/releases?version=21&os=any&arch=any) (Chcete JRE pro Linux, ve formátu .tar.gz). Binárku `java` najdete ve složce `bin` a můžete jí po rozbalení používat místo nainstalované javy.
 
 ### Windows
 
@@ -60,30 +52,3 @@ V případě, že nemáte k dispozici administrátorské práva, postačí `.zip
 
 Je důležité mít `.\` před `java.exe`, jinak se použije systémová, potenciálně zastaralá, java.
 ```
-
-## Logisim Evolution
-
-Obecně stáhneme z oficiálního git repa v releases [https://github.com/logisim-evolution/logisim-evolution/releases](https://github.com/logisim-evolution/logisim-evolution/releases) nejnovější verzi.
-
-Tedy
-
-- Debian based (e.g. Ubuntu) - `.deb`
-- RPM package - `.rpm`
-- Windows - `.msi`
-- macOS - `.dmg`
-- Ostatní - `.jar` - půjde spustit buď poklikáním nebo z terminálu pomocí `java -jar logisim-evolution-xxx.jar`
-
-```admonish warning
-Na linuxu pozor na instalaci z repozitářů distribuce (apt, dnf, yum, flatpak, snap, ...). Často v nich bývají zastarelé verze, které nemají pro nás potřebné bugfixy a features (třeba autosave)!
-```
-
-### Arch linux
-
-Můžeme nainstalovat z Arch AUR repozitáře pomocí `yay`
-
-```bash
-yay -S logisim-evolution-bin
-```
-
-Pokud preferujete instalaci ze zdrojáku, můžete vynechat `-bin`.
-

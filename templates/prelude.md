@@ -11,4 +11,4 @@
 </style>
 {%- endif -%}
 
-{% set logisim_version = "4.0.0" %}
+{% set logisim_version = "4.1.0" %}
