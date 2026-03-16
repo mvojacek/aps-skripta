@@ -4,6 +4,10 @@ Každá komponenta v Logisimu má nějaké výchozí nastavení. Aby se nám s o
 
 ### Stažení template
 
+```admonish important title="Verze Logisimu"
+Tato template byla přípravena ve verzi Logisimu 4.1.0 a ve starších verzích nebude fungovat!
+```
+
 [template.circ](../logisim/template.circ)
 
 ### Používání template
