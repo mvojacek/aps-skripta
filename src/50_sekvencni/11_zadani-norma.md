@@ -80,12 +80,49 @@ Na následujícím obrázku ([zdroj](https://commons.wikimedia.org/wiki/File:COR
 
 Z celé této sekce je opravdu nejdůležitější princip algoritmu, ne nutně konkrétní matematika.
 
-#### CORDIC v praxi
+#### Zjednodušení rotace pouze na tangens
 
-Po určitých dalších úpravách, které jsou popsané
-[tady](https://files.gamepub.sk/CSS/od%20Risa/Ine%20materialy/CORDIC/Algoritmus%20CORDIC.pdf),
-[tady](https://web.cs.ucla.edu/digital_arithmetic/files/ch11.pdf) a
-[tady](https://en.wikipedia.org/wiki/CORDIC), se dostaneme k:
+Chceme tedy náš vektor vynásobit několika rotačními maticemi:
+
+$\begin{bmatrix}x \\ y\end{bmatrix} = 
+(\prod\limits_{i=0}^{N-1} \mathbf{R}_{\varphi_i}) \cdot \vec{v} =
+\underbrace{
+  (\prod\limits_{i=0}^{N-1}
+    \begin{bmatrix}
+      \cos(\varphi_i) & -\sin(\varphi_i) \\
+      \sin(\varphi_i) & \cos(\varphi_i)
+    \end{bmatrix})
+    \cdot \begin{bmatrix}x_0 \\ y_0\end{bmatrix}
+}_{\textnormal{postupné násobení maticemi}}
+$
+
+Protože budeme chtít úhly $\varphi_i$ volit vůči trigonometrickým funkcím speciálně tak, aby nám vyšlo hezké číslo, kterým se bude dobře násobit, vadí nám, že máme ve výrazu *dvě různé* goniometrické funkce. Tyto dvě funkce totiž pro skoro všechny vstupy mají odlišné, navíc iracionální výstupy, kterými se težko násobí.
+
+Tento problém se dá vyřešit následujícím "trikem": z i-té matice $\mathbf{R}_{\varphi_i}$ vytkneme $\cos(\varphi_i)$:
+
+$
+\begin{bmatrix}
+  \cos(\varphi_i) & -\sin(\varphi_i) \\
+  \sin(\varphi_i) & \cos(\varphi_i)
+\end{bmatrix} =
+\cos(\varphi_i) \cdot
+\begin{bmatrix}
+  \frac{\cos(\varphi_i)}{\cos(\varphi_i)} & -\frac{\sin(\varphi_i)}{\cos(\varphi_i)} \\
+  \frac{\sin(\varphi_i)}{\cos(\varphi_i)} & \frac{\cos(\varphi_i)}{\cos(\varphi_i)}
+\end{bmatrix} =
+\cos(\varphi_i) \cdot
+\begin{bmatrix}
+  1 & -\tan(\varphi_i) \\
+  \tan(\varphi_i) & 1
+  \end{bmatrix}
+$
+
+Teď už máme v maticích, kterými se bude náš vektor násobit, pouze $\tan(\varphi_i)$. Zůstal nám sice $\cos(\varphi_i)$ mimo matici, ale protože násobení matic skalárem ("číslem") je komutativní (samotné násobení matice maticí komutativní není!), můžeme všechny $\cos(\varphi_i)$ vytknout před samotné násobení maticemi, do samostatného součinu skalárů, který si označíme $K_N$. ([zdroj](https://files.gamepub.sk/CSS/od%20Risa/Ine%20materialy/CORDIC/Algoritmus%20CORDIC.pdf),
+[zdroj](https://web.cs.ucla.edu/digital_arithmetic/files/ch11.pdf),
+[zdroj](https://en.wikipedia.org/wiki/CORDIC))
+
+
+Dostaneme tedy:
 
 $\begin{bmatrix} x \\ y\end{bmatrix} =
 \underbrace{(
@@ -100,32 +137,62 @@ $\begin{bmatrix} x \\ y\end{bmatrix} =
 }_{\textnormal{postupné násobení maticemi}}
 $
 
-Levý člen $K_N$ zatím vynecháme - později se ukáže, že je konstantní a vůbec nezávisí na $\theta$ ani na $\varphi_i$ - budeme ho aplikovat až úplně na konci algoritmu jako korekci.
+Levý člen $K_N$ zatím vynecháme - ukáže se, že je konstantní a vůbec nezávisí na $\theta$ ani na samotných $\varphi_i$ - budeme ho aplikovat až úplně na konci algoritmu jako korekci.
 
-Postupné násobení matic si rozepíšeme na jednotlivé mezikroky $x_0,\ldots,x_N$ a $y_0,\ldots,y_N$ a zapíšeme jako rekurenci:
+Postupné násobení matic si rozložíme na jednotlivé mezikroky $x_0,\ldots,x_N$ a $y_0,\ldots,y_N$ a zapíšeme jako rekurenci (tj. vzorec pro (i+1)-tý člen posloupnosti na základě i-tého):
+
+$\begin{bmatrix} x_{i+1} \\ y_{i+1}\end{bmatrix} =
+\begin{bmatrix}
+1 & -\tan(\varphi_i) \\
+\tan(\varphi_i) & 1
+\end{bmatrix} \cdot
+\begin{bmatrix}x_i \\ y_i\end{bmatrix}
+$
+
+Pozn.: S pomocí této rekurence můžeme konstatovat vztah $N$-tého členu posloupnosti ke správnému výsledku:
+
+$
+\begin{bmatrix} x \\ y \end{bmatrix} =
+K_N \cdot
+\begin{bmatrix} x_N \\ y_N \end{bmatrix}
+$
+
+Poté rozepíšeme maticové násobení a dostaneme následující vzorce pro $x_{i+1}$ a $y_{i+1}$:
 
 $x_{i+1} = x_i - \tan(\varphi_i) \cdot y_i \\
  y_{i+1} = y_i + \tan(\varphi_i) \cdot x_i
 $
 
-A jak tedy zvolit $\varphi_i$ tak, abychom hned věděli kolik je $\tan(\varphi_i)$? Pomocí k ní opačné funkce $\arctan$:
+Až na ten $\tan(\varphi_i)$ tohle vypadá už docela implementovatelně. Zbývá nám tedy nějak zařídit, abychom nemuseli v hardwaru implementovat výpočet $\tan(x)$. To uděláme tak, že $\varphi_i$ zvolíme "magicky" tak, abychom úplně bez počítání, na první pohled, věděli, kolik bude $\tan(\varphi_i)$.
 
-Nechť $\varphi_i = \arctan(2^{-i})$, pak
+#### Volba vhodných úhlu pro tangens
+
+A jak tedy zvolit $\varphi_i$ tak, abychom hned věděli kolik je $\tan(\varphi_i)$? Jednoduše, pomocí k $\tan$ opačné funkce $\arctan$:
+
+Zvolme $\varphi_i = \arctan(2^{-i})$, pak platí
+
 $\tan(\varphi_i) = \tan(\arctan(2^{-i})) = 2^{-i}$.
 
-Tedy pokud takto "kouzelně" zvolíme $\varphi_i$, pak $\tan(\varphi_i) = 2^{-i}$. Např. $\tan(\varphi_4) = 2^{-4} = 1/16$. Není potřeba žádný tangens počítat. Sice jsme problém tangensu jenom přesunuli jinam, protože pokud by nás zajímala skutečná hodnota $\varphi_i$, museli bychom umět spočítat $\arctan(x)$ - ale najednou ne pro libovolný vstup, ale pouze pro konkrétní $x=2^{-i}$, kde $i$ jde od $0$ do $N-1$. To se dá udělat například předpočítáním $N$-řádkové tabulky, kterou budeme mít v nějaké paměti. My dokonce pro výpočet $\sqrt{x^2+y^2}$ skutečnou hodnotu $\varphi_i$ znát vůbec nepotřebujeme, takže tu tabulku ani nepotřebujeme - stačí nám že ty hodnoty existují a že kvůli nim ta matika funguje :D
+Tedy pokud takto "kouzelně" zvolíme $\varphi_i$, pak $\tan(\varphi_i) = 2^{-i}$. Např. $\tan(\varphi_4) = 2^{-4} = 1/16$. Není potřeba žádný tangens počítat. Sice jsme problém tangensu jenom přesunuli jinam, protože pokud by nás zajímala skutečná hodnota $\varphi_i$, museli bychom umět spočítat $\arctan(x)$ - ale najednou ne pro libovolný vstup, ale pouze pro konkrétní $x=2^{-i}$, kde $i$ jde od $0$ do $N-1$. To se dá udělat například předpočítáním $N$-řádkové tabulky, kterou budeme mít v nějaké paměti. My dokonce pro výpočet $\sqrt{x^2+y^2}$ skutečnou hodnotu $\varphi_i$ znát vůbec nepotřebujeme, takže tu tabulku nepotřebovat nebudeme. Budeme totiž používat CORDIC ve *vektorovém* režimu popsaném níže, kde nás úhel $\theta$ a tímpádem ani konkrétní hodnoty $\varphi_i$ nezajímají.
 
 V tomto místě je vhodné do výpočtu vnést i zmiňovaný "směr" rotace. Pokud je $\varphi_i$ kladné, otáčíme proti směru hodinových ručiček. Pokud je záporné, použijeme identitu $\tan(-\alpha) = -\tan(\alpha)$. Budeme tedy uvažovat, že samotný úhel $\varphi_i$ je vždy kladný (je to pouze "velikost"), a směr budeme ovládat koeficientem $d_i \in \{-1,1\}$, kde $1$ je proti směru hodinových ručiček (dopředu) a $-1$ opačně (zpátky). Tedy pokud je směr $-1$, tak jenom prohodíme znaménka před $\tan(\varphi_i)$ v tom vzorci, nic dalšího není potřeba měnit.
 
 #### Skutečný krok CORDICu a jeho implementace
 
-Po zjednodušení tangensů a přidání směru tedy získáme **skutečný jeden krok algoritmu CORDIC**:
+Po dosazení $\varphi_i = \arctan(2^{-i})$ do zmíněné rekurence
+
+$x_{i+1} = x_i - \tan(\varphi_i) \cdot y_i \\
+ y_{i+1} = y_i + \tan(\varphi_i) \cdot x_i
+$
+
+
+a zjednodušení $\tan(\arctan(2^{-i})) = 2^{-i}$ a přidání směru $d_i$ tedy získáme **skutečný jeden krok algoritmu CORDIC**:
 
 $ x_{i+1} = x_i - d_i \cdot 2^{-i} \cdot y_i \\
   y_{i+1} = y_i + d_i \cdot 2^{-i} \cdot x_i
 $
 
-Zde je nutné si uvědomit, jak se tyto matematické operace budou dobře implementovat v hardwaru.
+Povšimněte si, jak dobře se tyto matematické operace budou implementovat v hardwaru. Kvůli tomu jsme všechny ty úpravy a triky dělali.
 
 Zaprvé, násobení číslem $2^{-i}$ je to samé jako dělení číslem $2^i$. Podobně jako dělení číslem $10^i$ v desítkové soustavě je tato operace triviální - jednoduše posun o $i$ číslic, ve dvojkové soustavě o $i$ bitů (tzn. barrel shifter). Tohle je mimochodem důvod, proč jsme zvolili $\varphi_i = \arctan(2^{-i})$, a ne něco jiného - fungovaly by i jiné hodnoty, ale hůř by se jimi násobilo.
 
@@ -141,7 +208,7 @@ V praxi se to dělá tak, že během výpočtu, v $i$-té iteraci, koukáme, jes
 
 #### Škálování výsledku
 
-Pokud se rozhodneme pro $N$ iterací algoritmu, začneme s hodnotami $[x_0, y_0]$ (ze vstupu), a budeme iterovat, dokud nezískáme $[x_N, y_N]$. Hodnota $y_N$ bude blízká nule, ta nás nezajímá. Hodnota $x_N$ v určitém smyslu reprezentuje náš výsledek, ale zatím není úplný. Musíme do výsledku ještě zahrnout konstantní člen kosinů:
+Pokud se rozhodneme pro $N$ iterací algoritmu, začneme s hodnotami $[x_0, y_0]$ (ze vstupu), a budeme iterovat, dokud nezískáme $[x_N, y_N]$. Hodnota $[x_N, y_N]$ v určitém smyslu reprezentuje náš výsledek, ale zatím není úplný. Musíme do výsledku ještě zahrnout konstantní člen kosinů:
 
 $x = \underbrace{(\prod\limits_{i=0}^{N-1} \cos(\varphi_i))}_{K_N} \cdot x_N$
 
