@@ -329,10 +329,12 @@ module NORM #(
 ) (
     input [27:0] X_IN,
     input [27:0] Y_IN,
-    input start,
-    input clk,
+    input START,
+    input CLK,
     output [27:0] OUTP,
-    output done
+    output DONE,
+    output [27:0] DEBUG_X,
+    output [27:0] DEBUG_Y
 );
 endmodule
 ```
@@ -344,6 +346,7 @@ endmodule
   - V signed two's-complement fixed-point formátu `Q12.16` (28 bitů)
   - Výstup bude vzhledem k povaze výpočtu vždy kladný, ale stejně bude v signed formátu
 - Vstupy `START`, `CLK` a výstup `DONE` tvoří start-done interface modulu
+- Na výstupy `DEBUG_X` a `DEBUG_Y` přiveďte aktuální stav vašich registrů pro $X$ a $Y$, ve kterých provádíte mezivýpočty, aby bylo zvenku vidět, co modul dělá. Hodnota těchto výstupů se nekontroluje, slouží pouze pro ladění.
 - Modul spočítá $\texttt{OUTP} = \sqrt{\texttt{X}_\texttt{IN}^2 + \texttt{Y}_\texttt{IN}^2}$ pomocí CORDIC algoritmu
 - Po jednom úvodním načítacím cyklu (start=1) modul provede přesně 28 iterací CORDIC algoritmu
   - Výsledek 28. iterace CORDICu $x_{28}$ je potřeba přenásobit konstantou $K_{28}$ (stačí kombinačně na výstupu z modulu)
