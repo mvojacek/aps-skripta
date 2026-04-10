@@ -66,7 +66,7 @@ Spočítat $\sin(\theta)$ a $\cos(\theta)$ pro libovolné $\theta$ je obtížné
 
 Pokud zvolíme nějaké $\alpha$ a $\beta$ tak, že $\theta = \alpha + \beta$, můžeme místo jedné rotace o $\theta$ provést dvě rotace za sebou: prvně o $\alpha$ a pak o $\beta$. To lze vyjádřit i pomocí rotačních matic, postupným násobením:
 
-$ \vec{u} = \mathbf{R}_\theta \cdot \vec{u} = \mathbf{R}_\beta \cdot (\mathbf{R}_\alpha \cdot \vec{u}) $
+$ \vec{u} = \mathbf{R}_\theta \cdot \vec{v} = \mathbf{R}_\beta \cdot (\mathbf{R}_\alpha \cdot \vec{v}) $
 
 Tento princip lze libovolně rozšířit pro $N$ malých rotací:
 
